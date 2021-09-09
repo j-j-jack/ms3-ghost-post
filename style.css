@@ -1,0 +1,25 @@
+body{
+background-color: #888888;
+padding: 0;
+margin: 0;
+}
+
+.page-container{
+    position: relative;
+    min-height: 100vh;
+}
+
+.page-content{
+    padding-bottom: 2.5em;
+}
+
+.footer{
+    background-color: #666666;
+    position: absolute;
+    height: 2.5em;
+    width: 100%;
+    margin-top: 5em;
+    padding: 0;
+    bottom: 0;
+    text-align: center;
+}
