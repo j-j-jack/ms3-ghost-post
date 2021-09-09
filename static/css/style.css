@@ -47,6 +47,8 @@ margin: 0;
 
 .login-form-container{
     display: flex;
+    text-align: center;
+    padding-bottom: 5%;
 }
 
 .login-box{
@@ -57,7 +59,9 @@ margin: 0;
 .register-box{
     flex: 1;
     background: rgb(108, 214, 131);
+    text-align: center;
 } 
+
 
 @media screen and (max-width: 991px){
     .login-form-container{
