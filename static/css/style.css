@@ -24,24 +24,50 @@ margin: 0;
     text-align: center;
 }
 
-/* login form -------------------------------------------------------------------- */
-.login-page-container{
+/* login page -------------------------------------------------------------------- */
+.login-page-logo-and-slogan-container{
+    display: flex;
+}
+
+.logo-box{
+    flex: 1;
+    padding-left: 10%;
+}
+
+.slogan-box{
+    flex: 1;
+    text-align: center;
+    padding: 8% 5% 0 5%;
+}
+
+.login-page-logo{
+    width: 80%;
+}
+
+
+.login-form-container{
     display: flex;
 }
 
 .login-box{
-    flex-grow: 1;
+    flex: 1;
     background: rgb(214, 108, 108);
 }
 
 .register-box{
-    flex-grow: 1;
+    flex: 1;
     background: rgb(108, 214, 131);
 } 
 
 @media screen and (max-width: 991px){
-    .login-page-container{
+    .login-form-container{
         flex-direction: column;
+    }
+    .login-page-logo-and-slogan-container{
+        flex-direction: column;
+    }
+    .slogan-box{
+        padding-top: 0;
     }
     
 }
