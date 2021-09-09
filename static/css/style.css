@@ -23,3 +23,28 @@ margin: 0;
     bottom: 0;
     text-align: center;
 }
+
+/* login form -------------------------------------------------------------------- */
+.login-page-container{
+    display: flex;
+}
+
+.login-box{
+    flex-grow: 1;
+    background: rgb(214, 108, 108);
+}
+
+.register-box{
+    flex-grow: 1;
+    background: rgb(108, 214, 131);
+} 
+
+@media screen and (max-width: 991px){
+    .login-page-container{
+        flex-direction: column;
+    }
+    
+}
+
+
+
