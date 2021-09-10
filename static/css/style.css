@@ -150,7 +150,7 @@ margin: 0;
     }
     
     .finish-profile-container{
-        flex-direction: vertical;
+        flex-direction: column;
     }
 }
 

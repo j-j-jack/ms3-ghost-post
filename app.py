@@ -69,6 +69,7 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password1")),
+            "email": request.form.get("email"),
             # setting a new profile_complete value to false.
             # if user logs back in without finishing profile this value will be checked
             "profile_complete": False
@@ -86,7 +87,35 @@ def finish_profile():
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    email = mongo.db.users.find_one(
+        {"username": session["user"]})["email"]
+    password = mongo.db.users.find_one(
+        {"username": session["user"]})["password"]
+    user_id = mongo.db.users.find_one(
+        {"username": session["user"]})["_id"]
+
+    if request.method == "POST":
+        additional_profile_info = {
+            "username": username,
+            "email": email,
+            "password": password,
+            "interest": request.form.get("interest"),
+            "profile_picture": request.form.get("profile-picture"),
+            "location": request.form.get("location"),
+            "about": request.form.get("about"),
+            # setting a new profile_complete value to true.
+            # when the user logs back in they will go straight to the feed page
+            "profile_complete": True
+        }
+        mongo.db.users.update(
+            {"_id": ObjectId(user_id)}, additional_profile_info)
+        return redirect(url_for("feed"))
     return render_template("finish-profile.html", username=username)
+
+
+@app.route("/feed")
+def feed():
+    return render_template("feed.html")
 
 
 if __name__ == "__main__":

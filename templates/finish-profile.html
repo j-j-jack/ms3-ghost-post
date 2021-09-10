@@ -16,13 +16,13 @@
     </div>
 </div>
 <div class="finish-profile-title"><h4>
-    Welcome {{ username }}, please finish your profile before continuing to the site...</h4></div
-<form>
+    Welcome {{ username }}, please finish your profile before continuing to the site...</h4></div>
+<form method="POST" action="{{ url_for('finish_profile') }}">
 <div class="finish-profile-container">
     
     <div class="finish-profile-box-a">
         <label for="interest">Main Interest: </label>
-        <select name="interest" id="interest">
+        <select name="interest" id="interest" required>
             <option value="Aliens">Aliens</option>
             <option value="Angels">Angels</option>
             <option value="Demons">Demons</option>
@@ -33,7 +33,7 @@
         </select><br><br>
         <div class="profile-picture-radio-buttons">
             <input type="radio" id="profile-radio-1" name="profile-picture" 
-                value="static/images/profile-1.jpg" checked>
+                value="static/images/profile-1.jpg" checked required>
             <input type="radio" id="profile-radio-2" name="profile-picture"
                 value="static/images/profile-2.jpg">
             <input type="radio" id="profile-radio-3" name="profile-picture"
@@ -73,16 +73,16 @@
     </div>
     <div class="finish-profile-box-b">
         <label for="location">Location: </label>
-        <select class= "country-selector" name="location" id="location">
+        <select class= "country-selector" name="location" id="location" required>
         </select><br><br>
         <label for="about">About you: </label><br>
         <textarea id="about" name="about" rows="10" cols="50" 
             placeholder = "Describe yourself here (max 500 char)"
-            maxlength="500" style="resize: none;"></textarea>
+            maxlength="500" style="resize: none;" required></textarea>
     </div>
 </div>
 <div class="finish-profile-submission">
-    <button type="submit">Submit</button><br><br>
+    <input type="submit"><br><br>
 </div>
 </form>
 <script src="{{ url_for('static', filename='js/countries.js') }}"></script>
