@@ -26,7 +26,7 @@
             <option value="Aliens">Aliens</option>
             <option value="Angels">Angels</option>
             <option value="Demons">Demons</option>
-             <option value="Fairies">Fairies</option>
+            <option value="Fairies">Fairies</option>
             <option value="Ghosts">Ghosts</option>
             <option value="Vampires">Vampires</option>
             <option value="Witches/Wizards">Witches/Wizards</option>
@@ -72,6 +72,9 @@
         </div>
     </div>
     <div class="finish-profile-box-b">
+        <label for="location">Location: </label>
+        <select class= "country-selector" name="location" id="location">
+        </select><br><br>
         <label for="about">About you: </label><br>
         <textarea id="about" name="about" rows="10" cols="50" 
             placeholder = "Describe yourself here (max 500 char)"
@@ -82,6 +85,6 @@
     <button type="submit">Submit</button><br><br>
 </div>
 </form>
-<script src="{{ url_for('static', filename='js/countries.json') }}"></script>
+<script src="{{ url_for('static', filename='js/countries.js') }}"></script>
 <script src="{{ url_for('static', filename='js/finish-profile-script.js') }}"></script>
 {% endblock %}

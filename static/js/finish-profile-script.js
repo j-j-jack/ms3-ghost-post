@@ -33,6 +33,10 @@ let altTags = [
 
 let currentPictureSelected = 0;
 window.addEventListener('DOMContentLoaded', (event) => {
+    for(country in countries){
+        document.getElementsByClassName("country-selector")[0].innerHTML += `<option value="${countries[country].name}">${countries[country].name}</option>`
+    }
+
     document.getElementsByClassName("picture-right-arrow")[0].addEventListener('click', function(){
         currentPictureSelected += 1;
         document.getElementsByClassName("picture-left-arrow")[0].style.visibility = "visible";
