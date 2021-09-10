@@ -45,7 +45,19 @@
             <input type="radio" id="profile-radio-11" name="profile-picture" value="profile11">
             <input type="radio" id="profile-radio-12" name="profile-picture" value="profile12">
         </div>
-        
+        <div class="profile-pic-selector">
+        <div class='picture-select'>
+            <span>Choose Avatar</span>
+            <img class="picture-left-arrow" 
+                src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
+                style="visibility: hidden;" aria-hidden="true" alt="left arrow">
+            <img class="selected-picture" src="{{ url_for('static', filename='images/profile-1.jpg') }}" 
+                alt="a spooky ghost-like figure standing in a dimly lit area">
+            <img class = "picture-right-arrow"
+                src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
+                alt="right arrow">
+        </div>
+        </div>
     </div>
     <div class="finish-profile-box-b">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat laborum cumque fugit voluptatem, temporibus similique at quam unde praesentium tenetur velit natus voluptate nostrum inventore! Quas laborum quam et rem? Possimus delectus quasi nam neque, facilis, architecto eum odit alias, earum eaque perspiciatis animi eius dolorem deleniti placeat voluptatibus quam quia minus asperiores! Esse quis cum dolor accusantium laudantium et, similique voluptatibus ea aspernatur id quasi odit qui. Totam, atque facere. Eligendi odio nemo blanditiis debitis et laborum consequuntur porro quod corrupti iure totam neque, modi voluptas fuga dolorum, amet non veniam expedita excepturi iusto soluta ex quasi quae suscipit! Eligendi repellendus doloremque dignissimos, ex ducimus minima voluptas explicabo ea optio quod, unde, consequatur est pariatur fugiat cum magnam quidem obcaecati illo vel voluptatibus alias accusamus repellat odio! Sit, unde natus eos, totam repellat dicta autem placeat eum laboriosam eveniet similique quae ipsum possimus. Eligendi, recusandae voluptatibus aperiam voluptatum numquam officiis quae cupiditate, odio, eaque error asperiores consequuntur corrupti perferendis fuga rerum iste aliquid sunt tempora perspiciatis nihil laudantium accusantium! Repudiandae ut reprehenderit, quam vitae autem, consequatur nobis dicta officiis qui ad error cupiditate recusandae exercitationem facilis! Fugiat nihil aperiam accusantium? Harum tempore assumenda quam accusantium accusamus ipsam nulla id eos voluptate sit! Ab consectetur, ipsum animi non, nisi asperiores fugit molestias blanditiis possimus consequatur eveniet provident quisquam suscipit. Itaque fugit non dolores ut! Nesciunt error tenetur soluta voluptatem excepturi, fugiat natus! Voluptas magnam excepturi inventore id sapiente. Ipsam ipsa asperiores quisquam repellendus quaerat modi harum illum similique in nostrum eveniet, cupiditate tempora, vero id earum rerum dolorem provident distinctio inventore ratione. Eveniet quos officia beatae ducimus iure aut adipisci eaque omnis veniam expedita consequatur atque voluptatibus, error aperiam. Modi voluptatum deserunt adipisci eius ex illum non tenetur, ratione repellat blanditiis qui accusantium odio architecto provident minima, voluptas reiciendis id nostrum sapiente facilis, quo consequuntur corrupti a at. Obcaecati, enim. Blanditiis commodi sapiente dolorum corrupti, exercitationem laborum placeat sequi, perferendis, libero maiores assumenda laboriosam suscipit velit explicabo cum et quibusdam amet fuga iure. Rerum, harum tempore. Dolor amet quo voluptates autem quaerat recusandae sequi rerum eveniet dolore enim a assumenda, cum eaque! Cum quaerat quae rerum enim, illo vitae minima eos consequuntur perspiciatis, repellendus ab nostrum, veritatis provident expedita quia molestiae libero nam iusto consequatur illum maiores obcaecati a. Excepturi error provident, impedit officia quis aliquid eveniet assumenda atque? Et magnam id praesentium facere assumenda maiores reprehenderit voluptatibus iste! Iusto accusamus, alias fuga mollitia vel illo at consequuntur voluptatibus voluptas accusantium necessitatibus non ab nostrum magnam esse asperiores quia vitae tempora tempore officia reprehenderit sequi voluptatem! Deserunt voluptatibus repellendus aliquid harum laboriosam maxime itaque facilis nisi! Voluptas earum voluptatem cumque esse recusandae placeat sequi, soluta rerum et fugiat laborum natus ipsam laudantium, praesentium ipsum deserunt qui ea atque, obcaecati exercitationem voluptates quia maiores. Voluptates excepturi consectetur possimus molestiae laudantium asperiores veritatis, impedit similique, rem fugiat et tempore harum blanditiis, enim aspernatur ea magni ipsum. Corporis incidunt eligendi dolore quas ad dolorum voluptas reprehenderit itaque, alias fugiat, perferendis qui blanditiis laboriosam.
@@ -53,4 +65,5 @@
 </div>
 <div class="finish-profile-submission"></div>
 </form>
+<script src="{{ url_for('static', filename='js/finish-profile-script.js') }}"></script>
 {% endblock %}

@@ -92,6 +92,7 @@ margin: 0;
 /* finish profile page -------------------------------------------------------------------- */
 .finish-profile-container{
     display: flex;
+    margin-bottom: 2.5em;
 }
 .finish-profile-box-a{
     flex: 1;
@@ -101,6 +102,28 @@ margin: 0;
 }
 .finish-profile-title{
     text-align: center;
+}
+
+.profile-picture-radio-buttons{
+    display: none;
+}
+.profile-pic-selector{
+    height: 20vh;
+}
+
+.selected-picture {
+    width: 15%;
+}
+.profile-pic-selector > div > span {
+    padding-bottom: 50%;
+}
+
+.picture-left-arrow:hover{
+    cursor: pointer
+}
+
+.picture-right-arrow:hover{
+    cursor: pointer
 }
 
 /* media queries -------------------------------------------------------------------- */
