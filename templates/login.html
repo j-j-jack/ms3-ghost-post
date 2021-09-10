@@ -69,6 +69,21 @@
     </div>
 </div>
 
+<div class="small-screen-login-flash">
+    <section>
+            <!-- flash messages -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                       <div>
+                            <h4>{{ message }}</h4>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </section>
+</div>
+
 <div class="login-form-container-small">
     <div class="login-titles-container">
         <div class="login-title-box">
@@ -79,18 +94,6 @@
         </div>
         </div>
     <div class="login-box-small">
-        <section>
-            <!-- flash messages -->
-            {% with messages = get_flashed_messages(category_filter=["login"]) %}
-                {% if messages %}
-                    {% for message in messages %}
-                       <div>
-                            <h4>{{ message }}</h4>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </section>
         <form method="POST" action="{{ url_for('login') }}">
             <label for="username">Username: </label><br>
             <input id="username" name="username" type="text" required><br><br>
@@ -100,18 +103,6 @@
        </form>
     </div>
     <div class="register-box-small">
-        <section>
-            <!-- flash messages -->
-            {% with messages = get_flashed_messages(category_filter=["register"]) %}
-                {% if messages %}
-                    {% for message in messages %}
-                       <div>
-                            <h4>{{ message }}</h4>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </section>
         <form method="POST" action="{{ url_for('register') }}">
             <label for="username">Username: </label><br>
             <input id="username" name="username" type="text" required><br><br>

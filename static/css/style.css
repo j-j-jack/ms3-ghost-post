@@ -83,7 +83,10 @@ margin: 0;
     flex: 1;
     background:rgb(108, 214, 131); 
 }
-
+.small-screen-login-flash{
+    display: none;
+    text-align: center;
+}
 
 @media screen and (max-width: 991px){
     .login-form-container{
@@ -98,6 +101,9 @@ margin: 0;
     .login-form-container-small{
         display: block;
         text-align: center;
+    }
+    .small-screen-login-flash{
+        display: block;
     }
     
 }
