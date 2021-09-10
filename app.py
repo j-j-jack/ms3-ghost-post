@@ -34,7 +34,7 @@ def login():
                 # If they have they are directed to the feed page.
                 # Otherwise they are directed to the finish profile page.
                 if existing_user["profile_complete"] == False:
-                    return render_template("finish-profile.html")
+                    return redirect(url_for("finish_profile"))
                 else:
                     return render_template("feed.html")
             else:
@@ -78,7 +78,15 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-    return render_template("finish-profile.html")
+    return redirect(url_for("finish_profile"))
+
+
+@app.route("/finish_profile", methods=["GET", "POST"])
+def finish_profile():
+    # grab the session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("finish-profile.html", username=username)
 
 
 if __name__ == "__main__":

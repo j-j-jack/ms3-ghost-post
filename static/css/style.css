@@ -88,6 +88,22 @@ margin: 0;
     text-align: center;
 }
 
+
+/* finish profile page -------------------------------------------------------------------- */
+.finish-profile-container{
+    display: flex;
+}
+.finish-profile-box-a{
+    flex: 1;
+}
+.finish-profile-box-b{
+    flex: 1;
+}
+.finish-profile-title{
+    text-align: center;
+}
+
+/* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){
     .login-form-container{
         display: none;
@@ -106,6 +122,9 @@ margin: 0;
         display: block;
     }
     
+    .finish-profile-container{
+        flex-direction: vertical;
+    }
 }
 
 
