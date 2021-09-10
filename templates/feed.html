@@ -1,1 +1,40 @@
-Feed
+{% extends "base.html" %}
+{% block title %}
+<title>Feed</title>
+{% endblock %}
+{% block content %}
+<div class="navbar-and-logo-container">
+    <div class="dropdown-box"></div>
+    <div class="navbar-logo-box">
+        <img class="login-page-logo" 
+            src="{{ url_for('static', filename='images/logo.svg') }}"
+            alt ="Company logo for ghost post. It is a ghost drawing the words ghost post on a blue board">
+    </div>
+    <div class="navbar-box">
+        <br>
+        <div class="navbar-container">
+            <div class="add-story-box">
+                <h4>Add Story</h4>
+            </div>
+            <div class="feed-box">
+                <h4>Feed</h4>
+            </div>
+            <div class="profile-box">
+                <h4>Profile</h4>
+            </div>
+            <div class="logout-box">
+                <h4>Logout</h4>
+            </div>
+            <div class="search-box">
+                <form>
+                    <input type="text" name="search" id="search">
+                    <button class="search-submission" type=submit>
+                        <img class="search-icon" src="{{ url_for('static', filename='images/search.svg') }}">
+                    </button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
