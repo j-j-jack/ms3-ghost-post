@@ -68,4 +68,64 @@
        </form>
     </div>
 </div>
+
+<div class="login-form-container-small">
+    <div class="login-titles-container">
+        <div class="login-title-box">
+            <h4>Login</h4>
+        </div>
+        <div class="register-title-box">
+            <h4>Register</h4>
+        </div>
+        </div>
+    <div class="login-box-small">
+        <section>
+            <!-- flash messages -->
+            {% with messages = get_flashed_messages(category_filter=["login"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                       <div>
+                            <h4>{{ message }}</h4>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </section>
+        <form method="POST" action="{{ url_for('login') }}">
+            <label for="username">Username: </label><br>
+            <input id="username" name="username" type="text" required><br><br>
+            <label for="password">Password: </label><br>
+            <input id="password" name="password" type="password" required><br><br>
+            <button type="submit">Submit</button><br><br>
+       </form>
+    </div>
+    <div class="register-box-small">
+        <section>
+            <!-- flash messages -->
+            {% with messages = get_flashed_messages(category_filter=["register"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                       <div>
+                            <h4>{{ message }}</h4>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </section>
+        <form method="POST" action="{{ url_for('register') }}">
+            <label for="username">Username: </label><br>
+            <input id="username" name="username" type="text" required><br><br>
+            <label for="email">Email: </label><br>
+            <input id="email" name="email" type="email" required><br><br>
+            <label for="password1">Password: </label><br>
+            <input id="password1" name="password1" type="password" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required><br><br>
+            <label for="password2">Confirm Password: </label><br>
+            <input id="password2" name="password2" type="password" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required><br><br>
+            <button type="submit">Submit</button><br><br>
+       </form>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/login-page-script.js') }}"></script>
 {% endblock %}

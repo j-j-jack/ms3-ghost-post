@@ -62,16 +62,42 @@ margin: 0;
     text-align: center;
 } 
 
+.login-form-container-small{
+    display: none;
+    background:rgb(214, 108, 108);
+}
+
+.register-box-small{
+    display: none;
+    background:rgb(108, 214, 131);
+}
+
+.login-titles-container{
+    display: flex;
+}
+.login-title-box{
+    flex: 1;
+    background:rgb(214, 108, 108);
+}
+.register-title-box{
+    flex: 1;
+    background:rgb(108, 214, 131); 
+}
+
 
 @media screen and (max-width: 991px){
     .login-form-container{
-        flex-direction: column;
+        display: none;
     }
     .login-page-logo-and-slogan-container{
         flex-direction: column;
     }
     .slogan-box{
         padding-top: 0;
+    }
+    .login-form-container-small{
+        display: block;
+        text-align: center;
     }
     
 }
