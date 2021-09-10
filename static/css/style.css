@@ -93,6 +93,7 @@ margin: 0;
 .finish-profile-container{
     display: flex;
     margin-bottom: 2.5em;
+    text-align: center;
 }
 .finish-profile-box-a{
     flex: 1;
@@ -124,6 +125,9 @@ margin: 0;
 
 .picture-right-arrow:hover{
     cursor: pointer
+}
+.finish-profile-submission{
+    text-align: center;
 }
 
 /* media queries -------------------------------------------------------------------- */
