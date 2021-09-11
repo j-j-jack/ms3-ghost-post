@@ -4,6 +4,10 @@ padding: 0;
 margin: 0;
 }
 /* navbar -------------------------------------------------------------------- */
+#navbar-container-small{
+    display: none;
+    position: absolute;
+}
 .navbar-and-logo-container{
     display: flex;
 }
@@ -187,6 +191,39 @@ margin: 0;
 
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){
+    .navbar-box{
+        display: none;
+    }
+    .dropdown-box{
+        display: block;
+        flex: 1;
+        padding-left: 5%;
+    }
+    .navbar-logo-box{
+        flex: 3;
+    }
+    #burger-icon{
+        height: 60%;
+        vertical-align: sub;
+        margin-top: 20%;
+        cursor: pointer;
+    }
+    #x-icon-box{
+        text-align: right;
+        padding-right: 5%;
+    }
+    #x-icon{
+        height: 150%;
+        vertical-align: sub;
+        margin-top: -5%;
+        cursor: pointer;
+    }
+    #navbar-container-small{
+        display: block;
+        display: none;
+        background: #444444;
+        min-width: 320px;
+    }
     .login-form-container{
         display: none;
     }
