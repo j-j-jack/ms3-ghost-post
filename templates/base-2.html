@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    {% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="page-content">
+            <div class="navbar-and-logo-container">
+    <div id="navbar-container-small">
+        <div id="x-icon-box">
+        <img id="x-icon" 
+            src="{{ url_for('static', filename='images/x-icon.svg') }}">
+        </div>
+            <div class="add-story-box-small" onclick="location.href=`{{ url_for('feed') }}`">
+                <h4>Add Story</h4>
+            </div>
+            <div class="feed-box-small" onclick="location.href=`{{ url_for('feed') }}`">
+                <h4>Feed</h4>
+            </div>
+            <div class="profile-box-small" onclick="location.href=`{{ url_for('feed') }}`">
+                <h4>Profile</h4>
+            </div>
+            <div class="logout-box-small" onclick="location.href=`{{ url_for('login') }}`";>
+                <h4>Logout</h4>
+            </div>
+            <div class="search-box-small">
+                <form>
+                    <input type="text" name="search" id="search">
+                    <button class="search-submission" type=submit>
+                        <img class="search-icon" src="{{ url_for('static', filename='images/search.svg') }}">
+                    </button>
+                </form>
+            </div>
+            <br>
+        </div>
+    <div class="dropdown-box">
+        <img id="burger-icon" 
+            src="{{ url_for('static', filename='images/burger.svg') }}">
+    </div>
+    <div class="navbar-logo-box">
+        <img class="login-page-logo" 
+            src="{{ url_for('static', filename='images/logo.svg') }}"
+            alt ="Company logo for ghost post. It is a ghost drawing the words ghost post on a blue board">
+    </div>
+    
+    <div class="navbar-box">
+        <br>
+        <div class="navbar-container">
+            <div class="add-story-box" onclick="location.href=`{{ url_for('feed') }}`">
+                <h4>Add Story</h4>
+            </div>
+            <div class="feed-box" onclick="location.href=`{{ url_for('feed') }}`">
+                <h4>Feed</h4>
+            </div>
+            <div class="profile-box" onclick="location.href=`{{ url_for('feed') }}`">
+                <h4>Profile</h4>
+            </div>
+            <div class="logout-box" onclick="location.href=`{{ url_for('login') }}`";>
+                <h4>Logout</h4>
+            </div>
+            <div class="search-box">
+                <form>
+                    <input type="text" name="search" id="search">
+                    <button class="search-submission" type=submit>
+                        <img class="search-icon" src="{{ url_for('static', filename='images/search.svg') }}">
+                    </button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+            {% block content %}
+            {% endblock %}    
+        </div>
+        
+    
+    <div class="footer">
+        © 2021 Ghost Post
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+
+</body>
+</html>
