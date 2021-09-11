@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import date
 
 if os.path.exists("env.py"):
     import env
@@ -129,13 +130,16 @@ def add_story():
     user_id = mongo.db.users.find_one(
         {"username": session["user"]})["_id"]
     if request.method == "POST":
+        today = date.today()
+        now = today.strftime("%B %d, %Y")
         story = {
             "title": request.form.get("title"),
             "category": request.form.get("category"),
             "story_by": ObjectId(user_id),
             "favs": 0,
             "location": request.form.get("category"),
-            "content": request.form.get("content")
+            "content": request.form.get("content"),
+            "date_added": now
         }
         mongo.db.stories.insert_one(story)
         return redirect(url_for("feed"))
