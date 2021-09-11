@@ -19,36 +19,43 @@ margin: 0;
 }
 .navbar-container{
     display: flex;
-    margin-top: auto;}
+    margin-top: auto;
+}
+
 .add-story-box{
     flex: 1;
     background:rgb(125, 189, 139);
+    cursor: pointer;
 }
 .feed-box{
     flex: 1;
     background:rgb(125, 169, 189);
+    cursor: pointer;
 }
 .profile-box{
     flex: 1;
     background:rgb(125, 142, 189);
+    cursor: pointer;
 }
 .logout-box{
     flex: 1;
     background:rgb(153, 125, 189);
+    cursor: pointer;
 }
 .search-box{
     flex: 2;
     background:rgb(189, 125, 186);
-    padding-top: 1%;
+    padding-top: 2%;
     padding-bottom: 0;
 }
 .search-submission{
     background: rgba(0, 0, 0, 0);
     border: none;
+    cursor: pointer;
 }
 .search-icon{
     width: 120%;
-    vertical-align: text-bottom;
+    vertical-align: sub;
 }
 
 /*---------------------------------------------------------------*/
