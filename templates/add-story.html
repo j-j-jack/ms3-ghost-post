@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 <div class="story-form">
-<form>
+<form method="POST" action="{{ url_for('add_story') }}">
     <label for="title">Title</label>
     <input type=text id="title" name="title"><br><br>
     <label for="Category">Category: </label>
@@ -20,9 +20,11 @@
     <label for="location">Location: </label>
     <select class= "country-selector" name="location" id="location" required>
     </select><br><br>
-    <textarea id="about" name="about" rows="30" cols="100" 
+    <label for="content">Content: </label><br>
+    <textarea id="content" name="content" rows="30" cols="100" 
             placeholder = "Write your story here (max 20000 char)"
-            maxlength="500" style="resize: none;" required></textarea>
+            maxlength="20000" style="resize: none;" required></textarea><br>
+    <button type="submit">Submit</button><br><br>
 </form>
 </div>
 <script src="{{ url_for('static', filename='js/countries.js') }}"></script>

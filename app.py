@@ -124,8 +124,21 @@ def feed():
     return render_template("feed.html")
 
 
-@ app.route("/add_story")
+@ app.route("/add_story", methods=["GET", "POST"])
 def add_story():
+    user_id = mongo.db.users.find_one(
+        {"username": session["user"]})["_id"]
+    if request.method == "POST":
+        story = {
+            "title": request.form.get("title"),
+            "category": request.form.get("category"),
+            "story_by": ObjectId(user_id),
+            "favs": 0,
+            "location": request.form.get("category"),
+            "content": request.form.get("content")
+        }
+        mongo.db.stories.insert_one(story)
+        return redirect(url_for("feed"))
     return render_template("add-story.html")
 
 
