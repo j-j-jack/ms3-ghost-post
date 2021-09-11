@@ -132,13 +132,16 @@ def add_story():
     if request.method == "POST":
         today = date.today()
         now = today.strftime("%B %d, %Y")
+        content = request.form.get("content")
+        preview = content[0:50] + "..."
         story = {
             "title": request.form.get("title"),
             "category": request.form.get("category"),
             "story_by": ObjectId(user_id),
             "favs": 0,
             "location": request.form.get("category"),
-            "content": request.form.get("content"),
+            "content": content,
+            "preview": preview,
             "date_added": now
         }
         mongo.db.stories.insert_one(story)
