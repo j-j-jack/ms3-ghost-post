@@ -109,13 +109,24 @@ def finish_profile():
         }
         mongo.db.users.update(
             {"_id": ObjectId(user_id)}, additional_profile_info)
+       # code for updating/creating a single field in an already existing entry
+       # mongo.db.users.update(
+       #     {"_id": ObjectId(user_id)}, {"$set": {"newfield": "abc"}})
+       # mongo.db.users.update(
+       #     {"_id": ObjectId(user_id)}, {"$set": {"newfield": 42}})
         return redirect(url_for("feed"))
+
     return render_template("finish-profile.html", username=username)
 
 
-@app.route("/feed")
+@ app.route("/feed")
 def feed():
     return render_template("feed.html")
+
+
+@ app.route("/add_story")
+def add_story():
+    return render_template("add-story.html")
 
 
 if __name__ == "__main__":
