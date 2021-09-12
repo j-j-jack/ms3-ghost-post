@@ -98,6 +98,30 @@ margin: 0;
     margin-bottom: 2.5em;
     background: rgb(183, 216, 197);
 }
+
+.feed-profile-picture{
+    width: 100%;
+}
+.feed-favorite-picture{
+    width: 70%;
+    vertical-align: text-bottom;
+}
+.feed-div-inner-container{
+    display: flex;
+}
+
+.feed-div-inner-container > div{
+    flex: 1;
+    text-align: center;
+}
+.fav-picture-box{
+    padding-top: 7%;
+    padding-bottom: 0;
+}
+.view-story-box{
+    padding-top: 20%;
+    padding-bottom: 0;
+}
 /*---------------------------------------------------------------*/
 .page-container{
     position: relative;

@@ -10,11 +10,33 @@
         {% if stories[i] %}
         <div class="story-preview-box">
             <h4 style="text-align: center">{{ stories[i].title }}</h4>
+            Date Added: {{ stories[i].date_added }}<br><br>
             Category: {{ stories[i].category }}<br><br>
             Location: {{ stories[i].location }}<br><br>
             Preview: {{ stories[i].preview }}<br><br>
-            <img class="feed-profile-picture" src={{ profile_picture_finder(stories[i].story_by) }}>
-            Story by: {{ stories[i].story_by  }}
+            <div class="feed-div-inner-container">
+                <div class="profile-picture-box">
+            <figure>
+                <img class="feed-profile-picture" src={{ profile_picture_finder(stories[i].story_by) }}>
+                <figcaption>Story by: {{ stories[i].story_by  }}</figcaption>
+            </figure>
+            </div>
+            <div class="fav-picture-box">
+            <figure>
+                <img class="feed-favorite-picture" src="{{ url_for('static', filename='images/heart.svg') }}">
+                <figcaption>Favs: {{ stories[i].favs }}</figcaption>
+            </figure>
+            </div>
+            <div class="view-story-box">
+            <form method="get" action="">
+                <button type="submit">
+                    View Story
+                    <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
+                aria-hidden="true" alt="right arrow">
+                </button>
+            </form>
+            </div>
+        </div>
         </div>
         {% endif %}
     {% endfor %}

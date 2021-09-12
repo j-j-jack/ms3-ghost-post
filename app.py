@@ -132,7 +132,7 @@ def feed(page):
     for entry in stories:
         story_count += 1
         # number of total pages in feed
-    page_count = math.ceil(story_count/1)
+    page_count = math.ceil(story_count/5)
     # first_number = page + nav_direction
     if page <= 3:
         first_number = 1
