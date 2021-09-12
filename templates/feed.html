@@ -3,7 +3,7 @@
 <title>Feed</title>
 {% endblock %}
 {% block content %}
-
+{{ unfiltered }}
 <div class="feed-and-filter-container">
     <div class="feed-div">
     {% for i in range((page*5)-5, page*5) %}
@@ -31,8 +31,10 @@
             <form method="get" action="">
                 <button type="submit">
                     View Story
-                    <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
-                aria-hidden="true" alt="right arrow">
+                    <img class="number-nav-arrow"
+                        src="{{ url_for('static', filename='images/right-arrow.svg') }}"
+                        style="vertical-align: text-bottom;" 
+                        aria-hidden="true" alt="right arrow">
                 </button>
             </form>
             </div>
@@ -42,13 +44,38 @@
     {% endfor %}
     </div>
     <div class="filter-div">
-
+        <form action ="{{ url_for('feed', page=1, unfiltered=1) }}">
+            <input type="checkbox" id="all" name="all" value="all">
+            <label for="all"> All</label><br>
+            <input type="checkbox" id="aliens" name="aliens" value="Aliens">
+            <label for="aliens"> Aliens</label><br>
+            <input type="checkbox" id="angels" name="angels" value="Angels">
+            <label for="angels"> Angels</label><br>
+            <input type="checkbox" id="demons" name="demons" value="Demons">
+            <label for="demons"> Demons</label><br>
+            <input type="checkbox" id="fairies" name="fairies" value="Fairies">
+            <label for="fairies"> Fairies</label><br>
+            <input type="checkbox" id="ghosts" name="ghosts" value="Ghosts">
+            <label for="ghosts"> Ghosts</label><br>
+            <input type="checkbox" id="vampires" name="vampires" value="Vampires">
+            <label for="vampires"> Vampires</label><br>
+            <input type="checkbox" id="witches_wizards" name="witches_wizards" value="Witches/Wizards">
+            <label for="witches_wizards"> Witches/Wizards</label><br>
+            <input type="checkbox" id="other" name="other" value="Other">
+            <label for="other"> Other</label><br>
+            <button type="submit">Go</button>
+        </form>
     </div>
 
 </div>
+{% if unfiltered == 0 %}
+    {% set unfiltered = 0 %}
+    {% else %}
+    {% set unfiltered = 2 %}
+{% endif %}
 <div class="number-navigation" div class="next">
     {% if page_count > 1 and page > 1 %}
-        <div class="prev"  onclick="location.href=`{{ url_for('feed', page=page-1) }}`"">
+        <div class="prev"  onclick="location.href=`{{ url_for('feed', page=page-1, unfiltered=unfiltered) }}`">
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
                 aria-hidden="true" alt="left arrow">
             Prev
@@ -57,18 +84,18 @@
     {% for i in range(first_number, last_number+1) %}
 
         {% if i == page %}
-            <div class="number-block" onclick="location.href=`{{ url_for('feed', page=i) }}`">
+            <div class="number-block" onclick="location.href=`{{ url_for('feed', page=i, unfiltered=unfiltered) }}`">
             <b>{{ i }}</b>
         </div>
         
         {% else %}
-        <div class="number-block" onclick="location.href=`{{ url_for('feed', page=i) }}`">
+        <div class="number-block" onclick="location.href=`{{ url_for('feed', page=i, unfiltered=unfiltered) }}`">
             {{ i }}
         </div>
         {% endif %}
     {% endfor %}
     {% if page_count > 1 and page < page_count %}
-        <div class="next" onclick="location.href=`{{ url_for('feed', page=page+1) }}`">
+        <div class="next" onclick="location.href=`{{ url_for('feed', page=page+1, unfiltered=1) }}`">
             Next
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
                 aria-hidden="true" alt="right arrow">

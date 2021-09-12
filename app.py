@@ -23,7 +23,6 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/login",  methods=["GET", "POST"])
 def login():
-    session["page"] = 1
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -121,13 +120,82 @@ def finish_profile():
     return render_template("finish-profile.html", username=username)
 
 
-@app.route("/feed", defaults={"page": 1})
-@ app.route("/feed<page>")
-def feed(page):
+@app.route("/feed", defaults={"page": 1, "unfiltered": 0})
+@ app.route("/feed/<page>/<unfiltered>")
+def feed(page, unfiltered):
     page = int(page)
-    nav_direction = page - session["page"]
-    session["page"] = page
+    unfiltered = int(unfiltered)
+    if unfiltered == 0:
+        all = "all"
+        session["all"] = 'all'
+        session["aliens"] = 'Aliens'
+        session["angels"] = 'Angels'
+        session["demons"] = 'Demons'
+        session["fairies"] = 'Fairies'
+        session["ghosts"] = 'Ghosts'
+        session["vampires"] = 'Vampires'
+        session["other"] = "Other"
+    elif unfiltered == 1:
+        all = request.args.get('all')
+        aliens = request.args.get('aliens')
+        angels = request.args.get('angels')
+        demons = request.args.get('demons')
+        fairies = request.args.get('fairies')
+        ghosts = request.args.get('ghosts')
+        vampires = request.args.get('vampires')
+        witches_wizards = request.args.get('witches_wizards')
+        other = request.args.get('other')
+        session["all"] = request.args.get('all')
+        session["aliens"] = request.args.get('aliens')
+        session["angels"] = request.args.get('angels')
+        session["demons"] = request.args.get('demons')
+        session["fairies"] = request.args.get('fairies')
+        session["ghosts"] = request.args.get('ghosts')
+        session["vampires"] = request.args.get('vampires')
+        session["witches_wizards"] = request.args.get('witches_wizards')
+        session['other'] = request.args.get('other')
+    elif unfiltered == 2:
+        all = session["all"]
+        aliens = session['aliens']
+        angels = session['angels']
+        demons = session['demons']
+        fairies = session['fairies']
+        ghosts = session['ghosts']
+        vampires = session['vampires']
+        witches_wizards = session['witches_wizards']
+        other = session['other']
+
     stories = list(mongo.db.stories.find())
+    filtered_stories = []
+    if all == "all":
+        aliens = "Aliens"
+        angels = "Angels"
+        demons = "Demons"
+        fairies = "Fairies"
+        ghosts = "Ghosts"
+        vampires = "Vampires"
+        witches_wizards = "Witches/Wizards"
+        other = "Other"
+
+    for story in stories:
+        if story["category"] == aliens:
+            filtered_stories.append(story)
+        elif story["category"] == angels:
+            filtered_stories.append(story)
+        elif story["category"] == demons:
+            filtered_stories.append(story)
+        elif story["category"] == fairies:
+            filtered_stories.append(story)
+        elif story["category"] == ghosts:
+            filtered_stories.append(story)
+        elif story["category"] == vampires:
+            filtered_stories.append(story)
+        elif story["category"] == witches_wizards:
+            filtered_stories.append(story)
+        elif story["category"] == other:
+            filtered_stories.append(story)
+
+    stories = filtered_stories
     story_count = 0
     for entry in stories:
         story_count += 1
@@ -152,7 +220,9 @@ def feed(page):
             last_number = page+2
 
     return render_template(
-        "feed.html", stories=stories, page=page, page_count=page_count, first_number=first_number, last_number=last_number, direction=nav_direction)
+        "feed.html", stories=stories, page=page,
+        page_count=page_count, first_number=first_number,
+        last_number=last_number, unfiltered=unfiltered)
 
 
 @ app.route("/add_story", methods=["GET", "POST"])
@@ -177,6 +247,12 @@ def add_story():
         mongo.db.stories.insert_one(story)
         return redirect(url_for("feed"))
     return render_template("add-story.html")
+
+
+def profile_picture_finder(username):
+    picture = mongo.db.users.find_one(
+        {"username": username})["profile_picture"]
+    return picture
 
 
 def profile_picture_finder(username):

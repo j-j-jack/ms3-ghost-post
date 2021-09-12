@@ -58,7 +58,7 @@
             <div class="feed-box" onclick="location.href=`{{ url_for('feed') }}`">
                 <h4>Feed</h4>
             </div>
-            <div class="profile-box" onclick="location.href=`{{ url_for('feed', page=3) }}`">
+            <div class="profile-box" onclick="location.href=`{{ url_for('feed', page=3, unfiltered=1) }}`">
                 <h4>Profile</h4>
             </div>
             <div class="logout-box" onclick="location.href=`{{ url_for('login') }}`";>
