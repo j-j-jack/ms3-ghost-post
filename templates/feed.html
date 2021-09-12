@@ -3,7 +3,7 @@
 <title>Feed</title>
 {% endblock %}
 {% block content %}
-{{ unfiltered }}
+{{ sort_method }}
 <div class="feed-and-filter-container">
     <div class="feed-div">
     {% for i in range((page*5)-5, page*5) %}
@@ -63,7 +63,13 @@
                 {{ witches_wizards_checked }}>
             <label for="witches_wizards"> Witches/Wizards</label><br>
             <input type="checkbox" id="other" name="other" value="Other" {{ other_checked }}>
-            <label for="other"> Other</label><br>
+            <label for="other"> Other</label><br><br>
+            <label for="interest">Sort by: </label>
+            <select name="sort_method" id="sort_method" required>
+                <option value="3">Newest(default)</option>
+                <option value="2">Oldest</option>
+                <option value="1">Favorites</option>
+            </select><br><br>
             <button type="submit">Go</button>
         </form>
     </div>
@@ -96,7 +102,7 @@
         {% endif %}
     {% endfor %}
     {% if page_count > 1 and page < page_count %}
-        <div class="next" onclick="location.href=`{{ url_for('feed', page=page+1, unfiltered=1) }}`">
+        <div class="next" onclick="location.href=`{{ url_for('feed', page=page+1, unfiltered=unfiltered) }}`">
             Next
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
                 aria-hidden="true" alt="right arrow">

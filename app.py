@@ -135,6 +135,8 @@ def feed(page, unfiltered):
         session["ghosts"] = 'Ghosts'
         session["vampires"] = 'Vampires'
         session["other"] = "Other"
+        session["sort_method"] = 3
+        sort_method = 3
     elif unfiltered == 1:
         all = request.args.get('all')
         aliens = request.args.get('aliens')
@@ -154,6 +156,8 @@ def feed(page, unfiltered):
         session["vampires"] = request.args.get('vampires')
         session["witches_wizards"] = request.args.get('witches_wizards')
         session['other'] = request.args.get('other')
+        session["sort_method"] = int(request.args.get('sort_method'))
+        sort_method = int(request.args.get('sort_method'))
     elif unfiltered == 2:
         all = session["all"]
         aliens = session['aliens']
@@ -164,8 +168,14 @@ def feed(page, unfiltered):
         vampires = session['vampires']
         witches_wizards = session['witches_wizards']
         other = session['other']
+        sort_method = session['sort_method']
 
     stories = list(mongo.db.stories.find())
+    if sort_method == 2:
+        stories.reverse()
+    elif sort_method == 1:
+        stories = sorted(stories, key=lambda i: i['favs'], reverse=True)
+
     filtered_stories = []
     if all == "all":
         aliens = "Aliens"
@@ -272,7 +282,7 @@ def feed(page, unfiltered):
         angels_checked=angels_checked, demons_checked=demons_checked,
         fairies_checked=fairies_checked, ghosts_checked=ghosts_checked,
         vampires_checked=vampires_checked, witches_wizards_checked=witches_wizards_checked,
-        other_checked=other_checked)
+        other_checked=other_checked, sort_method=sort_method)
 
 
 @ app.route("/add_story", methods=["GET", "POST"])
