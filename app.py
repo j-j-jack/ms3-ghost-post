@@ -169,7 +169,7 @@ def add_story():
             "category": request.form.get("category"),
             "story_by": username,
             "favs": 0,
-            "location": request.form.get("category"),
+            "location": request.form.get("location"),
             "content": content,
             "preview": preview,
             "date_added": now

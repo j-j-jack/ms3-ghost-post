@@ -66,6 +66,7 @@ margin: 0;
     display: flex;
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 2.5em;
 }
 
 .number-navigation > div {
@@ -75,6 +76,27 @@ margin: 0;
 }
 .number-nav-arrow{
     height: 80%;
+}
+
+.feed-and-filter-container{
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2.5em;
+}
+.feed-div{
+    background: rgb(183, 192, 216);
+    flex: 3;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+.filter-div{
+    background: rgb(183, 216, 209);
+    flex: 1
+}
+.story-preview-box{
+    margin-bottom: 2.5em;
+    background: rgb(183, 216, 197);
 }
 /*---------------------------------------------------------------*/
 .page-container{
