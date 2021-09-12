@@ -195,6 +195,51 @@ def feed(page, unfiltered):
         elif story["category"] == other:
             filtered_stories.append(story)
 
+    if all == 'all':
+        all_checked = "checked"
+    else:
+        all_checked = "unchecked"
+
+    if aliens == 'Aliens':
+        aliens_checked = "checked"
+    else:
+        aliens_checked = "unchecked"
+
+    if angels == 'Angels':
+        angels_checked = "checked"
+    else:
+        angels_checked = "unchecked"
+
+    if demons == 'Demons':
+        demons_checked = "checked"
+    else:
+        demons_checked = "unchecked"
+
+    if fairies == 'Fairies':
+        fairies_checked = "checked"
+    else:
+        fairies_checked = "unchecked"
+
+    if ghosts == 'Ghosts':
+        ghosts_checked = "checked"
+    else:
+        ghosts_checked = "unchecked"
+
+    if vampires == 'Vampires':
+        vampires_checked = "checked"
+    else:
+        vampires_checked = "unchecked"
+
+    if witches_wizards == 'Witches/Wizards':
+        witches_wizards_checked = "checked"
+    else:
+        witches_wizards_checked = "unchecked"
+
+    if other == 'Other':
+        other_checked = "checked"
+    else:
+        other_checked = "unchecked"
+
     stories = filtered_stories
     story_count = 0
     for entry in stories:
@@ -222,7 +267,12 @@ def feed(page, unfiltered):
     return render_template(
         "feed.html", stories=stories, page=page,
         page_count=page_count, first_number=first_number,
-        last_number=last_number, unfiltered=unfiltered)
+        last_number=last_number, unfiltered=unfiltered,
+        all_checked=all_checked, aliens_checked=aliens_checked,
+        angels_checked=angels_checked, demons_checked=demons_checked,
+        fairies_checked=fairies_checked, ghosts_checked=ghosts_checked,
+        vampires_checked=vampires_checked, witches_wizards_checked=witches_wizards_checked,
+        other_checked=other_checked)
 
 
 @ app.route("/add_story", methods=["GET", "POST"])
