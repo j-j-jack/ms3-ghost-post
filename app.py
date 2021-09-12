@@ -6,7 +6,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
-
+import math
 if os.path.exists("env.py"):
     import env
 
@@ -23,6 +23,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/login",  methods=["GET", "POST"])
 def login():
+    session["page"] = 1
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -37,7 +38,7 @@ def login():
                 if existing_user["profile_complete"] == False:
                     return redirect(url_for("finish_profile"))
                 else:
-                    return render_template("feed.html")
+                    return redirect(url_for("feed"))
             else:
                 # login category added to direct message to login form
                 flash("Incorrect Username and/or Password", "login")
@@ -120,9 +121,38 @@ def finish_profile():
     return render_template("finish-profile.html", username=username)
 
 
-@ app.route("/feed")
-def feed():
-    return render_template("feed.html")
+@app.route("/feed", defaults={"page": 1})
+@ app.route("/feed<page>")
+def feed(page):
+    page = int(page)
+    nav_direction = page - session["page"]
+    session["page"] = page
+    stories = mongo.db.stories.find()
+    story_count = 0
+    for entry in stories:
+        story_count += 1
+        # number of total pages in feed
+    page_count = math.ceil(story_count/1)
+    #first_number = page + nav_direction
+    if page <= 3:
+        first_number = 1
+        if page_count > 5:
+            last_number = 5
+        else:
+            last_number = page_count
+    else:
+        if page_count <= 5:
+            first_number = 1
+            last_number = page_count
+        elif page+2 > page_count:
+            first_number = page_count-4
+            last_number = page_count
+        else:
+            first_number = page-2
+            last_number = page+2
+
+    return render_template(
+        "feed.html", stories=stories, page=page, page_count=page_count, first_number=first_number, last_number=last_number, direction=nav_direction)
 
 
 @ app.route("/add_story", methods=["GET", "POST"])

@@ -61,7 +61,21 @@ margin: 0;
     width: 120%;
     vertical-align: sub;
 }
+/* feed page -------------------------------------------------------------------- */
+.number-navigation{
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+}
 
+.number-navigation > div {
+    flex: 1;
+    border: 1px solid black;
+    text-align: center;
+}
+.number-nav-arrow{
+    height: 80%;
+}
 /*---------------------------------------------------------------*/
 .page-container{
     position: relative;
