@@ -127,7 +127,7 @@ def feed(page):
     page = int(page)
     nav_direction = page - session["page"]
     session["page"] = page
-    stories = mongo.db.stories.find()
+    stories = list(mongo.db.stories.find())
     story_count = 0
     for entry in stories:
         story_count += 1
@@ -157,8 +157,8 @@ def feed(page):
 
 @ app.route("/add_story", methods=["GET", "POST"])
 def add_story():
-    user_id = mongo.db.users.find_one(
-        {"username": session["user"]})["_id"]
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
     if request.method == "POST":
         today = date.today()
         now = today.strftime("%B %d, %Y")
@@ -167,7 +167,7 @@ def add_story():
         story = {
             "title": request.form.get("title"),
             "category": request.form.get("category"),
-            "story_by": ObjectId(user_id),
+            "story_by": username,
             "favs": 0,
             "location": request.form.get("category"),
             "content": content,

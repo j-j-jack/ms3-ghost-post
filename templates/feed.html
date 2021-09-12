@@ -3,12 +3,14 @@
 <title>Feed</title>
 {% endblock %}
 {% block content %}
-direction: {{ direction }}<br>
-page: {{ page }}<br>
-story count: {{ story_count }}<br>
-first number: {{ first_number }}<br>
-last number: {{ last_number }} <br>
 
+<div class="feed-and-filter-container">
+    {% for i in range((page*5)-5, page*5) %}
+        {% if stories[i] %}
+            {{ stories[i].title }}<br>
+        {% endif %}
+    {% endfor %}
+</div>
 <div class="number-navigation" div class="next">
     {% if page_count > 1 and page > 1 %}
         <div class="prev"  onclick="location.href=`{{ url_for('feed', page=page-1) }}`"">
