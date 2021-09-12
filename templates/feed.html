@@ -10,7 +10,7 @@ first number: {{ first_number }}<br>
 last number: {{ last_number }} <br>
 
 <div class="number-navigation" div class="next">
-    {% if page_count > 5 and first_number != 1 %}
+    {% if page_count > 1 and page > 1 %}
         <div class="prev"  onclick="location.href=`{{ url_for('feed', page=page-1) }}`"">
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
                 aria-hidden="true" alt="left arrow">
@@ -18,9 +18,17 @@ last number: {{ last_number }} <br>
             </div>
     {% endif %}
     {% for i in range(first_number, last_number+1) %}
+
+        {% if i == page %}
+            <div class="number-block" onclick="location.href=`{{ url_for('feed', page=i) }}`">
+            <b>{{ i }}</b>
+        </div>
+        
+        {% else %}
         <div class="number-block" onclick="location.href=`{{ url_for('feed', page=i) }}`">
             {{ i }}
         </div>
+        {% endif %}
     {% endfor %}
     {% if page_count > 1 and page < page_count %}
         <div class="next" onclick="location.href=`{{ url_for('feed', page=page+1) }}`">
