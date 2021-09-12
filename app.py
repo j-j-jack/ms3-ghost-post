@@ -133,7 +133,7 @@ def feed(page):
         story_count += 1
         # number of total pages in feed
     page_count = math.ceil(story_count/1)
-    #first_number = page + nav_direction
+    # first_number = page + nav_direction
     if page <= 3:
         first_number = 1
         if page_count > 5:
@@ -177,6 +177,17 @@ def add_story():
         mongo.db.stories.insert_one(story)
         return redirect(url_for("feed"))
     return render_template("add-story.html")
+
+
+def profile_picture_finder(username):
+    picture = mongo.db.users.find_one(
+        {"username": username})["profile_picture"]
+    return picture
+
+
+@app.context_processor
+def context_processor():
+    return dict(profile_picture_finder=profile_picture_finder)
 
 
 if __name__ == "__main__":

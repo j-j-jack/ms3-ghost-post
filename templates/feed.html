@@ -13,6 +13,8 @@
             Category: {{ stories[i].category }}<br><br>
             Location: {{ stories[i].location }}<br><br>
             Preview: {{ stories[i].preview }}<br><br>
+            <img class="feed-profile-picture" src={{ profile_picture_finder(stories[i].story_by) }}>
+            Story by: {{ stories[i].story_by  }}
         </div>
         {% endif %}
     {% endfor %}
