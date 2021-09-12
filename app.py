@@ -173,8 +173,18 @@ def feed(page, unfiltered):
     stories = list(mongo.db.stories.find())
     if sort_method == 2:
         stories.reverse()
+        oldest_selected = "selected"
+        newest_selected = ""
+        most_favorites_selected = ""
     elif sort_method == 1:
         stories = sorted(stories, key=lambda i: i['favs'], reverse=True)
+        oldest_selected = ""
+        newest_selected = ""
+        most_favorites_selected = "selected"
+    else:
+        oldest_selected = ""
+        newest_selected = "selected"
+        most_favorites_selected = ""
 
     filtered_stories = []
     if all == "all":
@@ -282,7 +292,9 @@ def feed(page, unfiltered):
         angels_checked=angels_checked, demons_checked=demons_checked,
         fairies_checked=fairies_checked, ghosts_checked=ghosts_checked,
         vampires_checked=vampires_checked, witches_wizards_checked=witches_wizards_checked,
-        other_checked=other_checked, sort_method=sort_method)
+        other_checked=other_checked, sort_method=sort_method,
+        newest_selected=newest_selected, oldest_selected=oldest_selected,
+        most_favorites_selected=most_favorites_selected)
 
 
 @ app.route("/add_story", methods=["GET", "POST"])

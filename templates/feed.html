@@ -66,9 +66,9 @@
             <label for="other"> Other</label><br><br>
             <label for="interest">Sort by: </label>
             <select name="sort_method" id="sort_method" required>
-                <option value="3">Newest(default)</option>
-                <option value="2">Oldest</option>
-                <option value="1">Favorites</option>
+                <option value="3" {{ newest_selected }}>Newest(default)</option>
+                <option value="2" {{ oldest_selected }}>Oldest</option>
+                <option value="1"{{ most_favorites_selected }}>Favorites</option>
             </select><br><br>
             <button type="submit">Go</button>
         </form>
