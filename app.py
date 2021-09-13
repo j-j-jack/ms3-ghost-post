@@ -376,6 +376,13 @@ def edit_story(story):
                            content=content, username=username, story=story)
 
 
+@ app.route("/delete_story/<story>")
+def delete_story(story):
+    mongo.db.stories.remove(
+        {"_id": ObjectId(story)})
+    return redirect(url_for("feed"))
+
+
 @ app.route("/edit_profile", methods=["GET", "POST"])
 def edit_profile():
     username = mongo.db.users.find_one(
