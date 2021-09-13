@@ -6,9 +6,9 @@
 
 <div class="avatar-receiver-div" style="display: none">{{ profile_picture }}</div>
 <div class="country-receiver-div" style="display: none">{{ location }}</div>
+<h3 class="edit-profile-title">{{ username }}, you can edit your profile below...</h3>
 <form method="POST" action="{{ url_for('edit_profile') }}">
 <div class="finish-profile-container">
-    
     <div class="finish-profile-box-a">
         <label for='email'>Email: </label>
         <input type=email name='email' id=email value={{ email }}><br><br>

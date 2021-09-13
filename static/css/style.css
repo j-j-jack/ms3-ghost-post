@@ -317,6 +317,9 @@ margin: 0;
     text-align: center;
     margin-right: 10%;
 }
+.edit-profile-title{
+    text-align: center;
+}
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){
     .navbar-box{
