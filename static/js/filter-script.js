@@ -28,4 +28,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
             checkBoxFilter.style.cursor = 'not-allowed';
         }
     })
+
+    $('#filter-opener').click(function(){$('#filter-div').toggle('medium')});
+    const fitlerMediaQuery = window.matchMedia('(min-width: 992px)')
+    // https://css-tricks.com/working-with-javascript-media-queries/
+
+    function filterOpen(e) {
+  // Check if the media query is true
+  if (e.matches) {
+    // Then log the following message to the console
+    console.log('Media Query Matched!')
+    let filterDiv=document.getElementById('filter-div');
+        if(filterDiv.style.display == 'none'){
+            filterDiv.style.display = 'block';
+        }
+    }
+  }
+  // Register event listener
+fitlerMediaQuery.addEventListener('change', filterOpen)
 });

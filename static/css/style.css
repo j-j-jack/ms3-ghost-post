@@ -132,6 +132,15 @@ margin: 0;
     cursor: not-allowed;
     background: rgba(0, 0, 0, .3)
 }
+#filter-opener{
+    text-align: right;
+    position: absolute;
+    right: 10%;
+}
+
+.feed-title{
+    text-align: center;
+}
 /*---------------------------------------------------------------*/
 .page-container{
     position: relative;
@@ -319,7 +328,15 @@ margin: 0;
     .finish-profile-container{
         flex-direction: column;
     }
+    .feed-and-filter-container{
+        display: block;
+    }
 }
 
-
+@media screen and (min-width: 992px){
+    #filter-opener{
+        display: none;
+        pointer-events: none;
+    }
+}
 
