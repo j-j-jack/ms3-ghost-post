@@ -321,22 +321,23 @@ def add_story():
     return render_template("add-story.html")
 
 
-@app.route("/profile", defaults={"username": 1})
+@app.route("/profile", defaults={"username": "site_user"})
 @ app.route("/profile/<username>")
 def profile(username):
     username = username
-    if username == 1:
+    if username == "site_user":
         username = session['user']
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-        profile_picture = mongo.db.users.find_one(
-            {"username": username})["profile_picture"]
-        location = mongo.db.users.find_one(
-            {"username": username})["location"]
-        interest = mongo.db.users.find_one(
-            {"username": username})["interest"]
-        about = mongo.db.users.find_one(
-            {"username": username})["about"]
+
+    username = mongo.db.users.find_one(
+        {"username": username})["username"]
+    profile_picture = mongo.db.users.find_one(
+        {"username": username})["profile_picture"]
+    location = mongo.db.users.find_one(
+        {"username": username})["location"]
+    interest = mongo.db.users.find_one(
+        {"username": username})["interest"]
+    about = mongo.db.users.find_one(
+        {"username": username})["about"]
     return render_template("profile.html", username=username,
                            profile_picture=profile_picture,
                            location=location, interest=interest, about=about)
