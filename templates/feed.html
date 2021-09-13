@@ -1,9 +1,11 @@
 {% extends "base-2.html" %}
 {% block title %}
 <title>Feed</title>
+<script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
 {% endblock %}
 {% block content %}
 
+<div class="delete-receiver-div">{{ delete }}</div>
 <p class="feed-title">
     <button id='filter-opener'>Filters</button>
     Your Feed
@@ -64,10 +66,17 @@
                 </button>
             </div>
             <div >
-                <button class="delete-story-button" 
+                <!-- <button class="delete-story-button" 
                     onclick = "location.href=`{{ url_for('delete_story', story=stories[i]._id) }}`">
                     Delete 
+                </button> -->
+            <button class="delete-story-button" 
+                    onclick = "let toBeDeleted = this.nextElementSibling.innerHTML;
+                               deleteStory(toBeDeleted)">
+                    Delete 
                 </button>
+                <div style="display: none">{{ url_for('delete_story', story=stories[i]._id) }}</div>
+                
             </div>
             {% endif %}
             Date Added: {{ stories[i].date_added }}<br><br>
