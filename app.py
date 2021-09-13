@@ -387,6 +387,8 @@ def delete_story(story):
 def view_story(story):
     title = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["title"]
+    category = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["category"]
     location = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["location"]
     content = mongo.db.stories.find_one(
@@ -395,8 +397,8 @@ def view_story(story):
         {"_id": ObjectId(story)})["favs"]
     story_by = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["story_by"]
-    return render_template('story.html', title=title, location=location,
-                           content=content, story_by=story_by)
+    return render_template('story.html', title=title, category=category, location=location,
+                           content=content, favs=favs, story_by=story_by)
 
 
 @ app.route("/edit_profile", methods=["GET", "POST"])
