@@ -1,16 +1,16 @@
 let profilePictures = [
-    "static/images/profile-1.jpg",
-    "static/images/profile-2.jpg",
-    "static/images/profile-3.jpg",
-    "static/images/profile-4.jpg",
-    "static/images/profile-5.jpg",
-    "static/images/profile-6.jpg",
-    "static/images/profile-7.jpg",
-    "static/images/profile-8.jpg",
-    "static/images/profile-9.jpg",
-    "static/images/profile-10.jpg",
-    "static/images/profile-11.jpg",
-    "static/images/profile-12.jpg"]
+    "/static/images/profile-1.jpg",
+    "/static/images/profile-2.jpg",
+    "/static/images/profile-3.jpg",
+    "/static/images/profile-4.jpg",
+    "/static/images/profile-5.jpg",
+    "/static/images/profile-6.jpg",
+    "/static/images/profile-7.jpg",
+    "/static/images/profile-8.jpg",
+    "/static/images/profile-9.jpg",
+    "/static/images/profile-10.jpg",
+    "/static/images/profile-11.jpg",
+    "/static/images/profile-12.jpg"]
    
 let altTags = [
     "a spooky ghost-like figure standing in a dimly lit area",

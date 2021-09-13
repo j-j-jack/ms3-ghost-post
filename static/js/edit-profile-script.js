@@ -1,16 +1,16 @@
 let profilePictures = [
-    "static/images/profile-1.jpg",
-    "static/images/profile-2.jpg",
-    "static/images/profile-3.jpg",
-    "static/images/profile-4.jpg",
-    "static/images/profile-5.jpg",
-    "static/images/profile-6.jpg",
-    "static/images/profile-7.jpg",
-    "static/images/profile-8.jpg",
-    "static/images/profile-9.jpg",
-    "static/images/profile-10.jpg",
-    "static/images/profile-11.jpg",
-    "static/images/profile-12.jpg"]
+    "/static/images/profile-1.jpg",
+    "/static/images/profile-2.jpg",
+    "/static/images/profile-3.jpg",
+    "/static/images/profile-4.jpg",
+    "/static/images/profile-5.jpg",
+    "/static/images/profile-6.jpg",
+    "/static/images/profile-7.jpg",
+    "/static/images/profile-8.jpg",
+    "/static/images/profile-9.jpg",
+    "/static/images/profile-10.jpg",
+    "/static/images/profile-11.jpg",
+    "/static/images/profile-12.jpg"]
    
 let altTags = [
     "a spooky ghost-like figure standing in a dimly lit area",
@@ -31,8 +31,11 @@ let altTags = [
     in various parts of the picture they can be seen chewing their hands and crying out in agony`
 ]
 
-let currentPictureSelected = 0;
+
 window.addEventListener('DOMContentLoaded', (event) => {
+    let avatarNumber = parseInt(document.getElementsByClassName("avatar-receiver-div")[0].innerHTML);
+    avatarNumber = avatarNumber - 1;
+    let currentPictureSelected = avatarNumber;
     let userCountry = document.getElementsByClassName("country-receiver-div")[0].innerHTML;
     for(country in countries){
         if(userCountry == countries[country].name){
@@ -46,6 +49,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
             += `<option value="${countries[country].name}">${countries[country].name}</option>`
         }
     }
+    
+    if(currentPictureSelected > 0){
+        document.getElementsByClassName("picture-left-arrow")[0].style.visibility = "visible";
+        document.getElementsByClassName("picture-left-arrow")[0].style.pointerEvents = "auto";
+    }
+    else {
+        document.getElementsByClassName("picture-left-arrow")[0].style.visibility = "hidden";
+        document.getElementsByClassName("picture-left-arrow")[0].style.pointerEvents = "none";
+    }
+
+    if(currentPictureSelected < 11){
+        document.getElementsByClassName("picture-right-arrow")[0].style.visibility = "visible";
+        document.getElementsByClassName("picture-right-arrow")[0].style.pointerEvents = "auto";
+    }
+    else {
+        document.getElementsByClassName("picture-right-arrow")[0].style.visibility = "hidden";
+        document.getElementsByClassName("picture-left-arrow")[0].style.pointerEvents = "none";
+    }
+    
+    document.getElementsByClassName("selected-picture")[0].src 
+            = profilePictures[currentPictureSelected];
+            let radioButton = 'profile-radio-' + (currentPictureSelected + 1);
+            document.getElementById(radioButton).checked = true;
 
     document.getElementsByClassName("picture-right-arrow")[0].addEventListener('click', function(){
         currentPictureSelected += 1;
