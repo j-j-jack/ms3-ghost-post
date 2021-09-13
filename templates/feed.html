@@ -56,8 +56,9 @@
         {% if stories[i] %}
         <div class="story-preview-box">
             <h4 style="text-align: center">{{ stories[i].title }}</h4>
-            <div class="edit-story-button" >
-                <button onclick = "location.href=`{{ url_for('edit_story', story=stories[i]._id) }}`">
+            <div >
+                <button class="edit-story-button" 
+                    onclick = "location.href=`{{ url_for('edit_story', story=stories[i]._id) }}`">
                     Edit 
                 </button>
             </div>

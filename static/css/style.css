@@ -320,6 +320,16 @@ margin: 0;
 .edit-profile-title{
     text-align: center;
 }
+
+/* Edit Story Page---------------------------------------------------------------*/
+
+.edit-story-button {
+    cursor: pointer;
+}
+.edit-story-title{
+    text-align: center;
+}
+
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){
     .navbar-box{

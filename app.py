@@ -345,27 +345,20 @@ def profile(username):
 
 @ app.route("/edit_story/<story>", methods=["GET", "POST"])
 def edit_story(story):
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    story = mongo.db.stories.find_one(
+    story = story
+    username = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["story_by"]
+    title = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["title"]
+    category = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["category"]
+    location = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["location"]
+    content = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["content"]
 
-    if request.method == "POST":
-        today = date.today()
-        now = today.strftime("%B %d, %Y")
-        content = request.form.get("content")
-        preview = content[0:50] + "..."
-        story = {
-            "title": request.form.get("title"),
-            "category": request.form.get("category"),
-            "story_by": username,
-            "favs": 0,
-            "location": request.form.get("location"),
-            "content": content,
-            "preview": preview,
-            "date_added": now
-        }
-    return render_template("edit-story.html", title=story)
+    return render_template("edit-story.html", title=title, category=category, location=location,
+                           content=content, username=username)
 
 
 @ app.route("/edit_profile", methods=["GET", "POST"])
