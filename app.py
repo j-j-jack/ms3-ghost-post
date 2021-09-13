@@ -357,8 +357,22 @@ def edit_story(story):
     content = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["content"]
 
+    if request.method == "POST":
+        new_content = request.form.get("content")
+        preview = new_content[0:50] + "..."
+        mongo.db.stories.update(
+            {"_id": ObjectId(story)}, {"$set": {"title": request.form.get("title")}})
+        mongo.db.stories.update(
+            {"_id": ObjectId(story)}, {"$set": {"location": request.form.get("location")}})
+        mongo.db.stories.update(
+            {"_id": ObjectId(story)}, {"$set": {"category": request.form.get("category")}})
+        mongo.db.stories.update(
+            {"_id": ObjectId(story)}, {"$set": {"content": request.form.get("content")}})
+        mongo.db.stories.update(
+            {"_id": ObjectId(story)}, {"$set": {"preview": preview}})
+
     return render_template("edit-story.html", title=title, category=category, location=location,
-                           content=content, username=username)
+                           content=content, username=username, story=story)
 
 
 @ app.route("/edit_profile", methods=["GET", "POST"])

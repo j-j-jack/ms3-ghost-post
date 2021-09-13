@@ -7,7 +7,7 @@
 <div class="country-receiver-div" style="display: none">{{ location }}</div>
 <h3 class="edit-story-title">{{ username }}, you can edit your story below...</h3>
 <div class="story-form">
-<form method="POST" action="{{ url_for('add_story') }}">
+<form method="POST" action="{{ url_for('edit_story', story=story) }}">
     <label for="title">Title</label>
     <input type=text id="title" name="title" value={{ title }}><br><br>
     <label for="Category">Category: </label>
@@ -60,7 +60,7 @@
     <textarea id="content" name="content" rows="30" cols="100" 
             placeholder = "Write your story here (max 20000 char)"
             maxlength="20000" style="resize: none;" required>{{ content }}</textarea><br>
-    <button type="submit">Submit</button><br><br>
+    <button type="submit">Edit Story</button><br><br>
 </form>
 </div>
 <script src="{{ url_for('static', filename='js/countries.js') }}"></script>
