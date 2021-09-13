@@ -102,6 +102,9 @@ margin: 0;
 .feed-profile-picture{
     width: 100%;
 }
+.feed-profile-picture-figure{
+    cursor: pointer;
+}
 .feed-favorite-picture{
     width: 70%;
     vertical-align: text-bottom;
@@ -307,6 +310,12 @@ margin: 0;
 }
 .profile-icon{
     width: 100%;
+}
+
+/* Edit Profile Page---------------------------------------------------------------*/
+.edit-profile-from-profile-page{
+    text-align: center;
+    margin-right: 10%;
 }
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){

@@ -343,10 +343,18 @@ def profile(username):
                            location=location, interest=interest, about=about)
 
 
-def profile_picture_finder(username):
-    picture = mongo.db.users.find_one(
-        {"username": username})["profile_picture"]
-    return picture
+@app.route("/edit_profile", methods=["GET", "POST"])
+def edit_profile():
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    email = mongo.db.users.find_one(
+        {"username": session["user"]})["email"]
+    location = mongo.db.users.find_one(
+        {"username": session["user"]})["location"]
+    about = mongo.db.users.find_one(
+        {"username": session["user"]})["about"]
+    return render_template("edit_profile.html", username=username,
+                           location=location, email=email, about=about)
 
 
 def profile_picture_finder(username):
@@ -355,7 +363,13 @@ def profile_picture_finder(username):
     return picture
 
 
-@app.context_processor
+def profile_picture_finder(username):
+    picture = mongo.db.users.find_one(
+        {"username": username})["profile_picture"]
+    return picture
+
+
+@ app.context_processor
 def context_processor():
     return dict(profile_picture_finder=profile_picture_finder)
 

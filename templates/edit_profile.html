@@ -1,0 +1,81 @@
+{% extends "base-2.html" %}
+{% block title %}
+<title>Edit Profile</title>
+{% endblock %}
+{% block content %}
+<div class="-country-receiver-div" style="display: none">
+    {{ location }}
+</div>
+<div class="finish-profile-title"><h4>
+    Welcome {{ username }}, please finish your profile before continuing to the site...</h4></div>
+<form method="POST" action="{{ url_for('finish_profile') }}">
+<div class="finish-profile-container">
+    
+    <div class="finish-profile-box-a">
+        <label for="interest">Main Interest: </label>
+        <select name="interest" id="interest" required>
+            <option value="Aliens">Aliens</option>
+            <option value="Angels">Angels</option>
+            <option value="Demons">Demons</option>
+            <option value="Fairies">Fairies</option>
+            <option value="Ghosts">Ghosts</option>
+            <option value="Vampires">Vampires</option>
+            <option value="Witches/Wizards">Witches/Wizards</option>
+        </select><br><br>
+        <div class="profile-picture-radio-buttons">
+            <input type="radio" id="profile-radio-1" name="profile-picture" 
+                value="static/images/profile-1.jpg" checked required>
+            <input type="radio" id="profile-radio-2" name="profile-picture"
+                value="static/images/profile-2.jpg">
+            <input type="radio" id="profile-radio-3" name="profile-picture"
+                value="static/images/profile-3.jpg">
+            <input type="radio" id="profile-radio-4" name="profile-picture"
+                value="static/images/profile-4.jpg">
+            <input type="radio" id="profile-radio-5" name="profile-picture"
+                value="static/images/profile-5.jpg">
+            <input type="radio" id="profile-radio-6" name="profile-picture"
+                value="static/images/profile-6.jpg">
+            <input type="radio" id="profile-radio-7" name="profile-picture"
+                value="static/images/profile-7.jpg">
+            <input type="radio" id="profile-radio-8" name="profile-picture"
+            value="static/images/profile-8.jpg">
+            <input type="radio" id="profile-radio-9" name="profile-picture"
+                value="static/images/profile-9.jpg">
+            <input type="radio" id="profile-radio-10" name="profile-picture"
+                value="static/images/profile-10.jpg">
+            <input type="radio" id="profile-radio-11" name="profile-picture"
+                value="static/images/profile-11.jpg">
+            <input type="radio" id="profile-radio-12" name="profile-picture" 
+                value="static/images/profile-12.jpg">
+        </div>
+        <div class="profile-pic-selector">
+        <div class='picture-select'>
+            <span>Choose Avatar</span>
+            <img class="picture-left-arrow" 
+                src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
+                style="visibility: hidden;" aria-hidden="true" alt="left arrow">
+            <img class="selected-picture" src="{{ url_for('static', filename='images/profile-1.jpg') }}" 
+                alt="a spooky ghost-like figure standing in a dimly lit area">
+            <img class = "picture-right-arrow"
+                src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
+                alt="right arrow">
+        </div>
+        </div>
+    </div>
+    <div class="finish-profile-box-b">
+        <label for="location">Location: </label>
+        <select class= "country-selector" name="location" id="location" required>
+        </select><br><br>
+        <label for="about">About you: </label><br>
+        <textarea id="about" name="about" rows="10" cols="50" 
+            placeholder = "Describe yourself here (max 500 char)"
+            maxlength="500" style="resize: none;" required>{{ about }}</textarea>
+    </div>
+</div>
+<div class="finish-profile-submission">
+    <input type="submit"><br><br>
+</div>
+</form>
+<script src="{{ url_for('static', filename='js/countries.js') }}"></script>
+<script src="{{ url_for('static', filename='js/edit-profile-script.js') }}"></script>
+{% endblock %}
