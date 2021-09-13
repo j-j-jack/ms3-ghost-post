@@ -123,6 +123,7 @@ def finish_profile():
 @app.route("/feed", defaults={"page": 1, "unfiltered": 0})
 @ app.route("/feed/<page>/<unfiltered>")
 def feed(page, unfiltered):
+    username = session["user"]
     page = int(page)
     unfiltered = int(unfiltered)
     if unfiltered == 0:
@@ -285,7 +286,7 @@ def feed(page, unfiltered):
             last_number = page+2
 
     return render_template(
-        "feed.html", stories=stories, page=page,
+        "feed.html", username=username, stories=stories, page=page,
         page_count=page_count, first_number=first_number,
         last_number=last_number, unfiltered=unfiltered,
         all_checked=all_checked, aliens_checked=aliens_checked,

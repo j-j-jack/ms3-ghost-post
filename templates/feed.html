@@ -56,12 +56,14 @@
         {% if stories[i] %}
         <div class="story-preview-box">
             <h4 style="text-align: center">{{ stories[i].title }}</h4>
+            {% if username == stories[i].story_by %}
             <div >
                 <button class="edit-story-button" 
                     onclick = "location.href=`{{ url_for('edit_story', story=stories[i]._id) }}`">
                     Edit 
                 </button>
             </div>
+            {% endif %}
             Date Added: {{ stories[i].date_added }}<br><br>
             Category: {{ stories[i].category }}<br><br>
             Location: {{ stories[i].location }}<br><br>
