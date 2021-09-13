@@ -383,6 +383,22 @@ def delete_story(story):
     return redirect(url_for("feed"))
 
 
+@ app.route("/view_story/<story>")
+def view_story(story):
+    title = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["title"]
+    location = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["location"]
+    content = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["content"]
+    favs = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["favs"]
+    story_by = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["story_by"]
+    return render_template('story.html', title=title, location=location,
+                           content=content, story_by=story_by)
+
+
 @ app.route("/edit_profile", methods=["GET", "POST"])
 def edit_profile():
     username = mongo.db.users.find_one(
