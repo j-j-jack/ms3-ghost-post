@@ -272,7 +272,42 @@ margin: 0;
 .story-form{
     text-align: center;
 }
+/* finish profile page -------------------------------------------------------------------- */
+.profile-container{
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2.5em;
+}
+.profile-div-a{
+    flex: 2;
+}
+.profile-div-b{
+    flex: 3;
+}
+.profile-username-div{
+    text-align: center;
+}
+.profile-picture-div{
+    text-align: center;
+}
+.profile-location-div{
+    text-align: center;
+}
+.profile-interest-div{
+    text-align: center;
+}
+.profile-about-box{
+    text-align: center;
+}
 
+.profile-icons-grid-inner {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+.profile-icon{
+    width: 100%;
+}
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){
     .navbar-box{
@@ -331,6 +366,9 @@ margin: 0;
     .feed-and-filter-container{
         display: block;
     }
+    .profile-container {
+        flex-direction: column;
+    }
 }
 
 @media screen and (min-width: 992px){
@@ -340,3 +378,8 @@ margin: 0;
     }
 }
 
+@media screen and (max-width: 768px){
+    .profile-icons-grid-inner{
+        grid-template-columns: auto auto;
+    }
+}

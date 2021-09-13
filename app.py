@@ -26,11 +26,11 @@ def login():
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username")})
         if existing_user:
             # if password matches user's password in database
             if check_password_hash(existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
+                session["user"] = request.form.get("username")
                 # The following if/else checks if the user has finished completing their profile.
                 # If they have they are directed to the feed page.
                 # Otherwise they are directed to the finish profile page.
@@ -54,7 +54,7 @@ def register():
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username")})
 
         if existing_user:
             # register category added to direct message to login form
@@ -68,7 +68,7 @@ def register():
             flash("Passwords do not match", "register")
             return redirect(url_for("login"))
         register = {
-            "username": request.form.get("username").lower(),
+            "username": request.form.get("username"),
             "password": generate_password_hash(request.form.get("password1")),
             "email": request.form.get("email"),
             # setting a new profile_complete value to false.
@@ -78,7 +78,7 @@ def register():
         mongo.db.users.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
+        session["user"] = request.form.get("username")
         flash("Registration Successful!")
     return redirect(url_for("finish_profile"))
 
@@ -319,6 +319,27 @@ def add_story():
         mongo.db.stories.insert_one(story)
         return redirect(url_for("feed"))
     return render_template("add-story.html")
+
+
+@app.route("/profile", defaults={"username": 1})
+@ app.route("/profile/<username>")
+def profile(username):
+    username = username
+    if username == 1:
+        username = session['user']
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        profile_picture = mongo.db.users.find_one(
+            {"username": username})["profile_picture"]
+        location = mongo.db.users.find_one(
+            {"username": username})["location"]
+        interest = mongo.db.users.find_one(
+            {"username": username})["interest"]
+        about = mongo.db.users.find_one(
+            {"username": username})["about"]
+    return render_template("profile.html", username=username,
+                           profile_picture=profile_picture,
+                           location=location, interest=interest, about=about)
 
 
 def profile_picture_finder(username):
