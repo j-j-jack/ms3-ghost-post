@@ -99,15 +99,14 @@
             </figure>
             </div>
             <div class="view-story-box">
-            <form method="get" action="">
-                <button type="submit">
+                <button
+                    onclick = "location.href=`{{ url_for('view_story', story=stories[i]._id) }}`">
                     View Story
                     <img class="number-nav-arrow"
                         src="{{ url_for('static', filename='images/right-arrow.svg') }}"
                         style="vertical-align: text-bottom;" 
                         aria-hidden="true" alt="right arrow">
                 </button>
-            </form>
             </div>
         </div>
         </div>
