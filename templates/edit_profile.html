@@ -3,9 +3,7 @@
 <title>Edit Profile</title>
 {% endblock %}
 {% block content %}
-<div class="-country-receiver-div" style="display: none">
-    {{ location }}
-</div>
+<div class="country-receiver-div">{{ location }}</div>
 <div class="finish-profile-title"><h4>
     Welcome {{ username }}, please finish your profile before continuing to the site...</h4></div>
 <form method="POST" action="{{ url_for('finish_profile') }}">

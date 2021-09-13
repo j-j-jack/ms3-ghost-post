@@ -33,10 +33,18 @@ let altTags = [
 
 let currentPictureSelected = 0;
 window.addEventListener('DOMContentLoaded', (event) => {
-    userCountry = document.getElementsById('country-receiver-div').innerHTML;
-    console.log(userCountry)
+    let userCountry = document.getElementsByClassName("country-receiver-div")[0].innerHTML;
     for(country in countries){
-        document.getElementsByClassName("country-selector")[0].innerHTML += `<option value="${countries[country].name}">${countries[country].name}</option>`
+        if(userCountry == countries[country].name){
+            document.getElementsByClassName(
+            "country-selector")[0].innerHTML 
+            += `<option value="${countries[country].name}" selected>${countries[country].name}</option>`
+        }
+        else{
+        document.getElementsByClassName(
+            "country-selector")[0].innerHTML 
+            += `<option value="${countries[country].name}">${countries[country].name}</option>`
+        }
     }
 
     document.getElementsByClassName("picture-right-arrow")[0].addEventListener('click', function(){
