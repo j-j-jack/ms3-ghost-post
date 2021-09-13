@@ -63,6 +63,12 @@
                     Edit 
                 </button>
             </div>
+            <div >
+                <button class="delete-story-button" 
+                    onclick = "location.href=`{{ url_for('delete_story', story=stories[i]._id) }}`">
+                    Delete 
+                </button>
+            </div>
             {% endif %}
             Date Added: {{ stories[i].date_added }}<br><br>
             Category: {{ stories[i].category }}<br><br>
