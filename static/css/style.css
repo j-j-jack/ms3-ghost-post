@@ -122,6 +122,16 @@ margin: 0;
     padding-top: 20%;
     padding-bottom: 0;
 }
+.checkbox-container{
+    position: relative
+}
+.checkbox-filter{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .3)
+}
 /*---------------------------------------------------------------*/
 .page-container{
     position: relative;

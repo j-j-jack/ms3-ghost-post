@@ -45,25 +45,35 @@
     </div>
     <div class="filter-div">
         <form action ="{{ url_for('feed', page=1, unfiltered=1) }}">
-            <input type="checkbox" id="all" name="all" value="all" {{ all_checked }}>
+            <input type="checkbox" id="allCheckBox" name="all" value="all" {{ all_checked }}>
             <label for="all"> All</label><br>
-            <input type="checkbox" id="aliens" name="aliens" value="Aliens" {{ aliens_checked }}>
-            <label for="aliens"> Aliens</label><br>
-            <input type="checkbox" id="angels" name="angels" value="Angels" {{ angels_checked }}>
-            <label for="angels"> Angels</label><br>
-            <input type="checkbox" id="demons" name="demons" value="Demons" {{ demons_checked }}>
-            <label for="demons"> Demons</label><br>
-            <input type="checkbox" id="fairies" name="fairies" value="Fairies" {{ fairies_checked }}>
-            <label for="fairies"> Fairies</label><br>
-            <input type="checkbox" id="ghosts" name="ghosts" value="Ghosts" {{ ghosts_checked }}>
-            <label for="ghosts"> Ghosts</label><br>
-            <input type="checkbox" id="vampires" name="vampires" value="Vampires" {{ vampires_checked }}>
-            <label for="vampires"> Vampires</label><br>
-            <input type="checkbox" id="witches_wizards" name="witches_wizards" value="Witches/Wizards"
-                {{ witches_wizards_checked }}>
-            <label for="witches_wizards"> Witches/Wizards</label><br>
-            <input type="checkbox" id="other" name="other" value="Other" {{ other_checked }}>
-            <label for="other"> Other</label><br><br>
+            <div class="checkbox-container">
+                <div class="checkbox-filter"></div>
+                <input class="checkboxes" type="checkbox" id="aliens" 
+                    name="aliens" value="Aliens" {{ aliens_checked }}>
+                <label for="aliens"> Aliens</label><br>
+                <input class="checkboxes" type="checkbox" id="angels" 
+                    name="angels" value="Angels" {{ angels_checked }}>
+                <label for="angels"> Angels</label><br>
+                <input class="checkboxes" type="checkbox" id="demons" 
+                    name="demons" value="Demons" {{ demons_checked }}>
+                <label for="demons"> Demons</label><br>
+                <input class="checkboxes" type="checkbox" id="fairies" 
+                    name="fairies" value="Fairies" {{ fairies_checked }}>
+                <label for="fairies"> Fairies</label><br>
+                <input class="checkboxes" type="checkbox" id="ghosts" 
+                    name="ghosts" value="Ghosts" {{ ghosts_checked }}>
+                <label for="ghosts"> Ghosts</label><br>
+                <input class="checkboxes" type="checkbox" id="vampires" 
+                    name="vampires" value="Vampires" {{ vampires_checked }}>
+                <label for="vampires"> Vampires</label><br>
+                <input class="checkboxes" type="checkbox" id="witches_wizards" 
+                    name="witches_wizards" value="Witches/Wizards" {{ witches_wizards_checked }}>
+                <label for="witches_wizards"> Witches/Wizards</label><br>
+                <input class="checkboxes" type="checkbox" id="other" 
+                    name="other" value="Other" {{ other_checked }}>
+                <label for="other"> Other</label><br><br>
+            </div>
             <label for="interest">Sort by: </label>
             <select name="sort_method" id="sort_method" required>
                 <option value="3" {{ newest_selected }}>Newest(default)</option>
@@ -109,4 +119,5 @@
         </div>
     {% endif %}
 </div>
+<script src="{{ url_for('static', filename='js/filter-script.js') }}"></script>
 {% endblock %}
