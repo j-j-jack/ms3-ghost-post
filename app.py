@@ -343,7 +343,32 @@ def profile(username):
                            location=location, interest=interest, about=about)
 
 
-@app.route("/edit_profile", methods=["GET", "POST"])
+@ app.route("/edit_story/<story>", methods=["GET", "POST"])
+def edit_story(story):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    story = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["title"]
+
+    if request.method == "POST":
+        today = date.today()
+        now = today.strftime("%B %d, %Y")
+        content = request.form.get("content")
+        preview = content[0:50] + "..."
+        story = {
+            "title": request.form.get("title"),
+            "category": request.form.get("category"),
+            "story_by": username,
+            "favs": 0,
+            "location": request.form.get("location"),
+            "content": content,
+            "preview": preview,
+            "date_added": now
+        }
+    return render_template("edit-story.html", title=story)
+
+
+@ app.route("/edit_profile", methods=["GET", "POST"])
 def edit_profile():
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -358,7 +383,7 @@ def edit_profile():
     profile_picture = mongo.db.users.find_one(
         {"username": session["user"]})["profile_picture"]
     profile_picture = profile_picture[::-1]
-    profile_picture = profile_picture[4]\
+    profile_picture = profile_picture[4]
 
     if request.method == "POST":
         mongo.db.users.update(
