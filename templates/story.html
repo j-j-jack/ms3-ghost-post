@@ -1,10 +1,28 @@
 {% extends "base-2.html" %}
 {% block title %}
 <title>{{ title }}</title>
+<script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
 {% endblock %}
 {% block content %}
 <div class="view-story-container">
     <h3> {{ title }} </h3>
+    
+    {% if owns_story == 'yes' %}
+    <div>
+                <button class="edit-story-button" 
+                    onclick = "location.href=`{{ url_for('edit_story', story=id) }}`">
+                    Edit 
+                </button>
+            </div>
+            <div >
+            <button class="delete-story-button" 
+                    onclick = "let toBeDeleted = this.nextElementSibling.innerHTML;
+                               deleteStory(toBeDeleted)">
+                    Delete 
+                </button>
+                <div style="display: none">{{ url_for('delete_story', story=id) }}</div>
+                <br>
+    {% endif %}
     Favs: {{ favs }} <br><br>
     Category : {{ category }} <br><br>
     location: {{ location }} <br><br>
