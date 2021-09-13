@@ -353,8 +353,11 @@ def edit_profile():
         {"username": session["user"]})["location"]
     about = mongo.db.users.find_one(
         {"username": session["user"]})["about"]
+    interest = mongo.db.users.find_one(
+        {"username": session["user"]})["interest"]
     return render_template("edit_profile.html", username=username,
-                           location=location, email=email, about=about)
+                           location=location, email=email, about=about,
+                           interest=interest)
 
 
 def profile_picture_finder(username):

@@ -12,13 +12,41 @@
     <div class="finish-profile-box-a">
         <label for="interest">Main Interest: </label>
         <select name="interest" id="interest" required>
-            <option value="Aliens">Aliens</option>
-            <option value="Angels">Angels</option>
-            <option value="Demons">Demons</option>
-            <option value="Fairies">Fairies</option>
-            <option value="Ghosts">Ghosts</option>
-            <option value="Vampires">Vampires</option>
-            <option value="Witches/Wizards">Witches/Wizards</option>
+            <option value="Aliens"
+                {% if interest == "Aliens" %}
+                    selected
+                {% endif %}>
+            Aliens</option>
+            <option value="Angels"
+                {% if interest == "Angels" %}
+                    selected
+                {% endif %}>
+                Angels</option>
+            <option value="Demons"
+                {% if interest == "Demons" %}
+                    selected
+                {% endif %}>
+                Demons</option>
+            <option value="Fairies"
+                {% if interest == "Fairies" %}
+                    selected
+                {% endif %}>
+            Fairies</option>
+            <option value="Ghosts"
+                {% if interest == "Ghosts" %}
+                    selected
+                {% endif %}>
+                Ghosts</option>
+            <option value="Vampires"
+                {% if interest == "Vampires" %}
+                    selected
+                {% endif %}>
+                Vampires</option>
+            <option value="Witches/Wizards"
+                {% if interest == "Witches/Wizards" %}
+                    selected
+                {% endif %}>
+                Witches/Wizards</option>
         </select><br><br>
         <div class="profile-picture-radio-buttons">
             <input type="radio" id="profile-radio-1" name="profile-picture" 
