@@ -358,7 +358,20 @@ def edit_profile():
     profile_picture = mongo.db.users.find_one(
         {"username": session["user"]})["profile_picture"]
     profile_picture = profile_picture[::-1]
-    profile_picture = profile_picture[4]
+    profile_picture = profile_picture[4]\
+
+    if request.method == "POST":
+        mongo.db.users.update(
+            {"username": username}, {"$set": {"email": request.form.get("email")}})
+        mongo.db.users.update(
+            {"username": username}, {"$set": {"location": request.form.get("location")}})
+        mongo.db.users.update(
+            {"username": username}, {"$set": {"profile_picture": request.form.get("profile-picture")}})
+        mongo.db.users.update(
+            {"username": username}, {"$set": {"about": request.form.get("about")}})
+        mongo.db.users.update(
+            {"username": username}, {"$set": {"interest": request.form.get("interest")}})
+        return redirect(url_for("profile"))
     return render_template("edit_profile.html", username=username,
                            location=location, email=email, about=about,
                            interest=interest, profile_picture=profile_picture)

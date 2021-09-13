@@ -6,10 +6,12 @@
 
 <div class="avatar-receiver-div" style="display: none">{{ profile_picture }}</div>
 <div class="country-receiver-div" style="display: none">{{ location }}</div>
-<form method="POST" action="{{ url_for('finish_profile') }}">
+<form method="POST" action="{{ url_for('edit_profile') }}">
 <div class="finish-profile-container">
     
     <div class="finish-profile-box-a">
+        <label for='email'>Email: </label>
+        <input type=email name='email' id=email value={{ email }}><br><br>
         <label for="interest">Main Interest: </label>
         <select name="interest" id="interest" required>
             <option value="Aliens"
@@ -50,29 +52,29 @@
         </select><br><br>
         <div class="profile-picture-radio-buttons">
             <input type="radio" id="profile-radio-1" name="profile-picture" 
-                value="static/images/profile-1.jpg" checked required>
+                value="/static/images/profile-1.jpg" checked required>
             <input type="radio" id="profile-radio-2" name="profile-picture"
-                value="static/images/profile-2.jpg">
+                value="/static/images/profile-2.jpg">
             <input type="radio" id="profile-radio-3" name="profile-picture"
-                value="static/images/profile-3.jpg">
+                value="/static/images/profile-3.jpg">
             <input type="radio" id="profile-radio-4" name="profile-picture"
-                value="static/images/profile-4.jpg">
+                value="/static/images/profile-4.jpg">
             <input type="radio" id="profile-radio-5" name="profile-picture"
-                value="static/images/profile-5.jpg">
+                value="/static/images/profile-5.jpg">
             <input type="radio" id="profile-radio-6" name="profile-picture"
-                value="static/images/profile-6.jpg">
+                value="/static/images/profile-6.jpg">
             <input type="radio" id="profile-radio-7" name="profile-picture"
-                value="static/images/profile-7.jpg">
+                value="/static/images/profile-7.jpg">
             <input type="radio" id="profile-radio-8" name="profile-picture"
-            value="static/images/profile-8.jpg">
+            value="/static/images/profile-8.jpg">
             <input type="radio" id="profile-radio-9" name="profile-picture"
-                value="static/images/profile-9.jpg">
+                value="/static/images/profile-9.jpg">
             <input type="radio" id="profile-radio-10" name="profile-picture"
-                value="static/images/profile-10.jpg">
+                value="/static/images/profile-10.jpg">
             <input type="radio" id="profile-radio-11" name="profile-picture"
-                value="static/images/profile-11.jpg">
+                value="/static/images/profile-11.jpg">
             <input type="radio" id="profile-radio-12" name="profile-picture" 
-                value="static/images/profile-12.jpg">
+                value="/static/images/profile-12.jpg">
         </div>
         <div class="profile-pic-selector">
         <div class='picture-select'>
