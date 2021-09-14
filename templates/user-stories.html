@@ -8,7 +8,7 @@
 <div class="delete-receiver-div">{{ delete }}</div>
 <p class="feed-title">
     <button id='filter-opener'>Filters</button>
-    Stories of {{ stories_by }}
+    Stories of {{ stories_by }}<br>
 </p>
 <div class="feed-and-filter-container">
     <div id= "filter-div" class="filter-div">
@@ -121,7 +121,7 @@
 {% endif %}
 <div class="number-navigation" div class="next">
     {% if page_count > 1 and page > 1 %}
-        <div class="prev"  onclick="location.href=`{{ url_for('feed', page=page-1, unfiltered=unfiltered) }}`">
+        <div class="prev"  onclick="location.href=`{{ url_for('user_stories', page=page-1, unfiltered=unfiltered, stories_by=stories_by) }}`">
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
                 aria-hidden="true" alt="left arrow">
             Prev

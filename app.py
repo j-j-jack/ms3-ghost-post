@@ -300,10 +300,10 @@ def feed(page, unfiltered):
 
 
 @app.route("/user_stories", defaults={"page": 1, "unfiltered": 0})
-@ app.route("/user_stories/<page>/<unfiltered><stories_by>")
+@ app.route("/user_stories/<page>/<unfiltered>/<stories_by>")
 def user_stories(page, unfiltered, stories_by):
     stories_by = stories_by
-    username = session["user"]
+    username = stories_by
     page = int(page)
     unfiltered = int(unfiltered)
     if unfiltered == 0:
@@ -351,7 +351,11 @@ def user_stories(page, unfiltered, stories_by):
         other = session['other']
         sort_method = session['sort_method']
 
-    stories = list(mongo.db.stories.find())
+    all_stories = list(mongo.db.stories.find())
+    stories = []
+    for story in all_stories:
+        if story["story_by"] == username:
+            stories.append(story)
 
     if sort_method == 2:
         stories.reverse()

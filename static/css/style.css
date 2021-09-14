@@ -264,6 +264,9 @@ margin: 0;
     cursor: pointer
 }
 
+.profile-icons-figure{
+    cursor: pointer
+}
 .picture-right-arrow:hover{
     cursor: pointer
 }

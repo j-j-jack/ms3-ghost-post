@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 <div class="edit-profile-from-profile-page">
-    <butt onclick="location.href=`{{ url_for('edit_profile') }}`">
+    <button onclick="location.href=`{{ url_for('edit_profile') }}`">
         Edit Profile
     </button>
 </div>
@@ -23,28 +23,30 @@
             <div class="profile-icons-grid-outer">
                 <div class="profile-icons-grid-inner">
                     <div class="profile-icons-stories-box">
-                        <figure>
+                        <figure class="profile-icons-figure"
+                            onclick=
+                            "location.href=`{{ url_for('user_stories', page=1, unfiltered=0, stories_by=username) }}`">
                             <img class="profile-icon" 
                                 src="{{ url_for('static', filename='images/book.svg') }}">
                             <figcaption>Stories</figcaption>
                         </figure>
                     </div>
                     <div class="profile-icons-favs-box">
-                        <figure>
+                        <figure class="profile-icons-figure">
                             <img class="profile-icon" 
                                 src="{{ url_for('static', filename='images/heart.svg') }}">
                             <figcaption>Favs</figcaption>
                         </figure>
                     </div>
                     <div class="profile-icons-followers-box">
-                        <figure>
+                        <figure class="profile-icons-figure">
                             <img class="profile-icon" 
                                 src="{{ url_for('static', filename='images/follower.svg') }}">
                             <figcaption>Followers</figcaption>
                         </figure>
                     </div>
                     <div class="profile-icons-following-box">
-                        <figure>
+                        <figure class="profile-icons-figure">
                             <img class="profile-icon" 
                                 src="{{ url_for('static', filename='images/following.svg') }}">
                             <figcaption>Following</figcaption>
