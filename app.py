@@ -755,10 +755,25 @@ def delete_story(story):
 @ app.route("/view_story/<story>", methods=["GET", "POST"])
 def view_story(story):
 
+    favorite_stories = mongo.db.users.find_one(
+        {"username": session["user"]})["favorite_stories"]
     if request.method == "POST":
-        story_to_add = [story]
-        mongo.db.users.update(
-            {"username": session["user"]}, {"$set": {"favorite_stories": story_to_add}})
+        story_to_add_or_remove = story
+
+        if story in favorite_stories:
+            favorite_stories.remove(story_to_add_or_remove)
+            mongo.db.users.update(
+                {"username": session["user"]}, {"$set": {"favorite_stories": favorite_stories}})
+        else:
+            favorite_stories.append(story_to_add_or_remove)
+            mongo.db.users.update(
+                {"username": session["user"]}, {"$set": {"favorite_stories": favorite_stories}})
+
+    favorited = ""
+    if story in favorite_stories:
+        favorited = "In Favorites"
+    else:
+        favorited = "Not in Favorites"
     title = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["title"]
     category = mongo.db.stories.find_one(
@@ -781,7 +796,7 @@ def view_story(story):
 
     return render_template('story.html', title=title, category=category, location=location,
                            content=content, favs=favs, story_by=story_by, owns_story=owns_story, id=story,
-                           user_favorites=user_favorites)
+                           user_favorites=user_favorites, favorited=favorited)
 
 
 @ app.route("/edit_profile", methods=["GET", "POST"])

@@ -5,7 +5,6 @@
 {% endblock %}
 {% block content %}
 
-{{ user_favorites }}
 <div class="view-story-container">
     <h3> {{ title }} </h3>
     
@@ -23,12 +22,16 @@
                     Delete 
                 </button>
                 <div style="display: none">{{ url_for('delete_story', story=id) }}</div>
-                <br>
+                
     {% endif %}
     Favs: {{ favs }} <br><br>
     <form method="POST" action="{{ url_for('view_story', story=id) }}">
-        <button type="submit">favorite story</button>
-    </form>
+        {% if favorited == "In Favorites" %}
+        {{ favorited }} <button type="submit">Remove from Favorites</button>
+        {% else %}
+        {{ favorited }} <button type="submit">Favorite Story</button>
+        {% endif %}
+    </form><br>
     Category : {{ category }} <br><br>
     location: {{ location }} <br><br>
     {{ content }} <br><br>
