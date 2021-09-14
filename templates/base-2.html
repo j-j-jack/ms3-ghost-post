@@ -30,7 +30,7 @@
                 <h4>Logout</h4>
             </div>
             <div class="search-box-small">
-                <form>
+                <form method="POST" action="{{ url_for('search') }}">
                     <input type="text" name="search" id="search">
                     <button class="search-submission" type=submit>
                         <img class="search-icon" src="{{ url_for('static', filename='images/search.svg') }}">
