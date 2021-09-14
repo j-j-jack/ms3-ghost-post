@@ -12,7 +12,7 @@
 </p>
 <div class="feed-and-filter-container">
     <div id= "filter-div" class="filter-div">
-        <form action ="{{ url_for('feed', page=1, unfiltered=1) }}">
+        <form action ="{{ url_for('search', page=1, unfiltered=1) }}">
             <input type="checkbox" id="allCheckBox" name="all" value="all" {{ all_checked }}>
             <label for="all"> All</label><br>
             <div class="checkbox-container">
