@@ -757,6 +757,8 @@ def view_story(story):
 
     favorite_stories = mongo.db.users.find_one(
         {"username": session["user"]})["favorite_stories"]
+    favorites_count = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["favs"]
     if request.method == "POST":
         story_to_add_or_remove = story
 
@@ -764,16 +766,23 @@ def view_story(story):
             favorite_stories.remove(story_to_add_or_remove)
             mongo.db.users.update(
                 {"username": session["user"]}, {"$set": {"favorite_stories": favorite_stories}})
+            favorites_count = favorites_count-1
+            mongo.db.stories.update(
+                {"_id": ObjectId(story)}, {"$set": {"favs": favorites_count}})
         else:
             favorite_stories.append(story_to_add_or_remove)
             mongo.db.users.update(
                 {"username": session["user"]}, {"$set": {"favorite_stories": favorite_stories}})
+            favorites_count = favorites_count+1
+            mongo.db.stories.update(
+                {"_id": ObjectId(story)}, {"$set": {"favs": favorites_count}})
 
     favorited = ""
     if story in favorite_stories:
         favorited = "In Favorites"
     else:
         favorited = "Not in Favorites"
+
     title = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["title"]
     category = mongo.db.stories.find_one(
