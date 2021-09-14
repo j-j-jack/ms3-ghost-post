@@ -343,6 +343,21 @@ margin: 0;
 .follow-title{
     text-align: center;
 }
+.follow-picture-box{
+    display: inline-block;
+    width: 10%;
+    border: 2px solid seagreen;
+    padding: 0;
+    margin-right: 10%;
+    cursor: pointer;
+}
+.follow-figure{
+    margin: 0;
+    text-align: center;
+}
+.follow-picture{
+    width: 90%;
+}
 
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){

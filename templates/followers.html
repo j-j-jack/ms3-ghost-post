@@ -9,6 +9,11 @@
 <div class="follow-container">
     {% for i in range((page-1) * 40, ((page-1)*40) +40) %}
     <div class="follow-box-">
+        <div class="follow-picture-box">
+            <figure  class="follow-figure" onclick="location.href=`{{ url_for('profile', username=followers[i]) }}`">
+                <img class='follow-picture' src={{ profile_picture_finder(followers[i]) }}>
+            </figure>
+        </div>
         {{ followers[i] }}<br><br>
     </div>
 {% endfor %}
