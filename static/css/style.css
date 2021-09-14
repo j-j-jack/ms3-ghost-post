@@ -358,6 +358,9 @@ margin: 0;
 .follow-picture{
     width: 90%;
 }
+.follow-name{
+    cursor: pointer;
+}
 
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){

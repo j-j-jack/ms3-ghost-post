@@ -14,7 +14,9 @@
                 <img class='follow-picture' src={{ profile_picture_finder(followers[i]) }}>
             </figure>
         </div>
-        {{ followers[i] }}<br><br>
+        <span class='follow-name' onclick="location.href=`{{ url_for('profile', username=followers[i]) }}`"> 
+            {{ followers[i] }}
+        </span><br><br>
     </div>
 {% endfor %}
 </div>
