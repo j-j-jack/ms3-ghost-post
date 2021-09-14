@@ -73,7 +73,10 @@ def register():
             "email": request.form.get("email"),
             # setting a new profile_complete value to false.
             # if user logs back in without finishing profile this value will be checked
-            "profile_complete": False
+            "profile_complete": False,
+            "followers": [],
+            "following": [],
+            "favorite_stories": []
         }
         mongo.db.users.insert_one(register)
 
@@ -94,6 +97,12 @@ def finish_profile():
         {"username": session["user"]})["password"]
     user_id = mongo.db.users.find_one(
         {"username": session["user"]})["_id"]
+    followers = mongo.db.users.find_one(
+        {"username": session["user"]})["followers"]
+    following = mongo.db.users.find_one(
+        {"username": session["user"]})["followers"]
+    favorite_stories = mongo.db.users.find_one(
+        {"username": session["user"]})["favorite_stories"]
 
     if request.method == "POST":
         additional_profile_info = {
@@ -106,7 +115,10 @@ def finish_profile():
             "about": request.form.get("about"),
             # setting a new profile_complete value to true.
             # when the user logs back in they will go straight to the feed page
-            "profile_complete": True
+            "profile_complete": True,
+            "favorite_stories": favorite_stories,
+            "following": following,
+            "followers": followers
         }
         mongo.db.users.update(
             {"_id": ObjectId(user_id)}, additional_profile_info)
