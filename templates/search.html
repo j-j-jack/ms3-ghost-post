@@ -8,7 +8,7 @@
 <div class="delete-receiver-div">{{ delete }}</div>
 <p class="feed-title">
     <button id='filter-opener'>Filters</button>
-    Search results for {{ query }}
+    Search results for "{{ query }}"
 </p>
 <div class="feed-and-filter-container">
     <div id= "filter-div" class="filter-div">
@@ -121,7 +121,7 @@
 {% endif %}
 <div class="number-navigation" div class="next">
     {% if page_count > 1 and page > 1 %}
-        <div class="prev"  onclick="location.href=`{{ url_for('feed', page=page-1, unfiltered=unfiltered) }}`">
+        <div class="prev"  onclick="location.href=`{{ url_for('search', page=page-1, unfiltered=unfiltered) }}`">
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
                 aria-hidden="true" alt="left arrow">
             Prev
@@ -130,18 +130,18 @@
     {% for i in range(first_number, last_number+1) %}
 
         {% if i == page %}
-            <div class="number-block" onclick="location.href=`{{ url_for('feed', page=i, unfiltered=unfiltered) }}`">
+            <div class="number-block" onclick="location.href=`{{ url_for('search', page=i, unfiltered=unfiltered) }}`">
             <b>{{ i }}</b>
         </div>
         
         {% else %}
-        <div class="number-block" onclick="location.href=`{{ url_for('feed', page=i, unfiltered=unfiltered) }}`">
+        <div class="number-block" onclick="location.href=`{{ url_for('search', page=i, unfiltered=unfiltered) }}`">
             {{ i }}
         </div>
         {% endif %}
     {% endfor %}
     {% if page_count > 1 and page < page_count %}
-        <div class="next" onclick="location.href=`{{ url_for('feed', page=page+1, unfiltered=unfiltered) }}`">
+        <div class="next" onclick="location.href=`{{ url_for('search', page=page+1, unfiltered=unfiltered) }}`">
             Next
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
                 aria-hidden="true" alt="right arrow">
