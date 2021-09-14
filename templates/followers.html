@@ -4,5 +4,44 @@
 {% endblock %}
 {% block content %}
 
-<h3 class='follow-title'>Followers of {{ username }}</h3>
+<h3 class='follow-title'>Followers of {{ username }}</h3><br>
+<div class="followers-container-outer">
+<div class="follow-container">
+    {% for i in range((page-1) * 40, ((page-1)*40) +40) %}
+    <div class="follow-box-">
+        {{ followers[i] }}<br><br>
+    </div>
+{% endfor %}
+</div>
+</div>
+
+<div class="number-navigation" div class="next">
+    {% if page_count > 1 and page > 1 %}
+        <div class="prev"  onclick="location.href=`{{ url_for('followers', username=username, page=page-1) }}`">
+            <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
+                aria-hidden="true" alt="left arrow">
+            Prev
+            </div>
+    {% endif %}
+    {% for i in range(first_number, last_number+1) %}
+
+        {% if i == page %}
+            <div class="number-block" onclick="location.href=`{{ url_for('followers', username=username, page=i) }}`">
+            <b>{{ i }}</b>
+        </div>
+        
+        {% else %}
+        <div class="number-block" onclick="location.href=`{{ url_for('followers', username=username, page=i) }}`">
+            {{ i }}
+        </div>
+        {% endif %}
+    {% endfor %}
+    {% if page_count > 1 and page < page_count %}
+        <div class="next" onclick="location.href=`{{ url_for('followers', username=username, page=page+1) }}`">
+            Next
+            <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
+                aria-hidden="true" alt="right arrow">
+        </div>
+    {% endif %}
+</div>
 {% endblock %}

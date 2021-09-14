@@ -7,6 +7,7 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 import math
+import random
 if os.path.exists("env.py"):
     import env
 
@@ -86,7 +87,41 @@ def register():
     return redirect(url_for("finish_profile"))
 
 
-@app.route("/finish_profile", methods=["GET", "POST"])
+@app.route("/followers", defaults={"username": 1, "page": 1})
+@app.route("/followers<username>/<page>")
+def followers(username, page):
+    page = int(page)
+    if username == 1:
+        username = session['user']
+    else:
+        username = username
+
+    followers = mongo.db.users.find_one(
+        {"username": username})["followers"]
+    page_count = len(followers)
+    page_count = math.ceil(page_count/40)
+
+    if page <= 3:
+        first_number = 1
+        if page_count > 5:
+            last_number = 5
+        else:
+            last_number = page_count
+    else:
+        if page_count <= 5:
+            first_number = 1
+            last_number = page_count
+        elif page+2 > page_count:
+            first_number = page_count-4
+            last_number = page_count
+        else:
+            first_number = page-2
+            last_number = page+2
+    return render_template('followers.html', username=username, followers=followers,
+                           page=page, page_count=page_count, first_number=first_number, last_number=last_number)
+
+
+@ app.route("/finish_profile", methods=["GET", "POST"])
 def finish_profile():
     # grab the session user's username from db
     username = mongo.db.users.find_one(
@@ -132,7 +167,7 @@ def finish_profile():
     return render_template("finish-profile.html", username=username)
 
 
-@app.route("/feed", defaults={"page": 1, "unfiltered": 0})
+@ app.route("/feed", defaults={"page": 1, "unfiltered": 0})
 @ app.route("/feed/<page>/<unfiltered>")
 def feed(page, unfiltered):
     username = session["user"]
@@ -334,7 +369,7 @@ def add_story():
     return render_template("add-story.html")
 
 
-@app.route("/profile", defaults={"username": "site_user"})
+@ app.route("/profile", defaults={"username": "site_user"})
 @ app.route("/profile/<username>")
 def profile(username):
     username = username
