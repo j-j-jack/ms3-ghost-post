@@ -752,9 +752,13 @@ def delete_story(story):
     return redirect(url_for("feed"))
 
 
-@ app.route("/view_story/<story>")
+@ app.route("/view_story/<story>", methods=["GET", "POST"])
 def view_story(story):
 
+    if request.method == "POST":
+        story_to_add = [story]
+        mongo.db.users.update(
+            {"username": session["user"]}, {"$set": {"favorite_stories": story_to_add}})
     title = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["title"]
     category = mongo.db.stories.find_one(
@@ -767,12 +771,17 @@ def view_story(story):
         {"_id": ObjectId(story)})["favs"]
     story_by = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["story_by"]
+
     if story_by == session['user']:
         owns_story = 'yes'
     else:
         owns_story = 'no'
+    user_favorites = mongo.db.users.find_one(
+        {"username": session["user"]})["favorite_stories"]
+
     return render_template('story.html', title=title, category=category, location=location,
-                           content=content, favs=favs, story_by=story_by, owns_story=owns_story, id=story)
+                           content=content, favs=favs, story_by=story_by, owns_story=owns_story, id=story,
+                           user_favorites=user_favorites)
 
 
 @ app.route("/edit_profile", methods=["GET", "POST"])

@@ -4,6 +4,8 @@
 <script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
 {% endblock %}
 {% block content %}
+
+{{ user_favorites }}
 <div class="view-story-container">
     <h3> {{ title }} </h3>
     
@@ -24,6 +26,9 @@
                 <br>
     {% endif %}
     Favs: {{ favs }} <br><br>
+    <form method="POST" action="{{ url_for('view_story', story=id) }}">
+        <button type="submit">favorite story</button>
+    </form>
     Category : {{ category }} <br><br>
     location: {{ location }} <br><br>
     {{ content }} <br><br>
