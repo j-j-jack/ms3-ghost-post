@@ -1,0 +1,154 @@
+{% extends "base-2.html" %}
+{% block title %}
+<title>User's Stories</title>
+<script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
+{% endblock %}
+{% block content %}
+
+<div class="delete-receiver-div">{{ delete }}</div>
+<p class="feed-title">
+    <button id='filter-opener'>Filters</button>
+    Stories of {{ stories_by }}
+</p>
+<div class="feed-and-filter-container">
+    <div id= "filter-div" class="filter-div">
+        <form action ="{{ url_for('user_stories', page=1, unfiltered=1, stories_by=stories_by) }}">
+            <input type="checkbox" id="allCheckBox" name="all" value="all" {{ all_checked }}>
+            <label for="all"> All</label><br>
+            <div class="checkbox-container">
+                <div class="checkbox-filter"></div>
+                <input class="checkboxes" type="checkbox" id="aliens" 
+                    name="aliens" value="Aliens" {{ aliens_checked }}>
+                <label for="aliens"> Aliens</label><br>
+                <input class="checkboxes" type="checkbox" id="angels" 
+                    name="angels" value="Angels" {{ angels_checked }}>
+                <label for="angels"> Angels</label><br>
+                <input class="checkboxes" type="checkbox" id="demons" 
+                    name="demons" value="Demons" {{ demons_checked }}>
+                <label for="demons"> Demons</label><br>
+                <input class="checkboxes" type="checkbox" id="fairies" 
+                    name="fairies" value="Fairies" {{ fairies_checked }}>
+                <label for="fairies"> Fairies</label><br>
+                <input class="checkboxes" type="checkbox" id="ghosts" 
+                    name="ghosts" value="Ghosts" {{ ghosts_checked }}>
+                <label for="ghosts"> Ghosts</label><br>
+                <input class="checkboxes" type="checkbox" id="vampires" 
+                    name="vampires" value="Vampires" {{ vampires_checked }}>
+                <label for="vampires"> Vampires</label><br>
+                <input class="checkboxes" type="checkbox" id="witches_wizards" 
+                    name="witches_wizards" value="Witches/Wizards" {{ witches_wizards_checked }}>
+                <label for="witches_wizards"> Witches/Wizards</label><br>
+                <input class="checkboxes" type="checkbox" id="other" 
+                    name="other" value="Other" {{ other_checked }}>
+                <label for="other"> Other</label><br><br>
+            </div>
+
+            <br>
+            <label for="interest">Sort by: </label>
+            <select name="sort_method" id="sort_method" required>
+                <option value="3" {{ newest_selected }}>Newest(default)</option>
+                <option value="2" {{ oldest_selected }}>Oldest</option>
+                <option value="1"{{ most_favorites_selected }}>Favorites</option>
+            </select><br><br>
+            <button type="submit">Go</button>
+        </form>
+    </div>
+    <div class="feed-div">
+    {% for i in range((page*5)-5, page*5) %}
+        {% if stories[i] %}
+        <div class="story-preview-box">
+            <h4 style="text-align: center">{{ stories[i].title }}</h4>
+            {% if username == stories[i].story_by %}
+            <div >
+                <button class="edit-story-button" 
+                    onclick = "location.href=`{{ url_for('edit_story', story=stories[i]._id) }}`">
+                    Edit 
+                </button>
+            </div>
+            <div >
+                <!-- <button class="delete-story-button" 
+                    onclick = "location.href=`{{ url_for('delete_story', story=stories[i]._id) }}`">
+                    Delete 
+                </button> -->
+            <button class="delete-story-button" 
+                    onclick = "let toBeDeleted = this.nextElementSibling.innerHTML;
+                               deleteStory(toBeDeleted)">
+                    Delete 
+                </button>
+                <div style="display: none">{{ url_for('delete_story', story=stories[i]._id) }}</div>
+                
+            </div>
+            {% endif %}
+            Date Added: {{ stories[i].date_added }}<br><br>
+            Category: {{ stories[i].category }}<br><br>
+            Location: {{ stories[i].location }}<br><br>
+            Preview: {{ stories[i].preview }}<br><br>
+            <div class="feed-div-inner-container">
+                <div class="profile-picture-box">
+            <figure class=feed-profile-picture-figure
+                onclick="location.href=`{{ url_for('profile', username=stories[i].story_by) }}`">
+                <img class="feed-profile-picture" 
+                    src={{ profile_picture_finder(stories[i].story_by) }}>
+                <figcaption>Story by: {{ stories[i].story_by  }}</figcaption>
+            </figure>
+            </div>
+            <div class="fav-picture-box">
+            <figure>
+                <img class="feed-favorite-picture" src="{{ url_for('static', filename='images/heart.svg') }}">
+                <figcaption>Favs: {{ stories[i].favs }}</figcaption>
+            </figure>
+            </div>
+            <div class="view-story-box">
+                <button
+                    onclick = "location.href=`{{ url_for('view_story', story=stories[i]._id) }}`">
+                    View Story
+                    <img class="number-nav-arrow"
+                        src="{{ url_for('static', filename='images/right-arrow.svg') }}"
+                        style="vertical-align: text-bottom;" 
+                        aria-hidden="true" alt="right arrow">
+                </button>
+            </div>
+        </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+{% if unfiltered == 0 %}
+    {% set unfiltered = 0 %}
+    {% else %}
+    {% set unfiltered = 2 %}
+{% endif %}
+<div class="number-navigation" div class="next">
+    {% if page_count > 1 and page > 1 %}
+        <div class="prev"  onclick="location.href=`{{ url_for('feed', page=page-1, unfiltered=unfiltered) }}`">
+            <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
+                aria-hidden="true" alt="left arrow">
+            Prev
+            </div>
+    {% endif %}
+    {% for i in range(first_number, last_number+1) %}
+
+        {% if i == page %}
+            <div class="number-block" 
+            onclick="location.href=`{{ url_for('user_stories', page=i, unfiltered=unfiltered, stories_by=stories_by) }}`">
+            <b>{{ i }}</b>
+        </div>
+        
+        {% else %}
+        <div class="number-block" onclick="location.href=`{{ url_for('user_stories', page=i, unfiltered=unfiltered, stories_by=stories_by) }}`">
+            {{ i }}
+        </div>
+        {% endif %}
+    {% endfor %}
+    {% if page_count > 1 and page < page_count %}
+        <div class="next" 
+            onclick="location.href=`{{ url_for('user_stories', page=page+1, unfiltered=unfiltered, stories_by=stories_by) }}`">
+            Next
+            <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
+                aria-hidden="true" alt="right arrow">
+        </div>
+    {% endif %}
+</div>
+<script src="{{ url_for('static', filename='js/filter-script.js') }}"></script>
+{% endblock %}
