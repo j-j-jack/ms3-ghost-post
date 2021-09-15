@@ -270,8 +270,8 @@ def feed(page, unfiltered):
     stories = list(mongo.db.stories.find())
     if sort_method == 3:
         stories.reverse()
-        oldest_selected = "selected"
-        newest_selected = ""
+        oldest_selected = ""
+        newest_selected = "selected"
         most_favorites_selected = ""
     elif sort_method == 1:
         stories = sorted(stories, key=lambda i: i['favs'], reverse=True)
@@ -279,8 +279,8 @@ def feed(page, unfiltered):
         newest_selected = ""
         most_favorites_selected = "selected"
     else:
-        oldest_selected = ""
-        newest_selected = "selected"
+        oldest_selected = "selected"
+        newest_selected = ""
         most_favorites_selected = ""
 
     filtered_stories = []
@@ -644,8 +644,8 @@ def favorites(page, unfiltered, favorites_of):
 
     if sort_method == 3:
         stories.reverse()
-        oldest_selected = "selected"
-        newest_selected = ""
+        oldest_selected = ""
+        newest_selected = "selected"
         most_favorites_selected = ""
     elif sort_method == 1:
         stories = sorted(stories, key=lambda i: i['favs'], reverse=True)
@@ -653,8 +653,8 @@ def favorites(page, unfiltered, favorites_of):
         newest_selected = ""
         most_favorites_selected = "selected"
     else:
-        oldest_selected = ""
-        newest_selected = "selected"
+        oldest_selected = "selected"
+        newest_selected = ""
         most_favorites_selected = ""
 
     filtered_stories = []
@@ -828,8 +828,8 @@ def search(page, unfiltered):
     stories = list(mongo.db.stories.find({"$text": {"$search": query}}))
     if sort_method == 3:
         stories.reverse()
-        oldest_selected = "selected"
-        newest_selected = ""
+        oldest_selected = ""
+        newest_selected = "selected"
         most_favorites_selected = ""
     elif sort_method == 1:
         stories = sorted(stories, key=lambda i: i['favs'], reverse=True)
@@ -837,8 +837,8 @@ def search(page, unfiltered):
         newest_selected = ""
         most_favorites_selected = "selected"
     else:
-        oldest_selected = ""
-        newest_selected = "selected"
+        oldest_selected = "selected"
+        newest_selected = ""
         most_favorites_selected = ""
 
     filtered_stories = []
@@ -1077,6 +1077,7 @@ def edit_story(story):
 def delete_story(story):
     mongo.db.stories.remove(
         {"_id": ObjectId(story)})
+    session["flash"] = "Story deleted"
     return redirect(url_for("feed"))
 
 
