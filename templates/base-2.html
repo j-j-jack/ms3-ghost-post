@@ -29,7 +29,7 @@
             <div class="logout-box-small" onclick="location.href=`{{ url_for('login') }}`;">
                 <form method="POST" action = "{{ url_for('login') }}">
                     <button class=logout-button><h4>Logout</h4></button>
-                    <input type="hidden" id='logout' name='logout' value='logout'>
+                    <input type="hidden" id='log_method' name='log_method' value='logout'>
                 </form>
             </div>
             <div class="search-box-small">
@@ -67,7 +67,7 @@
             <div class="logout-box" onclick="location.href=`{{ url_for('login') }}`";>
                 <form method="POST" action = "{{ url_for('login') }}">
                     <button class=logout-button><h4>Logout</h4></button>
-                    <input type="hidden" id='logout' name='logout' value='logout'>
+                    <input type="hidden" id='log_method' name='log_method' value='logout'>
                 </form>
             </div>
             <div class="search-box">
@@ -80,6 +80,21 @@
             </div>
         </div>
         </div>
+    </div>
+    {% block heading %}
+    {% endblock %}
+    <div class="flash-message-container">
+        <!-- flash messages -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                       <div>
+                            <h4>{{ message }}</h4>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+</section>
     </div>
             {% block content %}
             {% endblock %}    
