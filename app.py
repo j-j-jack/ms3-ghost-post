@@ -903,17 +903,6 @@ def profile(username):
 @ app.route("/edit_story/<story>", methods=["GET", "POST"])
 def edit_story(story):
     story = story
-    username = mongo.db.stories.find_one(
-        {"_id": ObjectId(story)})["story_by"]
-    title = mongo.db.stories.find_one(
-        {"_id": ObjectId(story)})["title"]
-    category = mongo.db.stories.find_one(
-        {"_id": ObjectId(story)})["category"]
-    location = mongo.db.stories.find_one(
-        {"_id": ObjectId(story)})["location"]
-    content = mongo.db.stories.find_one(
-        {"_id": ObjectId(story)})["content"]
-
     if request.method == "POST":
         new_content = request.form.get("content")
         preview = new_content[0:50] + "..."
@@ -927,6 +916,17 @@ def edit_story(story):
             {"_id": ObjectId(story)}, {"$set": {"content": request.form.get("content")}})
         mongo.db.stories.update(
             {"_id": ObjectId(story)}, {"$set": {"preview": preview}})
+
+    username = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["story_by"]
+    title = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["title"]
+    category = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["category"]
+    location = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["location"]
+    content = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["content"]
 
     return render_template("edit-story.html", title=title, category=category, location=location,
                            content=content, username=username, story=story)
