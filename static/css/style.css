@@ -332,7 +332,33 @@ margin: 0;
 .edit-story-title{
     text-align: center;
 }
-
+/* follower Page---------------------------------------------------------------*/
+.follow-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-left: 10%;
+}
+.follow-title{
+    text-align: center;
+}
+.follow-picture-box{
+    display: inline-block;
+    width: 10%;
+    border: 2px solid seagreen;
+    padding: 0;
+    margin-right: 10%;
+    cursor: pointer;
+}
+.follow-figure{
+    margin: 0;
+    text-align: center;
+}
+.follow-picture{
+    width: 90%;
+}
+.follow-name{
+    cursor: pointer;
+}
 /* View Story Page---------------------------------------------------------------*/
     .view-story-container{
         text-align: center;

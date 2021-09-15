@@ -98,7 +98,10 @@ def followers(username, page):
     else:
         username = username
 
+<<<<<<< HEAD
     site_user = session["user"]
+=======
+>>>>>>> add-and-remove-followers
     followers = mongo.db.users.find_one(
         {"username": username})["followers"]
     page_count = len(followers)
@@ -1027,6 +1030,18 @@ def delete_story(story):
     return redirect(url_for("feed"))
 
 
+<<<<<<< HEAD
+=======
+def remove_follower(user_to_remove):
+    site_user = session["user"]
+    site_user_following = mongo.db.users.find_one(
+        {"username": site_user})["following"]
+    site_user_following.remove(user_to_remove)
+    mongo.db.users.update(
+        {"username": site_user}, {"$set": {"following": site_user_following}})
+
+
+>>>>>>> add-and-remove-followers
 @ app.route("/view_story/<story>")
 def view_story(story):
 
