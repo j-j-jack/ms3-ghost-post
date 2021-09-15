@@ -98,10 +98,6 @@ def followers(username, page):
     else:
         username = username
 
-<<<<<<< HEAD
-    site_user = session["user"]
-=======
->>>>>>> add-and-remove-followers
     followers = mongo.db.users.find_one(
         {"username": username})["followers"]
     page_count = len(followers)
@@ -973,8 +969,13 @@ def add_story():
 @ app.route("/profile/<username>")
 def profile(username):
     username = username
+    own_profile = 'no'
     if username == "site_user":
         username = session['user']
+        own_profile = 'yes'
+
+    if session["user"] == username:
+        own_profile = 'yes'
 
     username = mongo.db.users.find_one(
         {"username": username})["username"]
@@ -988,7 +989,7 @@ def profile(username):
         {"username": username})["about"]
     return render_template("profile.html", username=username,
                            profile_picture=profile_picture,
-                           location=location, interest=interest, about=about)
+                           location=location, interest=interest, about=about, own_profile=own_profile)
 
 
 @ app.route("/edit_story/<story>", methods=["GET", "POST"])
@@ -1030,8 +1031,6 @@ def delete_story(story):
     return redirect(url_for("feed"))
 
 
-<<<<<<< HEAD
-=======
 def remove_follower(user_to_remove):
     site_user = session["user"]
     site_user_following = mongo.db.users.find_one(
@@ -1041,7 +1040,6 @@ def remove_follower(user_to_remove):
         {"username": site_user}, {"$set": {"following": site_user_following}})
 
 
->>>>>>> add-and-remove-followers
 @ app.route("/view_story/<story>")
 def view_story(story):
 
@@ -1130,12 +1128,6 @@ def edit_profile():
     return render_template("edit_profile.html", username=username,
                            location=location, email=email, about=about,
                            interest=interest, profile_picture=profile_picture)
-
-
-def profile_picture_finder(username):
-    picture = mongo.db.users.find_one(
-        {"username": username})["profile_picture"]
-    return picture
 
 
 def profile_picture_finder(username):
