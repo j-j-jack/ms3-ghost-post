@@ -25,6 +25,7 @@ mongo = PyMongo(app)
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
+    session["flash"] = ""
     session["search"] = ""
     if request.method == "POST":
         if request.form.get("log_method") == 'logout':
@@ -996,6 +997,9 @@ def profile(username):
         {"username": username})["interest"]
     about = mongo.db.users.find_one(
         {"username": username})["about"]
+
+    flash(session["flash"])
+    session["flash"] = ""
     return render_template("profile.html", username=username,
                            profile_picture=profile_picture,
                            location=location, interest=interest, about=about,
@@ -1009,6 +1013,7 @@ def follow_user(username):
         {"username": session["user"]})["following"]
     following.append(username)
     following.sort()
+    session["flash"] = "You are now following " + username
     mongo.db.users.update(
         {"username": session["user"]}, {"$set": {"following": following}})
     return redirect(url_for("profile", username=username))
@@ -1021,6 +1026,7 @@ def unfollow_user(username):
         {"username": session["user"]})["following"]
     following.remove(username)
     following.sort()
+    session["flash"] = "You are no longer following " + username
     mongo.db.users.update(
         {"username": session["user"]}, {"$set": {"following": following}})
     return redirect(url_for("profile", username=username))
