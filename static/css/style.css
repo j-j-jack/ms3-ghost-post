@@ -42,6 +42,9 @@ font-family: 'Modern Antiqua', "Open Sans";
     color: white;
 }
 /* navbar -------------------------------------------------------------------- */
+.site-logo:hover{
+        cursor: pointer;
+    }
 #navbar-container-small{
     display: none;
     position: absolute;
@@ -515,6 +518,8 @@ font-family: 'Modern Antiqua', "Open Sans";
 
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){
+
+    
     .navbar-box{
         display: none;
     }

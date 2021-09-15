@@ -47,7 +47,8 @@
             src="{{ url_for('static', filename='images/burger.svg') }}">
     </div>
     <div class="navbar-logo-box">
-        <img class="login-page-logo" 
+        <img class="site-logo"
+            onclick="location.href=`{{ url_for('feed') }}`"
             src="{{ url_for('static', filename='images/logo.svg') }}"
             alt ="Company logo for ghost post. It is a ghost drawing the words ghost post on a blue board">
     </div>

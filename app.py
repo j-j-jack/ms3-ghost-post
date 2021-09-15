@@ -97,7 +97,7 @@ def register():
 
 
 @app.route("/followers", defaults={"username": 1, "page": 1})
-@app.route("/followers<username>/<page>")
+@app.route("/followers/<username>/<page>")
 def followers(username, page):
 
     page = int(page)
@@ -1090,7 +1090,7 @@ def remove_follower(user_to_remove):
         {"username": site_user}, {"$set": {"following": site_user_following}})
 
 
-@ app.route("/view_story/<story>")
+@ app.route("/view_story/<story>", methods=["GET", "POST"])
 def view_story(story):
 
     favorite_stories = mongo.db.users.find_one(
