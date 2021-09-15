@@ -41,16 +41,20 @@
                         </figure>
                     </div>
                     <div class="profile-icons-followers-box">
-                        <figure class="profile-icons-figure">
+                        <figure class="profile-icons-figure"
+                            onclick=
+                            "location.href=`{{ url_for('followers', page=1, username=username) }}`">
                             <img class="profile-icon" 
                                 src="{{ url_for('static', filename='images/follower.svg') }}">
                             <figcaption>Followers</figcaption>
                         </figure>
                     </div>
                     <div class="profile-icons-following-box">
-                        <figure class="profile-icons-figure">
+                        <figure class="profile-icons-figure"
+                            onclick=
+                            "location.href=`{{ url_for('following', page=1, username=username) }}`">
                             <img class="profile-icon" 
-                                src="{{ url_for('static', filename='images/following.svg') }}">
+                                src="{{ url_for('static', filename='images/follower.svg') }}">
                             <figcaption>Following</figcaption>
                         </figure>
                     </div>
