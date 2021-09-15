@@ -8,11 +8,11 @@
 <div class="delete-receiver-div">{{ delete }}</div>
 <p class="feed-title">
     <button id='filter-opener'>Filters</button>
-    Favorite Stories of {{ stories_by }}<br>
+    Favorite Stories of {{ favorites_of }}<br>
 </p>
 <div class="feed-and-filter-container">
     <div id= "filter-div" class="filter-div">
-        <form action ="{{ url_for('favorites', page=1, unfiltered=1, stories_by=stories_by) }}">
+        <form action ="{{ url_for('favorites', page=1, unfiltered=1, favorites_of=favorites_of) }}">
             <input type="checkbox" id="allCheckBox" name="all" value="all" {{ all_checked }}>
             <label for="all"> All</label><br>
             <div class="checkbox-container">
@@ -121,7 +121,7 @@
 {% endif %}
 <div class="number-navigation" div class="next">
     {% if page_count > 1 and page > 1 %}
-        <div class="prev"  onclick="location.href=`{{ url_for('favorites', page=page-1, unfiltered=unfiltered, stories_by=stories_by) }}`">
+        <div class="prev"  onclick="location.href=`{{ url_for('favorites', page=page-1, unfiltered=unfiltered, favorites_of=favorites_of) }}`">
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
                 aria-hidden="true" alt="left arrow">
             Prev
@@ -131,19 +131,19 @@
 
         {% if i == page %}
             <div class="number-block" 
-            onclick="location.href=`{{ url_for('favorites', page=i, unfiltered=unfiltered, stories_by=stories_by) }}`">
+            onclick="location.href=`{{ url_for('favorites', page=i, unfiltered=unfiltered, favorites_of=favorites_of) }}`">
             <b>{{ i }}</b>
         </div>
         
         {% else %}
-        <div class="number-block" onclick="location.href=`{{ url_for('favorites', page=i, unfiltered=unfiltered, stories_by=stories_by) }}`">
+        <div class="number-block" onclick="location.href=`{{ url_for('favorites', page=i, unfiltered=unfiltered, favorites_of=favorites_of) }}`">
             {{ i }}
         </div>
         {% endif %}
     {% endfor %}
     {% if page_count > 1 and page < page_count %}
         <div class="next" 
-            onclick="location.href=`{{ url_for('favorites', page=page+1, unfiltered=unfiltered, stories_by=stories_by) }}`">
+            onclick="location.href=`{{ url_for('favorites', page=page+1, unfiltered=unfiltered, favorites_of=favorites_of) }}`">
             Next
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
                 aria-hidden="true" alt="right arrow">

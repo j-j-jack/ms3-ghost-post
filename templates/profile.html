@@ -32,7 +32,9 @@
                         </figure>
                     </div>
                     <div class="profile-icons-favs-box">
-                        <figure class="profile-icons-figure">
+                        <figure class="profile-icons-figure"
+                            onclick=
+                            "location.href=`{{ url_for('favorites', page=1, unfiltered=0, favorites_of=username) }}`">
                             <img class="profile-icon" 
                                 src="{{ url_for('static', filename='images/heart.svg') }}">
                             <figcaption>Favs</figcaption>

@@ -483,6 +483,194 @@ def user_stories(page, unfiltered, stories_by):
         most_favorites_selected=most_favorites_selected, stories_by=stories_by)
 
 
+@app.route("/favorites", defaults={"page": 1, "unfiltered": 0})
+@ app.route("/favorites/<page>/<unfiltered>/<favorites_of>")
+def favorites(page, unfiltered, favorites_of):
+    favorites_of = favorites_of
+    username = favorites_of
+    page = int(page)
+    unfiltered = int(unfiltered)
+    if unfiltered == 0:
+        all = "all"
+        session["all"] = 'all'
+        session["aliens"] = 'Aliens'
+        session["angels"] = 'Angels'
+        session["demons"] = 'Demons'
+        session["fairies"] = 'Fairies'
+        session["ghosts"] = 'Ghosts'
+        session["vampires"] = 'Vampires'
+        session["other"] = "Other"
+        session["sort_method"] = 3
+        sort_method = 3
+    elif unfiltered == 1:
+        all = request.args.get('all')
+        aliens = request.args.get('aliens')
+        angels = request.args.get('angels')
+        demons = request.args.get('demons')
+        fairies = request.args.get('fairies')
+        ghosts = request.args.get('ghosts')
+        vampires = request.args.get('vampires')
+        witches_wizards = request.args.get('witches_wizards')
+        other = request.args.get('other')
+        session["all"] = request.args.get('all')
+        session["aliens"] = request.args.get('aliens')
+        session["angels"] = request.args.get('angels')
+        session["demons"] = request.args.get('demons')
+        session["fairies"] = request.args.get('fairies')
+        session["ghosts"] = request.args.get('ghosts')
+        session["vampires"] = request.args.get('vampires')
+        session["witches_wizards"] = request.args.get('witches_wizards')
+        session['other'] = request.args.get('other')
+        session["sort_method"] = int(request.args.get('sort_method'))
+        sort_method = int(request.args.get('sort_method'))
+    elif unfiltered == 2:
+        all = session["all"]
+        aliens = session['aliens']
+        angels = session['angels']
+        demons = session['demons']
+        fairies = session['fairies']
+        ghosts = session['ghosts']
+        vampires = session['vampires']
+        witches_wizards = session['witches_wizards']
+        other = session['other']
+        sort_method = session['sort_method']
+
+    all_stories = list(mongo.db.stories.find())
+    user_favorites = mongo.db.users.find_one(
+        {"username": favorites_of})["favorite_stories"]
+    stories = []
+    apple = ""
+    for story in all_stories:
+        apple = story["_id"]
+        if story["_id"] == username:
+            stories.append(story)
+
+    if sort_method == 2:
+        stories.reverse()
+        oldest_selected = "selected"
+        newest_selected = ""
+        most_favorites_selected = ""
+    elif sort_method == 1:
+        stories = sorted(stories, key=lambda i: i['favs'], reverse=True)
+        oldest_selected = ""
+        newest_selected = ""
+        most_favorites_selected = "selected"
+    else:
+        oldest_selected = ""
+        newest_selected = "selected"
+        most_favorites_selected = ""
+
+    filtered_stories = []
+    if all == "all":
+        aliens = "Aliens"
+        angels = "Angels"
+        demons = "Demons"
+        fairies = "Fairies"
+        ghosts = "Ghosts"
+        vampires = "Vampires"
+        witches_wizards = "Witches/Wizards"
+        other = "Other"
+
+    for story in stories:
+        if story["category"] == aliens:
+            filtered_stories.append(story)
+        elif story["category"] == angels:
+            filtered_stories.append(story)
+        elif story["category"] == demons:
+            filtered_stories.append(story)
+        elif story["category"] == fairies:
+            filtered_stories.append(story)
+        elif story["category"] == ghosts:
+            filtered_stories.append(story)
+        elif story["category"] == vampires:
+            filtered_stories.append(story)
+        elif story["category"] == witches_wizards:
+            filtered_stories.append(story)
+        elif story["category"] == other:
+            filtered_stories.append(story)
+
+    if all == 'all':
+        all_checked = "checked"
+    else:
+        all_checked = "unchecked"
+
+    if aliens == 'Aliens':
+        aliens_checked = "checked"
+    else:
+        aliens_checked = "unchecked"
+
+    if angels == 'Angels':
+        angels_checked = "checked"
+    else:
+        angels_checked = "unchecked"
+
+    if demons == 'Demons':
+        demons_checked = "checked"
+    else:
+        demons_checked = "unchecked"
+
+    if fairies == 'Fairies':
+        fairies_checked = "checked"
+    else:
+        fairies_checked = "unchecked"
+
+    if ghosts == 'Ghosts':
+        ghosts_checked = "checked"
+    else:
+        ghosts_checked = "unchecked"
+
+    if vampires == 'Vampires':
+        vampires_checked = "checked"
+    else:
+        vampires_checked = "unchecked"
+
+    if witches_wizards == 'Witches/Wizards':
+        witches_wizards_checked = "checked"
+    else:
+        witches_wizards_checked = "unchecked"
+
+    if other == 'Other':
+        other_checked = "checked"
+    else:
+        other_checked = "unchecked"
+
+    stories = filtered_stories
+    story_count = 0
+    for entry in stories:
+        story_count += 1
+        # number of total pages in feed
+    page_count = math.ceil(story_count/5)
+    # first_number = page + nav_direction
+    if page <= 3:
+        first_number = 1
+        if page_count > 5:
+            last_number = 5
+        else:
+            last_number = page_count
+    else:
+        if page_count <= 5:
+            first_number = 1
+            last_number = page_count
+        elif page+2 > page_count:
+            first_number = page_count-4
+            last_number = page_count
+        else:
+            first_number = page-2
+            last_number = page+2
+
+    return render_template(
+        "favorites.html", username=username, stories=stories, page=page,
+        page_count=page_count, first_number=first_number,
+        last_number=last_number, unfiltered=unfiltered,
+        all_checked=all_checked, aliens_checked=aliens_checked,
+        angels_checked=angels_checked, demons_checked=demons_checked,
+        fairies_checked=fairies_checked, ghosts_checked=ghosts_checked,
+        vampires_checked=vampires_checked, witches_wizards_checked=witches_wizards_checked,
+        other_checked=other_checked, sort_method=sort_method,
+        newest_selected=newest_selected, oldest_selected=oldest_selected,
+        most_favorites_selected=most_favorites_selected, favorites_of=favorites_of, apple=apple)
+
+
 @app.route("/search", defaults={"page": 1, "unfiltered": 0}, methods=["GET", "POST"])
 @ app.route("/search/<page>/<unfiltered>")
 def search(page, unfiltered):
