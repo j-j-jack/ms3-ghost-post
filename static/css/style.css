@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Modern+Antiqua&display=swap');
+
 body{
 background-color: #888888;
 padding: 0;
 margin: 0;
+font-family: 'Modern Antiqua', "Open Sans";
 }
 .page-heading{
     text-align: center;
