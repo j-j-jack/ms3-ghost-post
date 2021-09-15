@@ -4,11 +4,11 @@
 <script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
 {% endblock %}
 {% block heading %}
-<h3 class="page-heading"> Hi, {{ username }}, here is your feed!</h3>
+<h3 class="page-heading"> Hi {{ username }}, here is your feed!</h3>
 {% endblock %}
 {% block content %}
 <div class="delete-receiver-div">{{ delete }}</div>
-<p class="feed-title">
+<p class="filter-button-div">
     <button id='filter-opener'>Filters</button>
 </p>
 <div class="feed-and-filter-container">
@@ -58,7 +58,7 @@
     {% for i in range((page*5)-5, page*5) %}
         {% if stories[i] %}
         <div class="story-preview-box">
-            <h4 style="text-align: center">{{ stories[i].title }}</h4>
+            <h4 class="feed-story-title">{{ stories[i].title }}</h4>
             {% if username == stories[i].story_by %}
             <div >
                 <button class="edit-story-button" 
@@ -131,7 +131,7 @@
     {% for i in range(first_number, last_number+1) %}
 
         {% if i == page %}
-            <div class="number-block" onclick="location.href=`{{ url_for('feed', page=i, unfiltered=unfiltered) }}`">
+            <div class="number-block-selected" onclick="location.href=`{{ url_for('feed', page=i, unfiltered=unfiltered) }}`">
             <b>{{ i }}</b>
         </div>
         

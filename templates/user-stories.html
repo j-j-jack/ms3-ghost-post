@@ -57,7 +57,7 @@
     {% for i in range((page*5)-5, page*5) %}
         {% if stories[i] %}
         <div class="story-preview-box">
-            <h4 style="text-align: center">{{ stories[i].title }}</h4>
+            <h4 class="feed-story-title">{{ stories[i].title }}</h4>
             {% if username == stories[i].story_by %}
             <div >
                 <button class="edit-story-button" 
@@ -130,7 +130,7 @@
     {% for i in range(first_number, last_number+1) %}
 
         {% if i == page %}
-            <div class="number-block" 
+            <div class="number-block-selected" 
             onclick="location.href=`{{ url_for('user_stories', page=i, unfiltered=unfiltered, stories_by=stories_by) }}`">
             <b>{{ i }}</b>
         </div>
