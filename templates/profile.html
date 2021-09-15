@@ -3,12 +3,27 @@
 <title>Profile</title>
 {% endblock %}
 {% block content %}
+
 {% if own_profile == 'yes' %}
 <div class="edit-profile-from-profile-page">
     <button onclick="location.href=`{{ url_for('edit_profile') }}`">
         Edit Profile
     </button>
 </div>
+{% else %}
+{% if follows == 'no' %}
+<div class="follow-user-button">
+    Not Following: <button onclick="location.href=`{{ url_for('follow_user', username=username) }}`">
+        Follow
+    </button>
+</div>
+{% else %}
+<div class="follow-user-button">
+    Following: <button onclick="location.href=`{{ url_for('unfollow_user', username=username) }}`">
+        Unfollow
+    </button>
+</div>
+{% endif %}
 {% endif %}
 <div class="profile-container">
     <div class="profile-div-a">

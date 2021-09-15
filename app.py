@@ -973,10 +973,15 @@ def profile(username):
     if username == "site_user":
         username = session['user']
         own_profile = 'yes'
-
     if session["user"] == username:
         own_profile = 'yes'
-
+    following = mongo.db.users.find_one(
+        {"username": session["user"]})["following"]
+    follows = 'no'
+    if username in following:
+        follows = 'yes'
+    else:
+        follows = 'no'
     username = mongo.db.users.find_one(
         {"username": username})["username"]
     profile_picture = mongo.db.users.find_one(
@@ -989,7 +994,32 @@ def profile(username):
         {"username": username})["about"]
     return render_template("profile.html", username=username,
                            profile_picture=profile_picture,
-                           location=location, interest=interest, about=about, own_profile=own_profile)
+                           location=location, interest=interest, about=about,
+                           own_profile=own_profile, follows=follows)
+
+
+@ app.route("/follow_user/<username>")
+def follow_user(username):
+    username = username
+    following = mongo.db.users.find_one(
+        {"username": session["user"]})["following"]
+    following.append(username)
+    following.sort()
+    mongo.db.users.update(
+        {"username": session["user"]}, {"$set": {"following": following}})
+    return redirect(url_for("profile", username=username))
+
+
+@ app.route("/unfollow_user/<username>")
+def unfollow_user(username):
+    username = username
+    following = mongo.db.users.find_one(
+        {"username": session["user"]})["following"]
+    following.remove(username)
+    following.sort()
+    mongo.db.users.update(
+        {"username": session["user"]}, {"$set": {"following": following}})
+    return redirect(url_for("profile", username=username))
 
 
 @ app.route("/edit_story/<story>", methods=["GET", "POST"])

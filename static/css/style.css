@@ -229,7 +229,10 @@ margin: 0;
     text-align: center;
 }
 
-
+/* profile page */
+.follow-user-button{
+    margin-left: 10%;
+}
 /* finish profile page -------------------------------------------------------------------- */
 .finish-profile-container{
     display: flex;
