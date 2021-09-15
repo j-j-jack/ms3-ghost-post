@@ -264,7 +264,7 @@ def feed(page, unfiltered):
         sort_method = session['sort_method']
 
     stories = list(mongo.db.stories.find())
-    if sort_method == 2:
+    if sort_method == 3:
         stories.reverse()
         oldest_selected = "selected"
         newest_selected = ""
@@ -377,6 +377,9 @@ def feed(page, unfiltered):
             first_number = page-2
             last_number = page+2
 
+    flash(session["flash"])
+    session["flash"] = ""
+
     return render_template(
         "feed.html", username=username, stories=stories, page=page,
         page_count=page_count, first_number=first_number,
@@ -448,7 +451,7 @@ def user_stories(page, unfiltered, stories_by):
         if story["story_by"] == username:
             stories.append(story)
 
-    if sort_method == 2:
+    if sort_method == 3:
         stories.reverse()
         oldest_selected = "selected"
         newest_selected = ""
@@ -635,7 +638,7 @@ def favorites(page, unfiltered, favorites_of):
         stories.append(mongo.db.stories.find_one(
             {"_id": ObjectId(favorite)}))
 
-    if sort_method == 2:
+    if sort_method == 3:
         stories.reverse()
         oldest_selected = "selected"
         newest_selected = ""
@@ -783,8 +786,8 @@ def search(page, unfiltered):
         session["ghosts"] = 'Ghosts'
         session["vampires"] = 'Vampires'
         session["other"] = "Other"
-        session["sort_method"] = 3
-        sort_method = 3
+        session["sort_method"] = 2
+        sort_method = 2
     elif unfiltered == 1:
         all = request.args.get('all')
         aliens = request.args.get('aliens')
@@ -819,7 +822,7 @@ def search(page, unfiltered):
         sort_method = session['sort_method']
 
     stories = list(mongo.db.stories.find({"$text": {"$search": query}}))
-    if sort_method == 2:
+    if sort_method == 3:
         stories.reverse()
         oldest_selected = "selected"
         newest_selected = ""
@@ -966,6 +969,7 @@ def add_story():
             "date_added": now
         }
         mongo.db.stories.insert_one(story)
+        session["flash"] = "Story added!"
         return redirect(url_for("feed"))
     return render_template("add-story.html")
 
