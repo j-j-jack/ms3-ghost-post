@@ -3,12 +3,15 @@
 <title>Search Results</title>
 <script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
 {% endblock %}
-{% block content %}
 
+
+{% block heading %}
+<h3 class="page-heading"> Search results for "{{ query }}"</h3>
+{% endblock %}
+{% block content %}
 <div class="delete-receiver-div">{{ delete }}</div>
 <p class="feed-title">
     <button id='filter-opener'>Filters</button>
-    Search results for "{{ query }}"
 </p>
 <div class="feed-and-filter-container">
     <div id= "filter-div" class="filter-div">

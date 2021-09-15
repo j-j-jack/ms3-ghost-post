@@ -27,8 +27,8 @@ def login():
 
     session["search"] = ""
     if request.method == "POST":
-        log_method = request.form.get("log_method")
-        flash("You have successfully logged out", "hello")
+        if request.form.get("log_method") == 'logout':
+            flash("You have successfully logged out", "logout")
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
@@ -930,7 +930,8 @@ def search(page, unfiltered):
         else:
             first_number = page-2
             last_number = page+2
-
+    if stories == []:
+        flash("No results found. Adjust your query and try again", "search")
     return render_template(
         "search.html", username=username, stories=stories, page=page,
         page_count=page_count, first_number=first_number,
