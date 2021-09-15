@@ -17,6 +17,7 @@
     </div>
 </div>
 <section>
+    <div class="flash-message-container">
             <!-- flash messages -->
             {% with messages = get_flashed_messages(category_filter=["logout"]) %}
                 {% if messages %}
@@ -27,6 +28,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
+    </div>
 </section>
 <div class="login-form-container">
     <div class="login-box">
