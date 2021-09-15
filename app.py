@@ -1052,7 +1052,8 @@ def edit_story(story):
             {"_id": ObjectId(story)}, {"$set": {"content": request.form.get("content")}})
         mongo.db.stories.update(
             {"_id": ObjectId(story)}, {"$set": {"preview": preview}})
-
+        session["flash"] = "Story edited!"
+        return redirect(url_for("feed"))
     username = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["story_by"]
     title = mongo.db.stories.find_one(
