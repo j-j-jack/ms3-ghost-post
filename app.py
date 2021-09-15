@@ -7,6 +7,7 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 import math
+import random
 if os.path.exists("env.py"):
     import env
 
@@ -74,7 +75,10 @@ def register():
             "email": request.form.get("email"),
             # setting a new profile_complete value to false.
             # if user logs back in without finishing profile this value will be checked
-            "profile_complete": False
+            "profile_complete": False,
+            "followers": [],
+            "following": [],
+            "favorite_stories": []
         }
         mongo.db.users.insert_one(register)
 
@@ -84,7 +88,82 @@ def register():
     return redirect(url_for("finish_profile"))
 
 
-@app.route("/finish_profile", methods=["GET", "POST"])
+@app.route("/followers", defaults={"username": 1, "page": 1})
+@app.route("/followers<username>/<page>")
+def followers(username, page):
+
+    page = int(page)
+    if username == 1:
+        username = session['user']
+    else:
+        username = username
+
+    site_user = session["user"]
+    followers = mongo.db.users.find_one(
+        {"username": username})["followers"]
+    page_count = len(followers)
+    page_count = math.ceil(page_count/40)
+
+    if page <= 3:
+        first_number = 1
+        if page_count > 5:
+            last_number = 5
+        else:
+            last_number = page_count
+    else:
+        if page_count <= 5:
+            first_number = 1
+            last_number = page_count
+        elif page+2 > page_count:
+            first_number = page_count-4
+            last_number = page_count
+        else:
+            first_number = page-2
+            last_number = page+2
+
+    return render_template('followers.html', username=username, followers=followers,
+                           page=page, page_count=page_count, first_number=first_number,
+                           last_number=last_number)
+
+
+@app.route("/following", defaults={"username": 1, "page": 1})
+@app.route("/following<username>/<page>")
+def following(username, page):
+
+    page = int(page)
+    if username == 1:
+        username = session['user']
+    else:
+        username = username
+
+    following = mongo.db.users.find_one(
+        {"username": username})["following"]
+    page_count = len(following)
+    page_count = math.ceil(page_count/40)
+
+    if page <= 3:
+        first_number = 1
+        if page_count > 5:
+            last_number = 5
+        else:
+            last_number = page_count
+    else:
+        if page_count <= 5:
+            first_number = 1
+            last_number = page_count
+        elif page+2 > page_count:
+            first_number = page_count-4
+            last_number = page_count
+        else:
+            first_number = page-2
+            last_number = page+2
+
+    return render_template('following.html', username=username, following=following,
+                           page=page, page_count=page_count, first_number=first_number,
+                           last_number=last_number)
+
+
+@ app.route("/finish_profile", methods=["GET", "POST"])
 def finish_profile():
     # grab the session user's username from db
     username = mongo.db.users.find_one(
@@ -95,6 +174,12 @@ def finish_profile():
         {"username": session["user"]})["password"]
     user_id = mongo.db.users.find_one(
         {"username": session["user"]})["_id"]
+    followers = mongo.db.users.find_one(
+        {"username": session["user"]})["followers"]
+    following = mongo.db.users.find_one(
+        {"username": session["user"]})["followers"]
+    favorite_stories = mongo.db.users.find_one(
+        {"username": session["user"]})["favorite_stories"]
 
     if request.method == "POST":
         additional_profile_info = {
@@ -107,7 +192,10 @@ def finish_profile():
             "about": request.form.get("about"),
             # setting a new profile_complete value to true.
             # when the user logs back in they will go straight to the feed page
-            "profile_complete": True
+            "profile_complete": True,
+            "favorite_stories": favorite_stories,
+            "following": following,
+            "followers": followers
         }
         mongo.db.users.update(
             {"_id": ObjectId(user_id)}, additional_profile_info)
@@ -121,7 +209,7 @@ def finish_profile():
     return render_template("finish-profile.html", username=username)
 
 
-@app.route("/feed", defaults={"page": 1, "unfiltered": 0})
+@ app.route("/feed", defaults={"page": 1, "unfiltered": 0})
 @ app.route("/feed/<page>/<unfiltered>")
 def feed(page, unfiltered):
     username = session["user"]
@@ -878,7 +966,7 @@ def add_story():
     return render_template("add-story.html")
 
 
-@app.route("/profile", defaults={"username": "site_user"})
+@ app.route("/profile", defaults={"username": "site_user"})
 @ app.route("/profile/<username>")
 def profile(username):
     username = username
@@ -939,7 +1027,7 @@ def delete_story(story):
     return redirect(url_for("feed"))
 
 
-@ app.route("/view_story/<story>", methods=["GET", "POST"])
+@ app.route("/view_story/<story>")
 def view_story(story):
 
     favorite_stories = mongo.db.users.find_one(
