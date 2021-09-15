@@ -26,8 +26,11 @@
             <div class="profile-box-small" onclick="location.href=`{{ url_for('feed') }}`">
                 <h4>Profile</h4>
             </div>
-            <div class="logout-box-small" onclick="location.href=`{{ url_for('following') }}`;">
-                <h4>Logout</h4>
+            <div class="logout-box-small" onclick="location.href=`{{ url_for('login') }}`;">
+                <form method="POST" action = "{{ url_for('login') }}">
+                    <button class=logout-button><h4>Logout</h4></button>
+                    <input type="hidden" id='logout' name='logout' value='logout'>
+                </form>
             </div>
             <div class="search-box-small">
                 <form method="POST" action="{{ url_for('search') }}">
@@ -62,7 +65,10 @@
                 <h4>Profile</h4>
             </div>
             <div class="logout-box" onclick="location.href=`{{ url_for('login') }}`";>
-                <h4>Logout</h4>
+                <form method="POST" action = "{{ url_for('login') }}">
+                    <button class=logout-button><h4>Logout</h4></button>
+                    <input type="hidden" id='logout' name='logout' value='logout'>
+                </form>
             </div>
             <div class="search-box">
                 <form method="POST" action="{{ url_for('search') }}">

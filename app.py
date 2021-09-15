@@ -22,10 +22,13 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/login",  methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
+
     session["search"] = ""
     if request.method == "POST":
+        log_method = request.form.get("log_method")
+        flash("You have successfully logged out", "hello")
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})

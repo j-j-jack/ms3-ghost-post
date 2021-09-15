@@ -16,7 +16,18 @@
         </h2>
     </div>
 </div>
-
+<section>
+            <!-- flash messages -->
+            {% with messages = get_flashed_messages(category_filter=["hello"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                       <div>
+                            <h4>{{ message }}</h4>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+</section>
 <div class="login-form-container">
     <div class="login-box">
         <h2>Login</h2>

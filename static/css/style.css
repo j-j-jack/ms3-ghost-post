@@ -61,6 +61,11 @@ margin: 0;
     width: 120%;
     vertical-align: sub;
 }
+.logout-button{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
 /* feed page -------------------------------------------------------------------- */
 .number-navigation{
     display: flex;
@@ -276,6 +281,7 @@ margin: 0;
 .finish-profile-submission{
     text-align: center;
 }
+
 
 /* finish profile page -------------------------------------------------------------------- */
 .story-form{
