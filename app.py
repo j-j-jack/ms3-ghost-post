@@ -539,11 +539,10 @@ def favorites(page, unfiltered, favorites_of):
     user_favorites = mongo.db.users.find_one(
         {"username": favorites_of})["favorite_stories"]
     stories = []
-    apple = ""
-    for story in all_stories:
-        apple = story["_id"]
-        if story["_id"] == username:
-            stories.append(story)
+
+    for favorite in user_favorites:
+        stories.append(mongo.db.stories.find_one(
+            {"_id": ObjectId(favorite)}))
 
     if sort_method == 2:
         stories.reverse()
@@ -668,7 +667,7 @@ def favorites(page, unfiltered, favorites_of):
         vampires_checked=vampires_checked, witches_wizards_checked=witches_wizards_checked,
         other_checked=other_checked, sort_method=sort_method,
         newest_selected=newest_selected, oldest_selected=oldest_selected,
-        most_favorites_selected=most_favorites_selected, favorites_of=favorites_of, apple=apple)
+        most_favorites_selected=most_favorites_selected, favorites_of=favorites_of)
 
 
 @app.route("/search", defaults={"page": 1, "unfiltered": 0}, methods=["GET", "POST"])
