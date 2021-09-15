@@ -17,13 +17,13 @@
         <img id="x-icon" 
             src="{{ url_for('static', filename='images/x-icon.svg') }}">
         </div>
-            <div class="add-story-box-small" onclick="location.href=`{{ url_for('feed') }}`">
+            <div class="add-story-box-small" onclick="location.href=`{{ url_for('add_story') }}`">
                 <h4>Add Story</h4>
             </div>
             <div class="feed-box-small" onclick="location.href=`{{ url_for('feed') }}`">
                 <h4>Feed</h4>
             </div>
-            <div class="profile-box-small" onclick="location.href=`{{ url_for('feed') }}`">
+            <div class="profile-box-small" onclick="location.href=`{{ url_for('profile') }}`">
                 <h4>Profile</h4>
             </div>
             <div class="logout-box-small" onclick="location.href=`{{ url_for('login') }}`;">
@@ -83,19 +83,21 @@
     </div>
     {% block heading %}
     {% endblock %}
-    <div class="flash-message-container">
+    <section>
         <!-- flash messages -->
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
+                <div class="flash-message-container">
                     {% for message in messages %}
                        <div>
-                            <h4>{{ message }}</h4>
+                            <h4 class="flash-message">{{ message }}</h4>
                         </div>
                     {% endfor %}
+                    </div>
                 {% endif %}
             {% endwith %}
 </section>
-    </div>
+    
             {% block content %}
             {% endblock %}    
         </div>
@@ -107,6 +109,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
 
 </body>
 </html>

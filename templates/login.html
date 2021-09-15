@@ -2,6 +2,7 @@
 {% block title %}
 <title>Login/Register</title>
 {% endblock %}
+
 {% block content %}
 
 <div class="login-page-logo-and-slogan-container">
@@ -19,32 +20,21 @@
 <section>
     <div class="flash-message-container">
             <!-- flash messages -->
-            {% with messages = get_flashed_messages(category_filter=["logout"]) %}
+            {% with messages = get_flashed_messages() %}
                 {% if messages %}
+                <div class="flash-message-container"></div>
                     {% for message in messages %}
                        <div>
-                            <h4>{{ message }}</h4>
+                            <h4 class="flash-message">{{ message }}</h4>
                         </div>
                     {% endfor %}
+                    </div>
                 {% endif %}
             {% endwith %}
-    </div>
 </section>
 <div class="login-form-container">
     <div class="login-box">
         <h2>Login</h2>
-        <section>
-            <!-- flash messages -->
-            {% with messages = get_flashed_messages(category_filter=["login"]) %}
-                {% if messages %}
-                    {% for message in messages %}
-                       <div>
-                            <h4>{{ message }}</h4>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </section>
         <form method="POST" action="{{ url_for('login') }}">
             <label for="username">Username: </label><br>
             <input id="username" name="username" type="text" required><br><br>
@@ -55,18 +45,6 @@
     </div>
     <div class="register-box">
         <h2>Register</h2>
-        <section>
-            <!-- flash messages -->
-            {% with messages = get_flashed_messages(category_filter=["register"]) %}
-                {% if messages %}
-                    {% for message in messages %}
-                       <div>
-                            <h4>{{ message }}</h4>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </section>
         <form method="POST" action="{{ url_for('register') }}">
             <label for="username">Username: </label><br>
             <input id="username" name="username" type="text" required><br><br>
@@ -83,20 +61,6 @@
     </div>
 </div>
 
-<div class="small-screen-login-flash">
-    <section>
-            <!-- flash messages -->
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                       <div>
-                            <h4>{{ message }}</h4>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </section>
-</div>
 
 <div class="login-form-container-small">
     <div class="login-titles-container">

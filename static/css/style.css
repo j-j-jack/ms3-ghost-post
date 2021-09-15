@@ -12,7 +12,6 @@ font-family: 'Modern Antiqua', "Open Sans";
 /* flash messages -------------------------------------------------------------------- */
 .flash-message-container{
     min-height: 1.5em;
-    background:rgb(153, 125, 189);
     text-align: center;
 }
 
@@ -231,6 +230,7 @@ font-family: 'Modern Antiqua', "Open Sans";
 .register-box-small{
     display: none;
     background:rgb(108, 214, 131);
+    margin-bottom: 2.5em;
 }
 
 .login-titles-container{

@@ -30,6 +30,7 @@ def login():
     if request.method == "POST":
         if request.form.get("log_method") == 'logout':
             flash("You have successfully logged out", "logout")
+            return redirect(url_for("login"))
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username")})
@@ -52,6 +53,9 @@ def login():
             # username doesn't exist
             flash("Incorrect Username and/or Password", "login")
             return redirect(url_for("login"))
+    else:
+        session["flash"] = ""
+    flash(session["flash"])
     return render_template("login.html")
 
 
