@@ -1180,6 +1180,12 @@ def edit_profile():
                            interest=interest, profile_picture=profile_picture)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
+
+
 def profile_picture_finder(username):
     picture = mongo.db.users.find_one(
         {"username": username})["profile_picture"]

@@ -538,7 +538,14 @@ figcaption{
 .follow-name{
     cursor: pointer;
 }
-
+/* error pages---------------------------------------------------------------*/
+.error-link{
+    text-align: center;
+    cursor: pointer;
+}
+.error-message{
+    text-align: center;
+}
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){
 
