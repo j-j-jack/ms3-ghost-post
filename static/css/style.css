@@ -218,14 +218,32 @@ font-family: 'Modern Antiqua', "Open Sans";
     margin-top: 1.5em;
 }
 
-.feed-profile-picture-box{
+.profile-picture-box{
     overflow: hidden;
 }
+
 .feed-profile-picture-figure{
     cursor: pointer;
+    margin: 0;
+}
+figure{
+    margin: 0;
+    padding-top: .5em;
+    
+}
+.feed-profile-picture-outer{
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    justify-content: center;
+}
+.feed-profile-picture{
+    width: 70%;
+    
 }
 .feed-favorite-picture{
-    width: 70%;
+    width: 5rem;
+    height: 5rem;
     vertical-align: text-bottom;
 }
 .feed-div-inner-container{
@@ -233,15 +251,20 @@ font-family: 'Modern Antiqua', "Open Sans";
 }
 
 .feed-div-inner-container > div{
+    margin-bottom: .5em;
     flex: 1;
     text-align: center;
+    border: 1px solid grey;
+    margin-top: 5%;
+}
+figcaption{
+    margin-top: 5%;
 }
 
 .feed-div{
     padding-top: 1.5em;
 }
 .fav-picture-box{
-    padding-top: 7%;
     padding-bottom: 0;
 }
 .view-story-box{

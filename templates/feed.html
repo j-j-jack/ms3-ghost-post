@@ -86,12 +86,16 @@
             Preview: {{ stories[i].preview }}<br><br>
             <div class="feed-div-inner-container">
                 <div class="profile-picture-box">
+                    
             <figure class=feed-profile-picture-figure
                 onclick="location.href=`{{ url_for('profile', username=stories[i].story_by) }}`">
+                <div class="feed-profile-picture-outer">
                 <img class="feed-profile-picture" 
                     src={{ profile_picture_finder(stories[i].story_by) }}>
-                <figcaption>Story by: {{ stories[i].story_by  }}</figcaption>
+                    </div>
+                <figcaption>{{ stories[i].story_by  }}</figcaption>
             </figure>
+            
             </div>
             <div class="fav-picture-box">
             <figure>
