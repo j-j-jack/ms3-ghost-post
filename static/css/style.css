@@ -162,8 +162,8 @@ font-family: 'Modern Antiqua', "Open Sans";
 /* feed page -------------------------------------------------------------------- */
 .number-navigation{
     display: flex;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
     margin-bottom: 2.5em;
 }
 
@@ -218,8 +218,8 @@ font-family: 'Modern Antiqua', "Open Sans";
     margin-top: 1.5em;
 }
 
-.feed-profile-picture{
-    width: 100%;
+.feed-profile-picture-box{
+    overflow: hidden;
 }
 .feed-profile-picture-figure{
     cursor: pointer;
