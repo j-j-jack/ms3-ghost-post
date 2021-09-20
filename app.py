@@ -1043,6 +1043,12 @@ def unfollow_user(username):
 @ app.route("/edit_story/<story>", methods=["GET", "POST"])
 def edit_story(story):
     story = story
+    username = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["story_by"]
+    # prevent non-authorised user from editing a story that isn't theirs
+    if session['user'] != username:
+        session["flash"] = "Oops, you don't have permission for that!"
+        return redirect(url_for("feed"))
     if request.method == "POST":
         new_content = request.form.get("content")
         preview = new_content[0:50] + "..."
@@ -1058,8 +1064,6 @@ def edit_story(story):
             {"_id": ObjectId(story)}, {"$set": {"preview": preview}})
         session["flash"] = "Story edited!"
         return redirect(url_for("feed"))
-    username = mongo.db.stories.find_one(
-        {"_id": ObjectId(story)})["story_by"]
     title = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["title"]
     category = mongo.db.stories.find_one(
@@ -1148,6 +1152,8 @@ def view_story(story):
 
 @ app.route("/edit_profile", methods=["GET", "POST"])
 def edit_profile():
+    # it is impossible to edit someone else's profile by url.
+    # the edit profile link can only bring a user to edit their own profile
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     email = mongo.db.users.find_one(
@@ -1205,4 +1211,4 @@ def context_processor():
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
