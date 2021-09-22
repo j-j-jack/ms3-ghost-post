@@ -278,10 +278,6 @@ figure{
     border: 1px solid grey;
     margin-top: 5%;
 }
-figcaption{
-    margin-top: 5%;
-}
-
 .feed-div{
     padding-bottom: 1.5em;
 }
@@ -318,7 +314,7 @@ figcaption{
 }
 
 .footer{
-    background-color: #666666;
+    background-color: var(--logo-blue);
     position: absolute;
     height: 2.5em;
     width: 100%;
@@ -326,7 +322,7 @@ figcaption{
     padding-top: .5em;
     bottom: 0;
     text-align: center;
-    color:rgb(45, 14, 73);
+    color:var(--logo-writing);
 }
 
 /* login page -------------------------------------------------------------------- */
@@ -529,9 +525,34 @@ figcaption{
     cursor: pointer;
 }
 /* View Story Page---------------------------------------------------------------*/
-    .view-story-container{
+.view-story-favs{
+    text-align: center;
+}
+.story-area-indicator{
+    text-align: center;
+    text-decoration: underline;
+}
+.view-story-container{
+        display: flex;
         text-align: center;
+        margin-left: 5%;
+        margin-right:5%;
+        margin-bottom: 1.5em;
     }
+
+    .story-details-box{
+        flex: 1;
+        padding-left: 2.5em;
+        padding-right: 2.5em;
+    }
+    .content-box{
+        flex: 3;
+    }
+    .story-profile-picture{
+        height: 8em;
+    }
+
+
 /* follower Page---------------------------------------------------------------*/
 .follow-container{
     display: grid;
@@ -632,6 +653,9 @@ figcaption{
         display: block;
     }
     .profile-container {
+        flex-direction: column;
+    }
+    .view-story-container{
         flex-direction: column;
     }
 }
