@@ -144,15 +144,26 @@ font-family: 'Modern Antiqua', "Open Sans";
     text-align: center;
     margin-top: 1.5em;
 }
-.search-submission{
+#search-submission{
     background: rgba(0, 0, 0, 0);
     border: none;
     cursor: pointer;
+    display: none;
+}
+.search-icon-div{
+    display: inline-block;
+    position: relative;
+    width: 2em;
 }
 .search-icon{
-    width: 180%;
-    vertical-align: text-bottom;
+    height: 2em;
+    vertical-align: sub;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -65%);
 }
+
 .logout-button{
     cursor: pointer;
     width: 100%;

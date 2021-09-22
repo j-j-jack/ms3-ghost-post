@@ -76,9 +76,11 @@
             <div class="search-box">
                 <form method="POST" action="{{ url_for('search') }}">
                     <input type="text" name="search" id="search">
-                    <button class="search-submission" type=submit>
+                    <button id="search-submission" type=submit></button>
+                    <div class="search-icon-div">
                         <img class="search-icon" src="{{ url_for('static', filename='images/search.svg') }}">
-                    </button>
+                    </div>
+                        
                 </form>
             </div>
         </div>
