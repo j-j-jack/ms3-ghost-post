@@ -141,13 +141,11 @@ font-family: 'Modern Antiqua', "Open Sans";
     padding-left: 1.5em;
 }
 .search-box-small{
-    text-align: center;
+    text-align: left;
     margin-top: 1.5em;
+    margin-left: 1.5em;
 }
-#search-submission{
-    background: rgba(0, 0, 0, 0);
-    border: none;
-    cursor: pointer;
+.search-submission{
     display: none;
 }
 .search-icon-div{
@@ -156,6 +154,7 @@ font-family: 'Modern Antiqua', "Open Sans";
     width: 2em;
 }
 .search-icon{
+    cursor: pointer;
     height: 2em;
     vertical-align: sub;
     position: absolute;
