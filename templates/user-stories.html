@@ -124,7 +124,7 @@
         <div class="prev"  onclick="location.href=`{{ url_for('user_stories', page=page-1, unfiltered=unfiltered, stories_by=stories_by) }}`">
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
                 aria-hidden="true" alt="left arrow">
-            Prev
+            <span class="prev-text">Prev</span>
             </div>
     {% endif %}
     {% for i in range(first_number, last_number+1) %}
@@ -144,7 +144,7 @@
     {% if page_count > 1 and page < page_count %}
         <div class="next" 
             onclick="location.href=`{{ url_for('user_stories', page=page+1, unfiltered=unfiltered, stories_by=stories_by) }}`">
-            Next
+            <span class="next-text">Next</span>
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
                 aria-hidden="true" alt="right arrow">
         </div>

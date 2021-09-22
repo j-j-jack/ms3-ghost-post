@@ -67,13 +67,14 @@ select{
 /* number navigation -------------------------------------------------------------------- */
 
 .number-block{
-    background: slategray;
+    background: var(--logo-blue);
     color: black;
 }
 
+
 .number-block-selected{
-    background: slategray;
-    color: burlywood;
+    background: var(--ghost-face);
+    color: var(--ghost-eyes);
     text-decoration: underline;
 }
 
@@ -115,7 +116,7 @@ select{
 
 .navbar-container > div {
     background: var(--logo-blue);
-    border: 1px solid black;
+    border: 2px outset black;
     color: var(--logo-writing);
     font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
     
@@ -239,8 +240,8 @@ select{
 /* feed page -------------------------------------------------------------------- */
 .number-navigation{
     display: flex;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 27%;
+    margin-right: 27%;
     margin-bottom: 2.5em;
 }
 
@@ -256,6 +257,9 @@ select{
     border: 1px solid black;
     text-align: center;
 }
+.number-navigation>div:hover{
+    background: var(--ghost-face);
+}
 .number-nav-arrow{
     height: 80%;
 }
@@ -267,7 +271,7 @@ select{
     margin-bottom: 2.5em;
 }
 .feed-div{
-    background: var(--background-color);
+    background: rgba(0, 0, 0, 0);
     flex: 3;
     padding-right: .5em;
     padding-left: .5em;
@@ -280,6 +284,8 @@ select{
     padding-right: 1%;
     padding-bottom: 2.5em;
     padding-top: 1.5em;
+    margin-top: 1em;
+    border: 2px outset whitesmoke;
 }
 .filter-button-div{
     text-align: left;
@@ -288,12 +294,12 @@ select{
     margin-top: 1%;
 }
 .story-preview-box{
-    margin-bottom: 1em;
+    margin-top: 1em;
     background: var(--logo-blue);
     color: var(--light-text);
     padding-left: 4%;
     padding-right: 4%;
-    border: 1px solid goldenrod;
+    border: 2px outset whitesmoke;
 }
 
 .profile-picture-box{
@@ -334,9 +340,6 @@ figcaption{
     margin-bottom: .5em;
     flex: 1;
     text-align: center;
-}
-.feed-div{
-    padding-bottom: 1.5em;
 }
 .fav-picture-box{
     padding-bottom: 0;
@@ -583,7 +586,7 @@ figcaption{
 .follow-picture-box{
     display: inline-block;
     width: 10%;
-    border: 2px solid seagreen;
+    border: 2px outset whitesmoke;
     padding: 0;
     margin-right: 10%;
     cursor: pointer;
@@ -639,7 +642,7 @@ figcaption{
 .follow-picture-box{
     display: inline-block;
     width: 10%;
-    border: 2px solid seagreen;
+    border: 2px outset whitesmoke;
     padding: 0;
     margin-right: 10%;
     cursor: pointer;
@@ -665,7 +668,12 @@ figcaption{
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){
 
-    
+    .next-text{
+        display: none;
+    }
+    .prev-text{
+        display: none;
+    }
     .navbar-box{
         display: none;
     }
