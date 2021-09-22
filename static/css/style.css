@@ -25,6 +25,9 @@ button{
     font-size: 110%;
     font-weight: bold;
 }
+button:hover{
+    background: var(--ghost-face);
+}
 
 button:hover{
     cursor: pointer;
@@ -117,38 +120,49 @@ select{
     
 }
 
-.navbar-container > div:hover {
-    background: var(--ghost-face);
-    border: 1px solid black;
-}
-
-
 .add-story-box{
     flex: 1;
     cursor: pointer;
+}
+
+.add-story-box:hover{
+    background: var(--ghost-face);
+    border: 1px solid black;
+}
+.profile-box{
+    flex: 1;
+    cursor: pointer;
+}
+.profile-box:hover{
+    background: var(--ghost-face);
+    border: 1px solid black;
 }
 .feed-box{
     flex: 1;
     cursor: pointer;
 }
 
-.view-story-box > button:hover {
-    cursor: pointer;
+.feed-box:hover{
+    background: var(--ghost-face);
+    border: 1px solid black;
 }
-.profile-box{
-    flex: 1;
-    cursor: pointer;
-}
+
 .logout-box{
     flex: 1;
     cursor: pointer;
+}
+.logout-box:hover{
+    background: var(--ghost-face);
+    border: 1px solid black;
 }
 .search-box{
     flex: 2;
     padding-top: 2%;
     padding-bottom: 0;
 }
-
+.view-story-box > button:hover {
+    cursor: pointer;
+}
 .add-story-box-small{
 
     border:2px groove rgb(125, 189, 139);
@@ -713,6 +727,9 @@ figcaption{
     }
     .view-story-container{
         flex-direction: column;
+    }
+    .feed-div{
+        padding: 0;
     }
 }
 
