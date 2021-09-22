@@ -26,6 +26,10 @@ button{
     font-weight: bold;
 }
 
+button:hover{
+    cursor: pointer;
+}
+
 input{
     font-family: 'Modern Antiqua', "Open Sans";
     font-size: 110%;
@@ -285,6 +289,9 @@ figure{
     padding-top: .5em;
     
 }
+figcaption{
+    text-align: center;
+}
 .feed-profile-picture-outer{
     width: 5rem;
     height: 5rem;
@@ -425,7 +432,7 @@ figure{
 
 /* profile page */
 .follow-user-button{
-    margin-left: 10%;
+    text-align: center;
 }
 /* finish profile page -------------------------------------------------------------------- */
 .finish-profile-container{
@@ -463,6 +470,17 @@ figure{
 
 .profile-icons-figure{
     cursor: pointer
+}
+.profile-icon{
+    height: 12em;
+}
+.profile-icon:hover{
+    cursor: pointer;
+    fill: blue;
+}
+
+.profile-profile-picture{
+    width: 12em;
 }
 .picture-right-arrow:hover{
     cursor: pointer

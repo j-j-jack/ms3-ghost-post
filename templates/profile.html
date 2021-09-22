@@ -4,9 +4,6 @@
 {% endblock %}
 {% block heading %}
 <h3 class="page-heading"> Profile for {{ username }}</h3>
-{% endblock %}
-{% block content %}
-
 {% if own_profile == 'yes' %}
 <div class="edit-profile-from-profile-page">
     <button onclick="location.href=`{{ url_for('edit_profile') }}`">
@@ -28,11 +25,14 @@
 </div>
 {% endif %}
 {% endif %}
+{% endblock %}
+{% block content %}
+
 <div class="profile-container">
     <div class="profile-div-a">
         <div class="profile-username-div">{{ username }}</div><br>
         <div class="profile-picture-div">
-            <img src={{ profile_picture }} style = "width: 70%;" alt="users profile picture">
+            <img class="profile-profile-picture" src={{ profile_picture }} style = "width: 70%;" alt="users profile picture">
         </div><br><br>
         <div class="profile-location-div">Location: {{ location }}</div><br><br>
         <div class="profile-interest-div">Main Interest: {{ interest }}</div><br><br>
@@ -74,7 +74,7 @@
                             onclick=
                             "location.href=`{{ url_for('following', page=1, username=username) }}`">
                             <img class="profile-icon" 
-                                src="{{ url_for('static', filename='images/follower.svg') }}">
+                                src="{{ url_for('static', filename='images/following.svg') }}">
                             <figcaption>Following</figcaption>
                         </figure>
                     </div>
@@ -82,11 +82,11 @@
             </div>
             </div>
         <div class="profile-about-box">
-            About Me:<br>
+            <br>
+            About Me:<br><br>
             {{ about }}
         </div>
 
     </div>
 </div>
-
 {% endblock %}
