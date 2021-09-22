@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Modern+Antiqua&display=swap');
 
+:root {
+    --logo-blue: rgb(52,83,129);
+    --hover-blue: rgb(88, 138, 214);
+}
 body{
 background-color: #888888;
 padding: 0;
@@ -67,14 +71,23 @@ font-family: 'Modern Antiqua', "Open Sans";
     margin-top: auto;
 }
 
+.navbar-container > div {
+    background: var(--logo-blue);
+    border: 1px solid black;
+}
+
+.navbar-container > div:hover {
+    background: var(--hover-blue);
+    border: 1px solid black;
+}
+
+
 .add-story-box{
     flex: 1;
-    background:rgb(125, 189, 139);
     cursor: pointer;
 }
 .feed-box{
     flex: 1;
-    background:rgb(125, 169, 189);
     cursor: pointer;
 }
 
@@ -83,17 +96,14 @@ font-family: 'Modern Antiqua', "Open Sans";
 }
 .profile-box{
     flex: 1;
-    background:rgb(125, 142, 189);
     cursor: pointer;
 }
 .logout-box{
     flex: 1;
-    background:rgb(153, 125, 189);
     cursor: pointer;
 }
 .search-box{
     flex: 2;
-    background:rgb(189, 125, 186);
     padding-top: 2%;
     padding-bottom: 0;
 }
