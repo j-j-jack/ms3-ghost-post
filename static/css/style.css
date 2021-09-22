@@ -40,6 +40,7 @@ input[type=text]{
     font-size: 110%;
     font-weight: bold;
     width: 10em;
+    border: 1px outset black;
 }
 
 select{
@@ -119,8 +120,6 @@ select{
     border: 2px outset black;
     color: var(--logo-writing);
     font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
-    
-    
 }
 
 .add-story-box{
@@ -166,27 +165,50 @@ select{
 .view-story-box > button:hover {
     cursor: pointer;
 }
-.add-story-box-small{
 
-    border:2px groove rgb(125, 189, 139);
+.navbar-container-small > div {
+    background: var(--logo-blue);
+    border: 2px outset black;
+    color: var(--logo-writing);
+    font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
+}
+
+.add-story-box-small{
+    border-top: 2px outset black;
+    border-bottom: 1px outset black;
     cursor: pointer;
     padding-left: 1.5em;
+}
+.add-story-box-small:hover{
+    background: var(--ghost-face);
 }
 .feed-box-small{
     flex: 1;
-    border:2px groove rgb(125, 169, 189);
+    border-bottom: 1px outset black;
+    border-top: 1px outset black;
     cursor: pointer;
     padding-left: 1.5em;
+}
+.feed-box-small:hover{
+    background: var(--ghost-face);
 }
 .profile-box-small{
-    border: 2px groove rgb(125, 142, 189);
+    border-bottom: 1px outset black;
+    border-top: 1px outset black;
     cursor: pointer;
     padding-left: 1.5em;
 }
+.profile-box-small:hover{
+    background: var(--ghost-face);
+}
 .logout-box-small{
-    border:2px groove rgb(153, 125, 189);
+    border-top: 1px outset black;
+    border-bottom: 2px outset black;
     cursor: pointer;
     padding-left: 1.5em;
+}
+.logout-box-small:hover{
+    background: var(--ghost-face);
 }
 .search-box-small{
     text-align: left;
@@ -712,12 +734,12 @@ figcaption{
         cursor: pointer;
     }
     #navbar-container-small{
-        display: block;
+        border: 2px outset black;
         display: none;
-        background: #444444;
         min-width: 320px;
         position: fixed;
         top: 0;
+        background: var(--logo-blue);
     }
     .login-form-container{
         display: none;
