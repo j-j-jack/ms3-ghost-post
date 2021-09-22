@@ -16,7 +16,17 @@ margin: 0;
 font-family: 'Modern Antiqua', "Open Sans";
 }
 
+textarea{
+    max-width: 90%;
+}
+
 button{
+    font-family: 'Modern Antiqua', "Open Sans";
+    font-size: 110%;
+    font-weight: bold;
+}
+
+input{
     font-family: 'Modern Antiqua', "Open Sans";
     font-size: 110%;
     font-weight: bold;
@@ -26,6 +36,7 @@ select{
     font-family: 'Modern Antiqua', "Open Sans";
     font-size: 110%;
     font-weight: bold;
+    width: 12em;
 }
 .page-heading{
     font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
