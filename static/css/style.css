@@ -1,21 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Modern+Antiqua&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
 :root {
     --logo-blue: rgb(52,83,129);
     --hover-blue: rgb(88, 138, 214);
+    --background-color: rgb(209, 209, 209);
+    --logo-writing: rgb(181,235,0);
+    --ghost-face: rgb(129,193,187);
 }
 body{
-background-color: #888888;
+background-color: var(--background-color);
 padding: 0;
 margin: 0;
 font-family: 'Modern Antiqua', "Open Sans";
 }
 .page-heading{
+    font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
     text-align: center;
     font-weight: bold;
-    color: rgb(62, 8, 70);
-    font-size: 200%;
-    margin: .5em;
+    color: var(--logo-blue);
+    font-size: 300%;
+    margin: .2em;
+    text-decoration: underline;
 }
 /* flash messages -------------------------------------------------------------------- */
 .flash-message-container{
@@ -74,10 +79,13 @@ font-family: 'Modern Antiqua', "Open Sans";
 .navbar-container > div {
     background: var(--logo-blue);
     border: 1px solid black;
+    color: var(--logo-writing);
+    font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
+    
 }
 
 .navbar-container > div:hover {
-    background: var(--hover-blue);
+    background: var(--ghost-face);
     border: 1px solid black;
 }
 
@@ -199,13 +207,14 @@ font-family: 'Modern Antiqua', "Open Sans";
     margin-bottom: 2.5em;
 }
 .feed-div{
-    background: rgb(183, 192, 216);
+    background: var(--ghost-face);
     flex: 3;
     padding-right: 5%;
     padding-left: 5%;
 }
 .filter-div{
-    background: rgb(183, 216, 209);
+    background: var(--logo-blue);
+    color: var(--background-color);
     flex: 1;
     padding-left: 1%;
     padding-right: 1%;
@@ -220,7 +229,7 @@ font-family: 'Modern Antiqua', "Open Sans";
 }
 .story-preview-box{
     margin-bottom: 2.5em;
-    background: rgb(183, 216, 197);
+    background: var(--logo-blue);
     padding-top: 1.5em;
     padding-left: 4%;
     padding-right: 4%;
