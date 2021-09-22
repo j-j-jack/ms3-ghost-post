@@ -26,9 +26,10 @@
             <div class="profile-box-small" onclick="location.href=`{{ url_for('profile') }}`">
                 <h4>Profile</h4>
             </div>
-            <div class="logout-box-small" onclick="location.href=`{{ url_for('login') }}`;">
+            <div class="logout-box-small">
                 <form method="POST" action = "{{ url_for('login') }}">
-                    <button class=logout-button-small><h4>Logout</h4></button>
+                    <h4>Logout</h4>
+                    <button style="display:none" id=logout-button-small></button>
                     <input type="hidden" id='log_method' name='log_method' value='logout'>
                 </form>
             </div>
@@ -65,9 +66,10 @@
             <div class="profile-box" onclick="location.href=`{{ url_for('profile') }}`">
                 <h4>Profile</h4>
             </div>
-            <div class="logout-box" onclick="location.href=`{{ url_for('login') }}`";>
+            <div class="logout-box">
                 <form method="POST" action = "{{ url_for('login') }}">
-                    <button class=logout-button>Logout</button>
+                    <h4>Logout</h4>
+                    <button style="display: none" id=logout-button></button>
                     <input type="hidden" id='log_method' name='log_method' value='logout'>
                 </form>
             </div>

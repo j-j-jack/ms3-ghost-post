@@ -1,4 +1,15 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+    let logoutBox=document.getElementsByClassName("logout-box")[0];
+    logoutBox.addEventListener("click", function(){
+        let logoutButton = document.getElementById("logout-button");
+        logoutButton.click();
+    });
+
+    let logoutBoxSmall=document.getElementsByClassName("logout-box-small")[0];
+    logoutBoxSmall.addEventListener("click", function(){
+        let logoutButtonSmall = document.getElementById("logout-button-small");
+        logoutButtonSmall.click();
+    });
     $('#burger-icon').click(function(){$('#navbar-container-small').toggle('medium')});
     $('#x-icon').click(function(){$('#navbar-container-small').toggle('medium')});
     const mediaQuery = window.matchMedia('(min-width: 992px)')
