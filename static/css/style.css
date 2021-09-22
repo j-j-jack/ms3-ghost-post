@@ -639,6 +639,9 @@ figcaption{
     text-align: center;
     text-decoration: underline;
 }
+.story-edit-delete{
+    text-align: center;
+}
 .view-story-container{
         display: flex;
         text-align: center;

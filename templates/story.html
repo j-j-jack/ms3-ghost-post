@@ -9,13 +9,11 @@
     <h3 class="page-heading">{{ title }}</h3>
     
     {% if owns_story == 'yes' %}
-    <div>
+    <div class="story-edit-delete">
                 <button class="edit-story-button" 
                     onclick = "location.href=`{{ url_for('edit_story', story=id) }}`">
                     Edit 
                 </button>
-            </div>
-            <div >
             <button class="delete-story-button" 
                     onclick = "let toBeDeleted = this.nextElementSibling.innerHTML;
                                deleteStory(toBeDeleted)">
@@ -23,7 +21,7 @@
                 </button>
                 <div style="display: none">{{ url_for('delete_story', story=id) }}</div>
                 
-    {% endif %}
+    {% endif %}<br><br>
     <div class="view-story-favs">Favs: {{ favs }} <br><br></div>
     
     <div class="view-story-container">
