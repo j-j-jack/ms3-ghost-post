@@ -2,8 +2,10 @@
 {% block title %}
 <title>Following</title>
 {% endblock %}
+{% block heading %}
+<h3 class='page-heading'>{{ username }} is following</h3>
+{% endblock %}
 {% block content %}
-<h3 class='follow-title'>{{ username }} is following</h3><br>
 <div class="followers-container-outer">
 <div class="follow-container">
     {% for i in range((page-1) * 40, ((page-1)*40) +40) %}
