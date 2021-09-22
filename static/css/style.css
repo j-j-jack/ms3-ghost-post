@@ -723,15 +723,22 @@ figcaption{
     }
     #x-icon-box{
         text-align: right;
-        padding-right: 5%;
-        margin-top: .5em;
-        margin-bottom: .5em;
+        position: relative;
     }
     #x-icon{
-        width: 10%;
+        position: absolute;
+        top: -.45em;
+        right: .2em;
+        width: 2em;
         vertical-align: sub;
         margin-top: 1%;
         cursor: pointer;
+    }
+
+    .small-nav-heading{
+        color: var(--logo-writing);
+        text-align: center;
+        font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
     }
     #navbar-container-small{
         border: 2px outset black;
@@ -740,6 +747,7 @@ figcaption{
         position: fixed;
         top: 0;
         background: var(--logo-blue);
+        z-index: 100;
     }
     .login-form-container{
         display: none;
