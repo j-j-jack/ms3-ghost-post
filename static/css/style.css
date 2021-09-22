@@ -34,6 +34,7 @@ input{
     font-family: 'Modern Antiqua', "Open Sans";
     font-size: 110%;
     font-weight: bold;
+    width: 10em;
 }
 
 select{
@@ -103,6 +104,8 @@ select{
 .navbar-container{
     display: flex;
     margin-top: auto;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 .navbar-container > div {
@@ -110,6 +113,7 @@ select{
     border: 1px solid black;
     color: var(--logo-writing);
     font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
+    
     
 }
 
@@ -450,6 +454,10 @@ figcaption{
     text-align: center;
 }
 
+.selected-picture{
+    height: 10em;
+}
+
 .profile-picture-radio-buttons{
     display: none;
 }
@@ -457,9 +465,6 @@ figcaption{
     height: 20vh;
 }
 
-.selected-picture {
-    width: 15%;
-}
 .profile-pic-selector > div > span {
     padding-bottom: 50%;
 }
@@ -480,7 +485,7 @@ figcaption{
 }
 
 .profile-profile-picture{
-    width: 12em;
+    width: 50%;
 }
 .picture-right-arrow:hover{
     cursor: pointer
@@ -721,6 +726,9 @@ figcaption{
 @media screen and (max-width: 768px){
     .profile-icons-grid-inner{
         grid-template-columns: auto auto;
+    }
+    .profile-icon{
+        height: 7em;
     }
     .follow-container{
         grid-template-columns: auto;
