@@ -6,6 +6,8 @@
     --background-color: rgb(209, 209, 209);
     --logo-writing: rgb(181,235,0);
     --ghost-face: rgb(129,193,187);
+    --ghost-eyes: rgb(182,102,37);
+    --light-text: whitesmoke;
 }
 body{
 background-color: var(--background-color);
@@ -17,7 +19,7 @@ font-family: 'Modern Antiqua', "Open Sans";
     font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
     text-align: center;
     font-weight: bold;
-    color: var(--logo-blue);
+    color: var(--ghost-eyes);
     font-size: 300%;
     margin: .2em;
     text-decoration: underline;
@@ -188,7 +190,8 @@ font-family: 'Modern Antiqua', "Open Sans";
 .feed-story-title{
     text-align: center;
     font-weight: bold;
-    color:rgb(11, 87, 87);
+    color:var(--ghost-eyes);
+    text-decoration: underline;
     font-size: 150%;
 }
 .number-navigation > div {
@@ -207,10 +210,10 @@ font-family: 'Modern Antiqua', "Open Sans";
     margin-bottom: 2.5em;
 }
 .feed-div{
-    background: var(--ghost-face);
+    background: var(--background-color);
     flex: 3;
-    padding-right: 5%;
-    padding-left: 5%;
+    padding-right: .5em;
+    padding-left: .5em;
 }
 .filter-div{
     background: var(--logo-blue);
@@ -218,7 +221,7 @@ font-family: 'Modern Antiqua', "Open Sans";
     flex: 1;
     padding-left: 1%;
     padding-right: 1%;
-    padding-bottom: 1.5em;
+    padding-bottom: 2.5em;
     padding-top: 1.5em;
 }
 .filter-button-div{
@@ -228,13 +231,12 @@ font-family: 'Modern Antiqua', "Open Sans";
     margin-top: 1%;
 }
 .story-preview-box{
-    margin-bottom: 2.5em;
+    margin-bottom: 1em;
     background: var(--logo-blue);
-    padding-top: 1.5em;
+    color: var(--light-text);
     padding-left: 4%;
     padding-right: 4%;
     border: 1px solid goldenrod;
-    margin-top: 1.5em;
 }
 
 .profile-picture-box{
@@ -281,7 +283,7 @@ figcaption{
 }
 
 .feed-div{
-    padding-top: 1.5em;
+    padding-bottom: 1.5em;
 }
 .fav-picture-box{
     padding-bottom: 0;
