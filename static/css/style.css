@@ -37,8 +37,6 @@ button:hover{
 
 input[type=text]{
     font-family: 'Modern Antiqua', "Open Sans";
-    font-size: 110%;
-    font-weight: bold;
     width: 10em;
     border: 1px outset black;
 }
