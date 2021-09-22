@@ -19,7 +19,9 @@ font-family: 'Modern Antiqua', "Open Sans";
 textarea{
     max-width: 90%;
 }
-
+.image-border{
+    border: 2px outset whitesmoke;
+}
 button{
     font-family: 'Modern Antiqua', "Open Sans";
     font-size: 110%;
@@ -33,7 +35,7 @@ button:hover{
     cursor: pointer;
 }
 
-input{
+input[type=text]{
     font-family: 'Modern Antiqua', "Open Sans";
     font-size: 110%;
     font-weight: bold;
@@ -311,13 +313,12 @@ figcaption{
     text-align: center;
 }
 .feed-profile-picture-outer{
-    width: 5rem;
-    height: 5rem;
     text-align: center;
     justify-content: center;
+    position: relative
 }
 .feed-profile-picture{
-    width: 70%;
+    height: 5em;
     
 }
 .feed-favorite-picture{
@@ -333,8 +334,6 @@ figcaption{
     margin-bottom: .5em;
     flex: 1;
     text-align: center;
-    border: 1px solid grey;
-    margin-top: 5%;
 }
 .feed-div{
     padding-bottom: 1.5em;
@@ -343,8 +342,13 @@ figcaption{
     padding-bottom: 0;
 }
 .view-story-box{
-    padding-top: 20%;
-    padding-bottom: 0;
+    position: relative;
+}
+.view-story-button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .checkbox-container{
     position: relative
