@@ -441,6 +441,7 @@ figcaption{
 
 .slogan-box{
     flex: 1;
+    color: var(--logo-blue);
     text-align: center;
     padding: 8% 5% 0 5%;
 }
@@ -454,28 +455,54 @@ figcaption{
     display: flex;
     text-align: center;
     padding-bottom: 5%;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 .login-box{
     flex: 1;
-    background: rgb(214, 108, 108);
+    background: var(--ghost-eyes);
+    border-radius: 2%;
+    border: 2px outset black;
+    margin-right: 1%;
 }
 
+#register-button:hover{
+    background: var(--ghost-eyes);
+}
 .register-box{
     flex: 1;
-    background: rgb(108, 214, 131);
+    background: var(--ghost-face);
     text-align: center;
+    border-radius: 2%;
+    border: 2px outset black;
+    margin-left: 1%;
 } 
 
 .login-form-container-small{
     display: none;
-    background:rgb(214, 108, 108);
+    background: var(--ghost-face);
+    margin-left: 2.5em;
+    margin-right: 2.5em;
 }
 
 .register-box-small{
     display: none;
-    background:rgb(108, 214, 131);
+    background: var(--ghost-face);
     margin-bottom: 2.5em;
+    border-right: 2px outset black;
+    border-bottom: 2px outset black;
+    border-left: 2px outset black;
+    border-radius: 0 0 1% 1%;
+}
+
+.login-box-small{
+    background: var(--ghost-eyes);
+    margin-bottom: 9.5em;
+    border-right: 2px outset black;
+    border-bottom: 2px outset black;
+    border-left: 2px outset black;
+    border-radius: 0 0 1% 1%;
 }
 
 .login-titles-container{
@@ -483,11 +510,20 @@ figcaption{
 }
 .login-title-box{
     flex: 1;
-    background:rgb(214, 108, 108);
+    background:var(--ghost-eyes);
+    border-right: 1px outset black;
+    border-left: 2px outset black;
+    border-top: 2px outset black;
+    border-radius: 2% 2% 0 0;
 }
 .register-title-box{
     flex: 1;
-    background:rgb(108, 214, 131); 
+    background: var(--ghost-face); 
+    border-right: 2px outset black;
+    border-left: 1px outset black;
+    border-top: 2px outset black;
+    border-bottom: 2px outset black;
+    border-radius: 2% 2% 0 0;
 }
 .small-screen-login-flash{
     display: none;
@@ -595,7 +631,9 @@ figcaption{
 .profile-icon{
     width: 100%;
 }
-
+.profile-icon:hover{
+    box-shadow:blueviolet;
+}
 /* Edit Profile Page---------------------------------------------------------------*/
 .edit-profile-from-profile-page{
     text-align: center;
