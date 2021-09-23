@@ -41,6 +41,17 @@ input[type=text]{
     border: 1px outset black;
 }
 
+input[type=password]{
+    font-family: 'Modern Antiqua', "Open Sans";
+    width: 10em;
+    border: 1px outset black;
+}
+
+input[type=email]{
+    font-family: 'Modern Antiqua', "Open Sans";
+    width: 10em;
+    border: 1px outset black;
+}
 select{
     font-family: 'Modern Antiqua', "Open Sans";
     font-size: 110%;
