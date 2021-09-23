@@ -366,6 +366,9 @@ figcaption{
     height: 5em;
     
 }
+.feed-profile-picture:hover{
+    filter: brightness(110%);
+}
 .feed-favorite-picture{
     width: 5rem;
     height: 5rem;
@@ -577,7 +580,7 @@ figcaption{
 }
 .profile-icon:hover{
     cursor: pointer;
-    fill: blue;
+    filter: brightness(120%);
 }
 
 .profile-profile-picture{
@@ -630,9 +633,6 @@ figcaption{
 }
 .profile-icon{
     width: 100%;
-}
-.profile-icon:hover{
-    box-shadow:blueviolet;
 }
 /* Edit Profile Page---------------------------------------------------------------*/
 .edit-profile-from-profile-page{
@@ -733,6 +733,9 @@ figcaption{
 }
 .follow-picture{
     width: 90%;
+}
+.follow-picture:hover{
+    filter: brightness(110%);
 }
 .follow-name{
     cursor: pointer;
