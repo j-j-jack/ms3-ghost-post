@@ -1,4 +1,24 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+    let pageTitle = document.getElementsByTagName('title')[0].innerHTML;
+    let addStoryBox = document.getElementsByClassName('add-story-box')[0];
+    let addStoryBoxSmall = document.getElementsByClassName('add-story-box-small')[0];
+    let feedBox = document.getElementsByClassName('feed-box')[0];
+    let feedBoxSmall = document.getElementsByClassName('feed-box-small')[0];
+    let profileBox = document.getElementsByClassName('profile-box')[0];
+    let profileBoxSmall = document.getElementsByClassName('profile-box-small')[0];
+    
+    if (pageTitle=="Add Story"){
+      addStoryBox.style.textDecoration = "underline";
+      addStoryBoxSmall.style.textDecoration = "underline";
+    }
+    else if(pageTitle=="Feed"){
+      feedBox.style.textDecoration = "underline";
+      feedBoxSmall.style.textDecoration = "underline";
+    }
+    else if(pageTitle=="Profile"){
+      profileBox.style.textDecoration = "underline";
+      profileBoxSmall.style.textDecoration = "underline";
+    }
     let logoutBox=document.getElementsByClassName("logout-box")[0];
     logoutBox.addEventListener("click", function(){
         let logoutButton = document.getElementById("logout-button");
