@@ -4,6 +4,7 @@
 <script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
 {% endblock %}
 {% block content %}
+<main>
 <div class="delete-receiver-div">{{ delete }}</div>
 <p class="feed-title">
     <button id='filter-opener'>Filters</button>
@@ -11,6 +12,7 @@
 </p>
 <div class="feed-and-filter-container">
     <div id= "filter-div" class="filter-div">
+        <aside>
         <form action ="{{ url_for('favorites', page=1, unfiltered=1, favorites_of=favorites_of) }}">
             <input type="checkbox" id="allCheckBox" name="all" value="all" {{ all_checked }}>
             <label for="all"> All</label><br>
@@ -51,11 +53,13 @@
             </select><br><br>
             <button type="submit">Go</button>
         </form>
+        </aside>
     </div>
     <div class="feed-div">
     {% for i in range((page*5)-5, page*5) %}
         {% if stories[i] %}
         <div class="story-preview-box">
+            <section>
             <h4 class="feed-story-title">{{ stories[i].title }}</h4>
             {% if username == stories[i].story_by %}
             <div >
@@ -108,6 +112,7 @@
                 </button>
             </div>
         </div>
+        </section>
         </div>
         {% endif %}
     {% endfor %}
@@ -118,6 +123,7 @@
     {% else %}
     {% set unfiltered = 2 %}
 {% endif %}
+<section>
 <div class="number-navigation" div class="next">
     {% if page_count > 1 and page > 1 %}
         <div class="prev"  onclick="location.href=`{{ url_for('favorites', page=page-1, unfiltered=unfiltered, favorites_of=favorites_of) }}`">
@@ -149,5 +155,7 @@
         </div>
     {% endif %}
 </div>
+</section>
+</main>
 <script src="{{ url_for('static', filename='js/filter-script.js') }}"></script>
 {% endblock %}
