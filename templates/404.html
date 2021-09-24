@@ -4,6 +4,7 @@
 <script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
 {% endblock %}
 {% block heading %}
+<main>
 <h3 class="page-heading"> Oops!, we can't seem to find what you're looking for!</h3>
 {% endblock %}
 {% block content %}
@@ -11,4 +12,5 @@
 <br><br>
 <a class='error-link' href={{ url_for('feed') }}><<< Click here to go navigate back to your feed</a>
 </div>
+</main>
 {% endblock %}
