@@ -1096,7 +1096,6 @@ def remove_follower(user_to_remove):
 
 @ app.route("/view_story/<story>", methods=["GET", "POST"])
 def view_story(story):
-
     favorite_stories = mongo.db.users.find_one(
         {"username": session["user"]})["favorite_stories"]
     favorites_count = mongo.db.stories.find_one(
@@ -1111,6 +1110,7 @@ def view_story(story):
             favorites_count = favorites_count-1
             mongo.db.stories.update(
                 {"_id": ObjectId(story)}, {"$set": {"favs": favorites_count}})
+            flash("Story removed from favorites")
         else:
             favorite_stories.append(story_to_add_or_remove)
             mongo.db.users.update(
@@ -1118,6 +1118,7 @@ def view_story(story):
             favorites_count = favorites_count+1
             mongo.db.stories.update(
                 {"_id": ObjectId(story)}, {"$set": {"favs": favorites_count}})
+            flash("Story added to favorites")
 
     favorited = ""
     if story in favorite_stories:
