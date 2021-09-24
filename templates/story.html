@@ -3,11 +3,12 @@
 <title>{{ title }}</title>
 <script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
 {% endblock %}
+{% block heading %}
+<h3 class="page-heading">{{ title }}</h3>
+{% endblock %}
 {% block content %}
-
-
-    <h3 class="page-heading">{{ title }}</h3>
-    
+<main>
+<section>
     {% if owns_story == 'yes' %}
     <div class="story-edit-delete">
                 <button class="edit-story-button" 
@@ -20,12 +21,14 @@
                     Delete 
                 </button>
                 <div style="display: none">{{ url_for('delete_story', story=id) }}</div>
-                
-    {% endif %}<br><br>
+                </div>
+    {% endif %}
+    </section>
     <div class="view-story-favs">Favs: {{ favs }} <br><br></div>
     
     <div class="view-story-container">
         <div class="story-details-box">
+            <section>
      <div class="story-by-box">
     <figure class=feed-profile-picture-figure
                 onclick="location.href=`{{ url_for('profile', username=story_by) }}`">
@@ -44,11 +47,14 @@
     </form><br>
     Category : {{ category }} <br><br>
     location: {{ location }}
+            </section>
     </div>
     <div class="content-box">
+        <section>
     <h4 class="story-area-indicator">Story</h4>
     {{ content }} <br><br>
+    </section>
     </div>
 </div>
-
+</main>
 {% endblock %}
