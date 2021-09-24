@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block content %}
-
+<header>
 <div class="login-page-logo-and-slogan-container">
     <div class="logo-box">
         <img class="login-page-logo" 
@@ -17,6 +17,7 @@
         </h2>
     </div>
 </div>
+
 <section>
     <div class="flash-message-container">
             <!-- flash messages -->
@@ -32,8 +33,13 @@
                 {% endif %}
             {% endwith %}
 </section>
+</header>
+
+
 <div class="login-form-container">
+    
     <div class="login-box">
+        <section>
         <h2>Login</h2>
         <form method="POST" action="{{ url_for('login') }}">
             <label for="username">Username: </label><br>
@@ -42,8 +48,12 @@
             <input id="password" name="password" type="password" required><br><br>
             <button type="submit">Login</button><br><br>
        </form>
+       </section>
     </div>
+    
+    
     <div class="register-box">
+        <section>
         <h2>Register</h2>
         <form method="POST" action="{{ url_for('register') }}">
             <label for="username">Username: </label><br>
@@ -58,11 +68,14 @@
                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required><br><br>
             <button id="register-button" type="submit">Register</button><br><br>
        </form>
+       </section>
     </div>
+    
 </div>
 
 
 <div class="login-form-container-small">
+    <section>
     <div class="login-titles-container">
         <div class="login-title-box">
             <h4>Login</h4>
@@ -71,6 +84,8 @@
             <h4>Register</h4>
         </div>
         </div>
+        </section>
+        <section>
     <div class="login-box-small">
         <form method="POST" action="{{ url_for('login') }}">
             <label for="username">Username: </label><br>
@@ -80,6 +95,8 @@
             <button type="submit">Submit</button><br><br>
        </form>
     </div>
+    </section>
+    <section>
     <div class="register-box-small">
         <form method="POST" action="{{ url_for('register') }}">
             <label for="username">Username: </label><br>
@@ -95,6 +112,7 @@
             <button type="submit">Submit</button><br><br>
        </form>
     </div>
+    </section>
 </div>
 <script src="{{ url_for('static', filename='js/login-page-script.js') }}"></script>
 {% endblock %}

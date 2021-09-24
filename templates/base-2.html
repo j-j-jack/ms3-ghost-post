@@ -11,8 +11,10 @@
 <body>
     <div class="page-container">
         <div class="page-content">
+            <header>
             <div class="navbar-and-logo-container">
     <div id="navbar-container-small">
+        <nav>
         <div id="x-icon-box">
         <h3 class="small-nav-heading">Ghost Post</h3>
         <img id="x-icon" 
@@ -44,6 +46,7 @@
                 </form>
             </div>
             <br>
+            </nav>
         </div>
     <div class="dropdown-box">
         <img id="burger-icon" 
@@ -57,6 +60,7 @@
     </div>
     
     <div class="navbar-box">
+        <nav>
         <br>
         <div class="navbar-container">
             <div class="add-story-box">
@@ -86,6 +90,7 @@
                 </form>
             </div>
         </div>
+        </nav>
         </div>
     </div>
     {% block heading %}
@@ -106,7 +111,7 @@
                 {% endif %}
             {% endwith %}
 </section>
-    
+    </header>
             {% block content %}
             {% endblock %}    
         </div>
