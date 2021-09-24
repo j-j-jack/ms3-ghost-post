@@ -18,14 +18,14 @@
         <img id="x-icon" 
             src="{{ url_for('static', filename='images/x-icon.svg') }}">
         </div>
-            <div class="add-story-box-small" onclick="location.href=`{{ url_for('add_story') }}`">
-                <h4>Add Story</h4>
+            <div class="add-story-box-small">
+                <a  class='nav-link-small' href="{{ url_for('add_story') }}">Add Story</a>
             </div>
-            <div class="feed-box-small" onclick="location.href=`{{ url_for('feed') }}`">
-                <h4>Feed</h4>
+            <div class="feed-box-small">
+                <a class="nav-link-small" href="{{ url_for('feed') }}">Feed</a>
             </div>
-            <div class="profile-box-small" onclick="location.href=`{{ url_for('profile') }}`">
-                <h4>Profile</h4>
+            <div class="profile-box-small">
+                <a class="nav-link-small" href="{{ url_for('profile') }}">Profile</a>
             </div>
             <div class="logout-box-small">
                 <form method="POST" action = "{{ url_for('login') }}">

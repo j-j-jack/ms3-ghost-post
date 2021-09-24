@@ -110,6 +110,16 @@ select{
 .dropdown-box{
     display: none;
 }
+.nav-link-small{
+    padding-left: 8%;
+    display: block;
+    height: 2em;
+    padding-top: 1.5em;
+    width: 92%;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--logo-writing);
+}
 .navbar-logo-box{
     flex: 1;
 }
@@ -186,7 +196,6 @@ select{
     border-top: 2px outset black;
     border-bottom: 1px outset black;
     cursor: pointer;
-    padding-left: 1.5em;
     color: var(--logo-writing);
 }
 .add-story-box-small:hover{
@@ -197,7 +206,6 @@ select{
     border-bottom: 1px outset black;
     border-top: 1px outset black;
     cursor: pointer;
-    padding-left: 1.5em;
     color: var(--logo-writing);
 }
 .feed-box-small:hover{
@@ -207,7 +215,6 @@ select{
     border-bottom: 1px outset black;
     border-top: 1px outset black;
     cursor: pointer;
-    padding-left: 1.5em;
     color: var(--logo-writing);
 }
 .profile-box-small:hover{
@@ -217,7 +224,7 @@ select{
     border-top: 1px outset black;
     border-bottom: 2px outset black;
     cursor: pointer;
-    padding-left: 1.5em;
+    padding-left: 8%;
     color: var(--logo-writing);
 }
 .logout-box-small:hover{
@@ -577,7 +584,8 @@ figcaption{
 }
 
 .profile-icons-figure{
-    cursor: pointer
+    cursor: pointer;
+    filter: saturate(150%);
 }
 .profile-icon{
     height: 12em;
