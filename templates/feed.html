@@ -7,12 +7,14 @@
 <h3 class="page-heading"> Hi {{ username }}, here is your feed!</h3>
 {% endblock %}
 {% block content %}
+<main>
 <div class="delete-receiver-div">{{ delete }}</div>
 <p class="filter-button-div">
     <button id='filter-opener'>Filters</button>
 </p>
 <div class="feed-and-filter-container">
     <div id= "filter-div" class="filter-div">
+        <aside>
         <form action ="{{ url_for('feed', page=1, unfiltered=1) }}">
             <input type="checkbox" id="allCheckBox" name="all" value="all" {{ all_checked }}>
             <label for="all"> All</label><br>
@@ -53,10 +55,12 @@
             </select><br><br>
             <button type="submit">Go</button>
         </form>
+        </aside>
     </div>
     <div class="feed-div">
     {% for i in range((page*5)-5, page*5) %}
         {% if stories[i] %}
+        <section>
         <div class="story-preview-box">
             <h4 class="feed-story-title">{{ stories[i].title }}</h4>
             {% if username == stories[i].story_by %}
@@ -109,6 +113,7 @@
             </div>
         </div>
         </div>
+        </section>
         {% endif %}
     {% endfor %}
     </div>
@@ -118,6 +123,7 @@
     {% else %}
     {% set unfiltered = 2 %}
 {% endif %}
+<section>
 <div class="number-navigation" div class="next">
     {% if page_count > 1 and page > 1 %}
         <div class="prev"  onclick="location.href=`{{ url_for('feed', page=page-1, unfiltered=unfiltered) }}`">
@@ -147,5 +153,7 @@
         </div>
     {% endif %}
 </div>
+</section>
+</main>
 <script src="{{ url_for('static', filename='js/filter-script.js') }}"></script>
 {% endblock %}
