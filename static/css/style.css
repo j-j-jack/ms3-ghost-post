@@ -120,6 +120,17 @@ select{
     font-weight: bold;
     color: var(--logo-writing);
 }
+
+.nav-link{
+    text-align: center;
+    display: block;
+    height: 2em;
+    padding-top: 1.5em;
+    width: 100%;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--logo-writing);
+}
 .navbar-logo-box{
     flex: 1;
 }
@@ -169,8 +180,11 @@ select{
 }
 
 .logout-box{
+    height: 2em;
+    padding-top: 1.5em;
     flex: 1;
     cursor: pointer;
+    font-weight: bold;
 }
 .logout-box:hover{
     background: var(--ghost-face);

@@ -59,18 +59,18 @@
     <div class="navbar-box">
         <br>
         <div class="navbar-container">
-            <div class="add-story-box" onclick="location.href=`{{ url_for('add_story') }}`">
-                <h4>Add Story</h4>
+            <div class="add-story-box">
+                <a  class='nav-link' href="{{ url_for('add_story') }}">Add Story</a>
             </div>
             <div class="feed-box" onclick="location.href=`{{ url_for('feed') }}`">
-                <h4>Feed</h4>
+                <a class="nav-link" href="{{ url_for('feed') }}">Feed</a>
             </div>
-            <div class="profile-box" onclick="location.href=`{{ url_for('profile') }}`">
-                <h4>Profile</h4>
+            <div class="profile-box">
+                <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
             </div>
             <div class="logout-box">
                 <form method="POST" action = "{{ url_for('login') }}">
-                    <h4>Logout</h4>
+                    Logout
                     <button style="display: none" id=logout-button></button>
                     <input type="hidden" id='log_method' name='log_method' value='logout'>
                 </form>
