@@ -3,13 +3,16 @@
 <title>User's Stories</title>
 <script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
 {% endblock %}
+{% block heading %}
+<h3 class="page-heading">Favorite Stories of {{ favorites_of }}</h3>
+{% endblock %}
 {% block content %}
 <main>
 <div class="delete-receiver-div">{{ delete }}</div>
-<p class="feed-title">
+<p class="filter-button-div">
     <button id='filter-opener'>Filters</button>
-    Favorite Stories of {{ favorites_of }}<br>
 </p>
+
 <div class="feed-and-filter-container">
     <div id= "filter-div" class="filter-div">
         <aside>
