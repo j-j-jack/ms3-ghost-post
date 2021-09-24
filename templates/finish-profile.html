@@ -3,6 +3,7 @@
 <title>Finish Profile</title>
 {% endblock %}
 {% block content %}
+</header>
 <div class="login-page-logo-and-slogan-container">
     <div class="logo-box">
         <img class="login-page-logo" 
@@ -15,14 +16,24 @@
         </h2>
     </div>
 </div>
+<section>
 <div class="flash-message-container">
-    <h4 class="flash-message"></h4>
+    <h4 class="flash-message"></h4> <!-- required to prevent console errors from flash.js script-->
 </div>
+</section>
+</header>
+<main>
+<section>
 <div class="finish-profile-title"><h4>
     Welcome {{ username }}, please finish your profile before continuing to the site...</h4></div>
+</section>
+
+<section>
 <form method="POST" action="{{ url_for('finish_profile') }}">
 <div class="finish-profile-container">
-    
+
+
+
     <div class="finish-profile-box-a">
         <label for="interest">Main Interest: </label>
         <select name="interest" id="interest" required>
@@ -88,6 +99,8 @@
     <input type="submit"><br><br>
 </div>
 </form>
+</section>
+</main>
 <script src="{{ url_for('static', filename='js/countries.js') }}"></script>
 <script src="{{ url_for('static', filename='js/finish-profile-script.js') }}"></script>
 {% endblock %}
