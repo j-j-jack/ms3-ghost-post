@@ -3,7 +3,8 @@
 <title>Edit Story</title>
 {% endblock %}
 {% block content %}
-
+<main>
+<section>
 <div class="country-receiver-div" style="display: none">{{ location }}</div>
 <h3 class="page-heading">{{ username }}, you can edit your story below...</h3>
 <div class="story-form">
@@ -63,6 +64,8 @@
     <button type="submit">Edit Story</button><br><br>
 </form>
 </div>
+</section>
+</main>
 <script src="{{ url_for('static', filename='js/countries.js') }}"></script>
 <script src="{{ url_for('static', filename='js/edit-story-script.js') }}"></script>
 {% endblock %}
