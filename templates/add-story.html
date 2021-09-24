@@ -3,6 +3,7 @@
 <title>Add Story</title>
 {% endblock %}
 {% block content %}
+<main><section>
 <div class="story-form">
 <form method="POST" action="{{ url_for('add_story') }}">
     <label for="title">Title: </label>
@@ -28,6 +29,8 @@
     <button type="submit">Submit</button><br><br>
 </form>
 </div>
+</section>
+</main>
 <script src="{{ url_for('static', filename='js/countries.js') }}"></script>
 <script src="{{ url_for('static', filename='js/add-story-script.js') }}"></script>
 {% endblock %}
