@@ -7,7 +7,7 @@
 {% endblock %}
 {% block content %}
 <main>
-<section>
+
 <div class="avatar-receiver-div" style="display: none">{{ profile_picture }}</div>
 <div class="country-receiver-div" style="display: none">{{ location }}</div>
 
@@ -17,7 +17,7 @@
         <label for='email'>Email: </label>
         <input type=email name='email' id=email value={{ email }}><br><br>
         <label for="interest">Main Interest: </label>
-        <select name="interest" id="interest" required>
+        <select name="interest" id="interest">
             <option value="Aliens"
                 {% if interest == "Aliens" %}
                     selected
@@ -96,7 +96,7 @@
     </div>
     <div class="finish-profile-box-b">
         <label for="location">Location: </label>
-        <select class= "country-selector" name="location" id="location" required>
+        <select class= "country-selector" name="location" id="location">
         </select><br><br>
         <label for="about">About you: </label><br>
         <textarea id="about" name="about" rows="10" cols="50" 
@@ -108,7 +108,6 @@
     <input type="submit"><br><br>
 </div>
 </form>
-</section>
 </main>
 <script src="{{ url_for('static', filename='js/countries.js') }}"></script>
 <script src="{{ url_for('static', filename='js/edit-profile-script.js') }}"></script>
