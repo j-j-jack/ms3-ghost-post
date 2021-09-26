@@ -776,6 +776,7 @@ figcaption{
 .error-link{
     text-align: center;
     cursor: pointer;
+    text-decoration: underline;
 }
 .error-message{
     text-align: center;
