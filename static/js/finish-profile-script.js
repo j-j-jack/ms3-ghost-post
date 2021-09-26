@@ -48,6 +48,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         document.getElementsByClassName("selected-picture")[0].src 
             = profilePictures[currentPictureSelected];
+        document.getElementsByClassName("selected-picture")[0].alt = altTags[currentPictureSelected];
             let radioButton = 'profile-radio-' + (currentPictureSelected + 1);
             document.getElementById(radioButton).checked = true;
     })
