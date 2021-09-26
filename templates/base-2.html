@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,128 +9,128 @@
     {% endblock %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
 </head>
+
 <body>
     <div class="page-container">
         <div class="page-content">
             <header>
-            <div class="navbar-and-logo-container">
-    <div id="navbar-container-small">
-        <nav>
-        <div id="x-icon-box">
-        <h3 class="small-nav-heading">Ghost Post</h3>
-        <img id="x-icon" 
-            src="{{ url_for('static', filename='images/x-icon.svg') }}"
-            alt="clickable x-icon which closes menu">
-        </div>
-            <div class="add-story-box-small">
-                <a  class='nav-link-small' href="{{ url_for('add_story') }}">Add Story</a>
-            </div>
-            <div class="feed-box-small">
-                <a class="nav-link-small" href="{{ url_for('feed') }}">Feed</a>
-            </div>
-            <div class="profile-box-small">
-                <a class="nav-link-small" href="{{ url_for('profile') }}">Profile</a>
-            </div>
-            <div class="logout-box-small">
-                <form method="POST" action = "{{ url_for('login') }}">
-                    <h4>Logout</h4>
-                    <button style="display:none" id=logout-button-small></button>
-                    <input type="hidden" id='s-log_method' name='log_method' value='logout'>
-                </form>
-            </div>
-            <div class="search-box-small">
-                <form method="POST" action="{{ url_for('search') }}">
-                    <input type="text" name="search" id="s-search">
-                    <button class="search-submission" type=submit></button>
-                    <div class="search-icon-div">
-                        <img class="search-icon" 
-                            src="{{ url_for('static', filename='images/search.svg') }}"
-                            alt="clickable search icon">
+                <div class="navbar-and-logo-container">
+                    <div id="navbar-container-small">
+                        <nav>
+                            <div id="x-icon-box">
+                                <h3 class="small-nav-heading">Ghost Post</h3>
+                                <img id="x-icon" src="{{ url_for('static', filename='images/x-icon.svg') }}"
+                                    alt="clickable x-icon which closes menu">
+                            </div>
+                            <div class="add-story-box-small">
+                                <a class='nav-link-small' href="{{ url_for('add_story') }}">Add Story</a>
+                            </div>
+                            <div class="feed-box-small">
+                                <a class="nav-link-small" href="{{ url_for('feed') }}">Feed</a>
+                            </div>
+                            <div class="profile-box-small">
+                                <a class="nav-link-small" href="{{ url_for('profile') }}">Profile</a>
+                            </div>
+                            <div class="logout-box-small">
+                                <form method="POST" action="{{ url_for('login') }}">
+                                    <h4>Logout</h4>
+                                    <button style="display:none" id=logout-button-small></button>
+                                    <input type="hidden" id='s-log_method' name='log_method' value='logout'>
+                                </form>
+                            </div>
+                            <div class="search-box-small">
+                                <form method="POST" action="{{ url_for('search') }}">
+                                    <input type="text" name="search" id="s-search">
+                                    <button class="search-submission" type=submit></button>
+                                    <div class="search-icon-div">
+                                        <img class="search-icon"
+                                            src="{{ url_for('static', filename='images/search.svg') }}"
+                                            alt="clickable search icon">
+                                    </div>
+                                </form>
+                            </div>
+                            <br>
+                        </nav>
                     </div>
-                </form>
-            </div>
-            <br>
-            </nav>
-        </div>
-    <div class="dropdown-box">
-        <img id="burger-icon" 
-            src="{{ url_for('static', filename='images/burger.svg') }}"
-            alt="clickable dropdown icon">
-    </div>
-    <div class="navbar-logo-box">
-        <img class="site-logo"
-            onclick="location.href=`{{ url_for('feed') }}`"
-            src="{{ url_for('static', filename='images/logo.svg') }}"
-            alt ="Company logo for ghost post. It is a ghost drawing the words ghost post on a blue board">
-    </div>
-    
-    <div class="navbar-box">
-        <nav>
-        <br>
-        <div class="navbar-container">
-            <div class="add-story-box">
-                <a  class='nav-link' href="{{ url_for('add_story') }}">Add Story</a>
-            </div>
-            <div class="feed-box" onclick="location.href=`{{ url_for('feed') }}`">
-                <a class="nav-link" href="{{ url_for('feed') }}">Feed</a>
-            </div>
-            <div class="profile-box">
-                <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
-            </div>
-            <div class="logout-box">
-                <form method="POST" action = "{{ url_for('login') }}">
-                    Logout
-                    <button style="display: none" id=logout-button></button>
-                    <input type="hidden" id='l-log_method' name='log_method' value='logout'>
-                </form>
-            </div>
-            <div class="search-box">
-                <form method="POST" action="{{ url_for('search') }}">
-                    <input type="text" name="search" id="l-search">
-                    <button class="search-submission" type=submit></button>
-                    <div class="search-icon-div">
-                        <img class="search-icon" 
-                            src="{{ url_for('static', filename='images/search.svg') }}"
-                            alt="clickable search icon">
+                    <div class="dropdown-box">
+                        <img id="burger-icon" src="{{ url_for('static', filename='images/burger.svg') }}"
+                            alt="clickable dropdown icon">
                     </div>
-                        
-                </form>
-            </div>
-        </div>
-        </nav>
-        </div>
-    </div>
-    {% block heading %}
-    {% endblock %}
-    <section>
-        <!-- flash messages -->
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <div class="flash-message-container">
-                    {% for message in messages %}
-                       <div>
+                    <div class="navbar-logo-box">
+                        <img class="site-logo" onclick="location.href=`{{ url_for('feed') }}`"
+                            src="{{ url_for('static', filename='images/logo.svg') }}"
+                            alt="Company logo for ghost post. It is a ghost drawing the words ghost post on a blue board">
+                    </div>
+
+                    <div class="navbar-box">
+                        <nav>
+                            <br>
+                            <div class="navbar-container">
+                                <div class="add-story-box">
+                                    <a class='nav-link' href="{{ url_for('add_story') }}">Add Story</a>
+                                </div>
+                                <div class="feed-box" onclick="location.href=`{{ url_for('feed') }}`">
+                                    <a class="nav-link" href="{{ url_for('feed') }}">Feed</a>
+                                </div>
+                                <div class="profile-box">
+                                    <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+                                </div>
+                                <div class="logout-box">
+                                    <form method="POST" action="{{ url_for('login') }}">
+                                        Logout
+                                        <button style="display: none" id=logout-button></button>
+                                        <input type="hidden" id='l-log_method' name='log_method' value='logout'>
+                                    </form>
+                                </div>
+                                <div class="search-box">
+                                    <form method="POST" action="{{ url_for('search') }}">
+                                        <input type="text" name="search" id="l-search">
+                                        <button class="search-submission" type=submit></button>
+                                        <div class="search-icon-div">
+                                            <img class="search-icon"
+                                                src="{{ url_for('static', filename='images/search.svg') }}"
+                                                alt="clickable search icon">
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                {% block heading %}
+                {% endblock %}
+                <section>
+                    <!-- flash messages -->
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="flash-message-container">
+                        {% for message in messages %}
+                        <div>
                             <h4 class="flash-message">{{ message }}</h4>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
                     </div>
-                {% else %}
+                    {% else %}
                     <h4 class="flash-message"></h4>
-                {% endif %}
-            {% endwith %}
-</section>
-    </header>
+                    {% endif %}
+                    {% endwith %}
+                </section>
+            </header>
             {% block content %}
-            {% endblock %}    
+            {% endblock %}
         </div>
-        
-    
-    <div class="footer">
-        © 2021 Ghost Post
+
+
+        <div class="footer">
+            © 2021 Ghost Post
+        </div>
     </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
 
 </body>
+
 </html>

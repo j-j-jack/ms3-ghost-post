@@ -8,54 +8,51 @@
 {% endblock %}
 {% block content %}
 <main>
-<nav>
-    {% if owns_story == 'yes' %}
-    <div class="story-edit-delete">
-                <button class="edit-story-button" 
-                    onclick = "location.href=`{{ url_for('edit_story', story=id) }}`">
-                    Edit 
-                </button>
-            <button class="delete-story-button" 
-                    onclick = "let toBeDeleted = this.nextElementSibling.innerHTML;
+    <nav>
+        {% if owns_story == 'yes' %}
+        <div class="story-edit-delete">
+            <button class="edit-story-button" onclick="location.href=`{{ url_for('edit_story', story=id) }}`">
+                Edit
+            </button>
+            <button class="delete-story-button" onclick="let toBeDeleted = this.nextElementSibling.innerHTML;
                                deleteStory(toBeDeleted)">
-                    Delete 
-                </button>
-                <div style="display: none">{{ url_for('delete_story', story=id) }}</div>
-                </div>
-    {% endif %}
-            </nav>
+                Delete
+            </button>
+            <div style="display: none">{{ url_for('delete_story', story=id) }}</div>
+        </div>
+        {% endif %}
+    </nav>
     <div class="view-story-favs">Favs: {{ favs }} <br><br></div>
-    
+
     <div class="view-story-container">
         <div class="story-details-box">
             <section>
                 <h4>Details</h4>
-     <div class="story-by-box">
-    <figure class=feed-profile-picture-figure
-                onclick="location.href=`{{ url_for('profile', username=story_by) }}`">
-                <img class="story-profile-picture" 
-                    src={{ profile_picture_finder(story_by) }}>
-                <figcaption>Story by: {{ story_by  }}</figcaption>
-                
-    </figure>
-    </div><br>
-    <form method="POST" action="{{ url_for('view_story', story=id) }}">
-        {% if favorited == "In Favorites" %}
-        {{ favorited }} <button type="submit">Remove from Favorites</button>
-        {% else %}
-        {{ favorited }} <button type="submit">Favorite Story</button>
-        {% endif %}
-    </form><br>
-    Category : {{ category }} <br><br>
-    location: {{ location }}
+                <div class="story-by-box">
+                    <figure class=feed-profile-picture-figure
+                        onclick="location.href=`{{ url_for('profile', username=story_by) }}`">
+                        <img class="story-profile-picture" src={{ profile_picture_finder(story_by) }}>
+                        <figcaption>Story by: {{ story_by  }}</figcaption>
+
+                    </figure>
+                </div><br>
+                <form method="POST" action="{{ url_for('view_story', story=id) }}">
+                    {% if favorited == "In Favorites" %}
+                    {{ favorited }} <button type="submit">Remove from Favorites</button>
+                    {% else %}
+                    {{ favorited }} <button type="submit">Favorite Story</button>
+                    {% endif %}
+                </form><br>
+                Category : {{ category }} <br><br>
+                location: {{ location }}
             </section>
+        </div>
+        <div class="content-box">
+            <section>
+                <h4 class="story-area-indicator">Story</h4>
+                {{ content }} <br><br>
+            </section>
+        </div>
     </div>
-    <div class="content-box">
-        <section>
-    <h4 class="story-area-indicator">Story</h4>
-    {{ content }} <br><br>
-    </section>
-    </div>
-</div>
 </main>
 {% endblock %}

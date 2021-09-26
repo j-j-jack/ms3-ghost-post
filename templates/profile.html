@@ -28,72 +28,70 @@
 {% endblock %}
 {% block content %}
 <main>
-<div class="profile-container">
-    <div class="profile-div-a">
-        <section>
-        <div class="profile-username-div"><h2>{{ username }}</h2></div><br>
-        <div class="profile-picture-div">
-            <img class="profile-profile-picture" src={{ profile_picture }} style = "width: 70%;" alt="users profile picture">
-        </div><br><br>
-        <div class="profile-location-div">Location: {{ location }}</div><br><br>
-        <div class="profile-interest-div">Main Interest: {{ interest }}</div><br><br>
-        </section>
-    </div>
-    <div class="profile-div-b">
-        <div class="profile-icons-div">
-            <br>
-            <nav>
-            <div class="profile-icons-grid-outer">
-                <div class="profile-icons-grid-inner">
-                    
-                    <div class="profile-icons-stories-box">
-                        <figure class="profile-icons-figure"
-                            onclick=
-                            "location.href=`{{ url_for('user_stories', page=1, unfiltered=0, stories_by=username) }}`">
-                            <img class="profile-icon" 
-                                src="{{ url_for('static', filename='images/book.svg') }}">
-                            <figcaption>Stories</figcaption>
-                        </figure>
-                    </div>
-                    <div class="profile-icons-favs-box">
-                        <figure class="profile-icons-figure"
-                            onclick=
-                            "location.href=`{{ url_for('favorites', page=1, unfiltered=0, favorites_of=username) }}`">
-                            <img class="profile-icon" 
-                                src="{{ url_for('static', filename='images/heart.svg') }}">
-                            <figcaption>Favs</figcaption>
-                        </figure>
-                    </div>
-                    <div class="profile-icons-followers-box">
-                        <figure class="profile-icons-figure"
-                            onclick=
-                            "location.href=`{{ url_for('followers', page=1, username=username) }}`">
-                            <img class="profile-icon" 
-                                src="{{ url_for('static', filename='images/follower.svg') }}">
-                            <figcaption>Followers</figcaption>
-                        </figure>
-                    </div>
-                    <div class="profile-icons-following-box">
-                        <figure class="profile-icons-figure"
-                            onclick=
-                            "location.href=`{{ url_for('following', page=1, username=username) }}`">
-                            <img class="profile-icon" 
-                                src="{{ url_for('static', filename='images/following.svg') }}">
-                            <figcaption>Following</figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </div>
-        </nav>
-            </div>
-        <div class="profile-about-box">
+    <div class="profile-container">
+        <div class="profile-div-a">
             <section>
-            <h4>About Me:</h4>
-            {{ about }}
+                <div class="profile-username-div">
+                    <h2>{{ username }}</h2>
+                </div><br>
+                <div class="profile-picture-div">
+                    <img class="profile-profile-picture" src={{ profile_picture }} style="width: 70%;"
+                        alt="users profile picture">
+                </div><br><br>
+                <div class="profile-location-div">Location: {{ location }}</div><br><br>
+                <div class="profile-interest-div">Main Interest: {{ interest }}</div><br><br>
             </section>
         </div>
+        <div class="profile-div-b">
+            <div class="profile-icons-div">
+                <br>
+                <nav>
+                    <div class="profile-icons-grid-outer">
+                        <div class="profile-icons-grid-inner">
 
+                            <div class="profile-icons-stories-box">
+                                <figure class="profile-icons-figure"
+                                    onclick="location.href=`{{ url_for('user_stories', page=1, unfiltered=0, stories_by=username) }}`">
+                                    <img class="profile-icon" src="{{ url_for('static', filename='images/book.svg') }}">
+                                    <figcaption>Stories</figcaption>
+                                </figure>
+                            </div>
+                            <div class="profile-icons-favs-box">
+                                <figure class="profile-icons-figure"
+                                    onclick="location.href=`{{ url_for('favorites', page=1, unfiltered=0, favorites_of=username) }}`">
+                                    <img class="profile-icon"
+                                        src="{{ url_for('static', filename='images/heart.svg') }}">
+                                    <figcaption>Favs</figcaption>
+                                </figure>
+                            </div>
+                            <div class="profile-icons-followers-box">
+                                <figure class="profile-icons-figure"
+                                    onclick="location.href=`{{ url_for('followers', page=1, username=username) }}`">
+                                    <img class="profile-icon"
+                                        src="{{ url_for('static', filename='images/follower.svg') }}">
+                                    <figcaption>Followers</figcaption>
+                                </figure>
+                            </div>
+                            <div class="profile-icons-following-box">
+                                <figure class="profile-icons-figure"
+                                    onclick="location.href=`{{ url_for('following', page=1, username=username) }}`">
+                                    <img class="profile-icon"
+                                        src="{{ url_for('static', filename='images/following.svg') }}">
+                                    <figcaption>Following</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="profile-about-box">
+                <section>
+                    <h4>About Me:</h4>
+                    {{ about }}
+                </section>
+            </div>
+
+        </div>
     </div>
-</div>
 </main>
 {% endblock %}

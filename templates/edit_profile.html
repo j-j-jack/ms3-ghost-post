@@ -8,106 +8,83 @@
 {% block content %}
 <main>
 
-<div class="avatar-receiver-div" style="display: none">{{ profile_picture }}</div>
-<div class="country-receiver-div" style="display: none">{{ location }}</div>
+    <div class="avatar-receiver-div" style="display: none">{{ profile_picture }}</div>
+    <div class="country-receiver-div" style="display: none">{{ location }}</div>
 
-<form method="POST" action="{{ url_for('edit_profile') }}">
-<div class="finish-profile-container">
-    <div class="finish-profile-box-a">
-        <label for='email'>Email: </label>
-        <input type=email name='email' id=email value={{ email }}><br><br>
-        <label for="interest">Main Interest: </label>
-        <select name="interest" id="interest">
-            <option value="Aliens"
-                {% if interest == "Aliens" %}
-                    selected
-                {% endif %}>
-            Aliens</option>
-            <option value="Angels"
-                {% if interest == "Angels" %}
-                    selected
-                {% endif %}>
-                Angels</option>
-            <option value="Demons"
-                {% if interest == "Demons" %}
-                    selected
-                {% endif %}>
-                Demons</option>
-            <option value="Fairies"
-                {% if interest == "Fairies" %}
-                    selected
-                {% endif %}>
-            Fairies</option>
-            <option value="Ghosts"
-                {% if interest == "Ghosts" %}
-                    selected
-                {% endif %}>
-                Ghosts</option>
-            <option value="Vampires"
-                {% if interest == "Vampires" %}
-                    selected
-                {% endif %}>
-                Vampires</option>
-            <option value="Witches/Wizards"
-                {% if interest == "Witches/Wizards" %}
-                    selected
-                {% endif %}>
-                Witches/Wizards</option>
-        </select><br><br>
-        <div class="profile-picture-radio-buttons">
-            <input type="radio" id="profile-radio-1" name="profile-picture" 
-                value="/static/images/profile-1.jpg" checked required>
-            <input type="radio" id="profile-radio-2" name="profile-picture"
-                value="/static/images/profile-2.jpg">
-            <input type="radio" id="profile-radio-3" name="profile-picture"
-                value="/static/images/profile-3.jpg">
-            <input type="radio" id="profile-radio-4" name="profile-picture"
-                value="/static/images/profile-4.jpg">
-            <input type="radio" id="profile-radio-5" name="profile-picture"
-                value="/static/images/profile-5.jpg">
-            <input type="radio" id="profile-radio-6" name="profile-picture"
-                value="/static/images/profile-6.jpg">
-            <input type="radio" id="profile-radio-7" name="profile-picture"
-                value="/static/images/profile-7.jpg">
-            <input type="radio" id="profile-radio-8" name="profile-picture"
-            value="/static/images/profile-8.jpg">
-            <input type="radio" id="profile-radio-9" name="profile-picture"
-                value="/static/images/profile-9.jpg">
-            <input type="radio" id="profile-radio-10" name="profile-picture"
-                value="/static/images/profile-10.jpg">
-            <input type="radio" id="profile-radio-11" name="profile-picture"
-                value="/static/images/profile-11.jpg">
-            <input type="radio" id="profile-radio-12" name="profile-picture" 
-                value="/static/images/profile-12.jpg">
+    <form method="POST" action="{{ url_for('edit_profile') }}">
+        <div class="finish-profile-container">
+            <div class="finish-profile-box-a">
+                <label for='email'>Email: </label>
+                <input type=email name='email' id=email value={{ email }}><br><br>
+                <label for="interest">Main Interest: </label>
+                <select name="interest" id="interest">
+                    <option value="Aliens" {% if interest == "Aliens" %} selected {% endif %}>
+                        Aliens</option>
+                    <option value="Angels" {% if interest == "Angels" %} selected {% endif %}>
+                        Angels</option>
+                    <option value="Demons" {% if interest == "Demons" %} selected {% endif %}>
+                        Demons</option>
+                    <option value="Fairies" {% if interest == "Fairies" %} selected {% endif %}>
+                        Fairies</option>
+                    <option value="Ghosts" {% if interest == "Ghosts" %} selected {% endif %}>
+                        Ghosts</option>
+                    <option value="Vampires" {% if interest == "Vampires" %} selected {% endif %}>
+                        Vampires</option>
+                    <option value="Witches/Wizards" {% if interest == "Witches/Wizards" %} selected {% endif %}>
+                        Witches/Wizards</option>
+                </select><br><br>
+                <div class="profile-picture-radio-buttons">
+                    <input type="radio" id="profile-radio-1" name="profile-picture" value="/static/images/profile-1.jpg"
+                        checked required>
+                    <input type="radio" id="profile-radio-2" name="profile-picture"
+                        value="/static/images/profile-2.jpg">
+                    <input type="radio" id="profile-radio-3" name="profile-picture"
+                        value="/static/images/profile-3.jpg">
+                    <input type="radio" id="profile-radio-4" name="profile-picture"
+                        value="/static/images/profile-4.jpg">
+                    <input type="radio" id="profile-radio-5" name="profile-picture"
+                        value="/static/images/profile-5.jpg">
+                    <input type="radio" id="profile-radio-6" name="profile-picture"
+                        value="/static/images/profile-6.jpg">
+                    <input type="radio" id="profile-radio-7" name="profile-picture"
+                        value="/static/images/profile-7.jpg">
+                    <input type="radio" id="profile-radio-8" name="profile-picture"
+                        value="/static/images/profile-8.jpg">
+                    <input type="radio" id="profile-radio-9" name="profile-picture"
+                        value="/static/images/profile-9.jpg">
+                    <input type="radio" id="profile-radio-10" name="profile-picture"
+                        value="/static/images/profile-10.jpg">
+                    <input type="radio" id="profile-radio-11" name="profile-picture"
+                        value="/static/images/profile-11.jpg">
+                    <input type="radio" id="profile-radio-12" name="profile-picture"
+                        value="/static/images/profile-12.jpg">
+                </div>
+                <div class="profile-pic-selector">
+                    <div class='picture-select'>
+                        <span>Choose Avatar</span>
+                        <img class="picture-left-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}"
+                            style="visibility: hidden;" aria-hidden="true" alt="left arrow">
+                        <img class="selected-picture" src="{{ url_for('static', filename='images/profile-1.jpg') }}"
+                            alt="a spooky ghost-like figure standing in a dimly lit area">
+                        <img class="picture-right-arrow"
+                            src="{{ url_for('static', filename='images/right-arrow.svg') }}" alt="right arrow">
+                    </div>
+                </div>
+            </div>
+            <div class="finish-profile-box-b">
+                <label for="location">Location: </label>
+                <select class="country-selector" name="location" id="location">
+                </select><br><br>
+                <label for="about">About you: </label><br>
+                <textarea id="about" name="about" rows="10" cols="50"
+                    placeholder="Describe yourself here (max 500 char)" maxlength="500" style="resize: none;"
+                    required>{{ about }}</textarea>
+            </div>
         </div>
-        <div class="profile-pic-selector">
-        <div class='picture-select'>
-            <span>Choose Avatar</span>
-            <img class="picture-left-arrow" 
-                src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
-                style="visibility: hidden;" aria-hidden="true" alt="left arrow">
-            <img class="selected-picture" src="{{ url_for('static', filename='images/profile-1.jpg') }}" 
-                alt="a spooky ghost-like figure standing in a dimly lit area">
-            <img class = "picture-right-arrow"
-                src="{{ url_for('static', filename='images/right-arrow.svg') }}" 
-                alt="right arrow">
+        <div class="finish-profile-submission">
+            <input type="submit"><br><br>
         </div>
-        </div>
-    </div>
-    <div class="finish-profile-box-b">
-        <label for="location">Location: </label>
-        <select class= "country-selector" name="location" id="location">
-        </select><br><br>
-        <label for="about">About you: </label><br>
-        <textarea id="about" name="about" rows="10" cols="50" 
-            placeholder = "Describe yourself here (max 500 char)"
-            maxlength="500" style="resize: none;" required>{{ about }}</textarea>
-    </div>
-</div>
-<div class="finish-profile-submission">
-    <input type="submit"><br><br>
-</div>
-</form>
+    </form>
 </main>
 <script src="{{ url_for('static', filename='js/countries.js') }}"></script>
 <script src="{{ url_for('static', filename='js/edit-profile-script.js') }}"></script>

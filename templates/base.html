@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,19 +9,21 @@
     {% endblock %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
 </head>
+
 <body>
     <div class="page-container">
         <div class="page-content">
             {% block content %}
-            {% endblock %}    
+            {% endblock %}
         </div>
-        
-    <footer>
-    <div class="footer">
-        © 2021 Ghost Post
-    </div>
-    </footer>
+
+        <footer>
+            <div class="footer">
+                © 2021 Ghost Post
+            </div>
+        </footer>
     </div>
     <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
 </body>
+
 </html>
