@@ -472,8 +472,8 @@ def user_stories(page, unfiltered, stories_by):
 
     if sort_method == 3:
         stories.reverse()
-        oldest_selected = "selected"
-        newest_selected = ""
+        oldest_selected = ""
+        newest_selected = "selected"
         most_favorites_selected = ""
     elif sort_method == 1:
         stories = sorted(stories, key=lambda i: i['favs'], reverse=True)
@@ -481,8 +481,8 @@ def user_stories(page, unfiltered, stories_by):
         newest_selected = ""
         most_favorites_selected = "selected"
     else:
-        oldest_selected = ""
-        newest_selected = "selected"
+        oldest_selected = "selected"
+        newest_selected = ""
         most_favorites_selected = ""
 
     filtered_stories = []
@@ -811,8 +811,8 @@ def search(page, unfiltered):
         session["ghosts"] = 'Ghosts'
         session["vampires"] = 'Vampires'
         session["other"] = "Other"
-        session["sort_method"] = 2
-        sort_method = 2
+        session["sort_method"] = 3
+        sort_method = 3
     elif unfiltered == 1:
         all = request.args.get('all')
         aliens = request.args.get('aliens')
