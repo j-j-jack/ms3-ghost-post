@@ -73,9 +73,9 @@
     
 </div>
 
-
+<section>
 <div class="login-form-container-small">
-    <section>
+    
     <div class="login-titles-container">
         <div class="login-title-box">
             <h4>Login</h4>
@@ -84,8 +84,7 @@
             <h4>Register</h4>
         </div>
         </div>
-        </section>
-        <section>
+        
     <div class="login-box-small"> <!--sl stands for small login-->
         <form method="POST" action="{{ url_for('login') }}">
             <label for="sl-username">Username: </label><br>
@@ -95,8 +94,7 @@
             <button type="submit">Login</button><br><br>
        </form>
     </div>
-    </section>
-    <section>
+    
     <div class="register-box-small">
         <form method="POST" action="{{ url_for('register') }}">
             <label for="sr-username">Username: </label><br>
@@ -112,8 +110,9 @@
             <button type="submit">Register</button><br><br>
        </form>
     </div>
-    </section>
+    
 </div>
+</section>
 </main>
 <script src="{{ url_for('static', filename='js/login-page-script.js') }}"></script>
 {% endblock %}
