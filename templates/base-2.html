@@ -18,7 +18,8 @@
         <div id="x-icon-box">
         <h3 class="small-nav-heading">Ghost Post</h3>
         <img id="x-icon" 
-            src="{{ url_for('static', filename='images/x-icon.svg') }}">
+            src="{{ url_for('static', filename='images/x-icon.svg') }}"
+            alt="clickable x-icon which closes menu">
         </div>
             <div class="add-story-box-small">
                 <a  class='nav-link-small' href="{{ url_for('add_story') }}">Add Story</a>
@@ -33,15 +34,17 @@
                 <form method="POST" action = "{{ url_for('login') }}">
                     <h4>Logout</h4>
                     <button style="display:none" id=logout-button-small></button>
-                    <input type="hidden" id='log_method' name='log_method' value='logout'>
+                    <input type="hidden" id='s-log_method' name='log_method' value='logout'>
                 </form>
             </div>
             <div class="search-box-small">
                 <form method="POST" action="{{ url_for('search') }}">
-                    <input type="text" name="search" id="search">
+                    <input type="text" name="search" id="s-search">
                     <button class="search-submission" type=submit></button>
                     <div class="search-icon-div">
-                        <img class="search-icon" src="{{ url_for('static', filename='images/search.svg') }}">
+                        <img class="search-icon" 
+                            src="{{ url_for('static', filename='images/search.svg') }}"
+                            alt="clickable search icon">
                     </div>
                 </form>
             </div>
@@ -50,7 +53,8 @@
         </div>
     <div class="dropdown-box">
         <img id="burger-icon" 
-            src="{{ url_for('static', filename='images/burger.svg') }}">
+            src="{{ url_for('static', filename='images/burger.svg') }}"
+            alt="clickable dropdown icon">
     </div>
     <div class="navbar-logo-box">
         <img class="site-logo"
@@ -76,15 +80,17 @@
                 <form method="POST" action = "{{ url_for('login') }}">
                     Logout
                     <button style="display: none" id=logout-button></button>
-                    <input type="hidden" id='log_method' name='log_method' value='logout'>
+                    <input type="hidden" id='l-log_method' name='log_method' value='logout'>
                 </form>
             </div>
             <div class="search-box">
                 <form method="POST" action="{{ url_for('search') }}">
-                    <input type="text" name="search" id="search">
+                    <input type="text" name="search" id="l-search">
                     <button class="search-submission" type=submit></button>
                     <div class="search-icon-div">
-                        <img class="search-icon" src="{{ url_for('static', filename='images/search.svg') }}">
+                        <img class="search-icon" 
+                            src="{{ url_for('static', filename='images/search.svg') }}"
+                            alt="clickable search icon">
                     </div>
                         
                 </form>
