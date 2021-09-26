@@ -1,0 +1,16 @@
+{% extends "base-2.html" %}
+{% block title %}
+<title>Feed</title>
+<script src="{{ url_for('static', filename='js/delete-story-script.js') }}"></script>
+{% endblock %}
+{% block heading %}
+<h3 class="page-heading"> You are not logged in</h3>
+{% endblock %}
+{% block content %}
+<main>
+    <div class="error-message">
+        <br><br>
+        <a class='error-link' href={{ url_for('login') }}>Click here to navigate to the login page</a>
+    </div>
+</main>
+{% endblock %}

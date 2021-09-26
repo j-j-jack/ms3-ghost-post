@@ -27,8 +27,10 @@ def login():
 
     session["flash"] = ""
     session["search"] = ""
+    session["user"] = ""
     if request.method == "POST":
         if request.form.get("log_method") == 'logout':
+            session.clear()
             flash("You have successfully logged out", "logout")
             return redirect(url_for("login"))
         # check if username already exists in db
@@ -99,7 +101,9 @@ def register():
 @app.route("/followers", defaults={"username": 1, "page": 1})
 @app.route("/followers/<username>/<page>")
 def followers(username, page):
-
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     page = int(page)
     if username == 1:
         username = session['user']
@@ -136,7 +140,9 @@ def followers(username, page):
 @app.route("/following", defaults={"username": 1, "page": 1})
 @app.route("/following<username>/<page>")
 def following(username, page):
-
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     page = int(page)
     if username == 1:
         username = session['user']
@@ -172,6 +178,9 @@ def following(username, page):
 
 @ app.route("/finish_profile", methods=["GET", "POST"])
 def finish_profile():
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -219,6 +228,9 @@ def finish_profile():
 @ app.route("/feed", defaults={"page": 1, "unfiltered": 0})
 @ app.route("/feed/<page>/<unfiltered>")
 def feed(page, unfiltered):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     username = session["user"]
     page = int(page)
     unfiltered = int(unfiltered)
@@ -400,6 +412,9 @@ def feed(page, unfiltered):
 @app.route("/user_stories", defaults={"page": 1, "unfiltered": 0})
 @ app.route("/user_stories/<page>/<unfiltered>/<stories_by>")
 def user_stories(page, unfiltered, stories_by):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     stories_by = stories_by
     username = stories_by
     page = int(page)
@@ -584,6 +599,9 @@ def user_stories(page, unfiltered, stories_by):
 @app.route("/favorites", defaults={"page": 1, "unfiltered": 0})
 @ app.route("/favorites/<page>/<unfiltered>/<favorites_of>")
 def favorites(page, unfiltered, favorites_of):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     favorites_of = favorites_of
     username = favorites_of
     page = int(page)
@@ -771,6 +789,9 @@ def favorites(page, unfiltered, favorites_of):
 @app.route("/search", defaults={"page": 1, "unfiltered": 0}, methods=["GET", "POST"])
 @ app.route("/search/<page>/<unfiltered>")
 def search(page, unfiltered):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     if request.method == "POST":
         query = request.form.get("search")
         session["search"] = query
@@ -955,6 +976,9 @@ def search(page, unfiltered):
 
 @ app.route("/add_story", methods=["GET", "POST"])
 def add_story():
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     if request.method == "POST":
@@ -981,6 +1005,9 @@ def add_story():
 @ app.route("/profile", defaults={"username": "site_user"})
 @ app.route("/profile/<username>")
 def profile(username):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     username = username
     own_profile = 'no'
     if username == "site_user":
@@ -1016,6 +1043,9 @@ def profile(username):
 
 @ app.route("/follow_user/<username>")
 def follow_user(username):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     username = username
     following = mongo.db.users.find_one(
         {"username": session["user"]})["following"]
@@ -1029,6 +1059,9 @@ def follow_user(username):
 
 @ app.route("/unfollow_user/<username>")
 def unfollow_user(username):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     username = username
     following = mongo.db.users.find_one(
         {"username": session["user"]})["following"]
@@ -1042,6 +1075,9 @@ def unfollow_user(username):
 
 @ app.route("/edit_story/<story>", methods=["GET", "POST"])
 def edit_story(story):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     story = story
     username = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["story_by"]
@@ -1079,6 +1115,9 @@ def edit_story(story):
 
 @ app.route("/delete_story/<story>")
 def delete_story(story):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     mongo.db.stories.remove(
         {"_id": ObjectId(story)})
     session["flash"] = "Story deleted"
@@ -1096,6 +1135,9 @@ def remove_follower(user_to_remove):
 
 @ app.route("/view_story/<story>", methods=["GET", "POST"])
 def view_story(story):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     favorite_stories = mongo.db.users.find_one(
         {"username": session["user"]})["favorite_stories"]
     favorites_count = mongo.db.stories.find_one(
@@ -1153,6 +1195,9 @@ def view_story(story):
 
 @ app.route("/edit_profile", methods=["GET", "POST"])
 def edit_profile():
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
     # it is impossible to edit someone else's profile by url.
     # the edit profile link can only bring a user to edit their own profile
     username = mongo.db.users.find_one(
@@ -1189,7 +1234,11 @@ def edit_profile():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+
+    if session["user"] != "":
+        return render_template('404.html'), 404
+    else:
+        return render_template('not-logged-in.html'), 404
 
 
 @app.errorhandler(500)
@@ -1202,6 +1251,13 @@ def profile_picture_finder(username):
     picture = mongo.db.users.find_one(
         {"username": username})["profile_picture"]
     return picture
+
+
+def logged_in_test():
+    if session["user"] == "":
+        return False
+    else:
+        return True
 
 
 @ app.context_processor
