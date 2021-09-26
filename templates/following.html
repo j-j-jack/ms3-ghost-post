@@ -7,7 +7,6 @@
 {% endblock %}
 {% block content %}
 <main>
-<section>
 <div class="followers-container-outer">
 <div class="follow-container">
     {% for i in range((page-1) * 40, ((page-1)*40) +40) %}
@@ -15,7 +14,8 @@
     <div class="follow-box-">
         <div class="follow-picture-box">
             <figure  class="follow-figure" onclick="location.href=`{{ url_for('profile', username=following[i]) }}`">
-                <img class='follow-picture' src={{ profile_picture_finder(following[i]) }}>
+                <img class='follow-picture' src={{ profile_picture_finder(following[i]) }}
+                alt="profile picture for {{ following[i] }}">
             </figure>
         </div>
         <span class='follow-name' 
@@ -33,9 +33,8 @@
 {% endfor %}
 </div>
 </div>
-</section>
-<section>
-<div class="number-navigation" div class="next">
+<nav>
+<div class="number-navigation">
     {% if page_count > 1 and page > 1 %}
         <div class="prev"  onclick="location.href=`{{ url_for('following', username=username, page=page-1) }}`">
             <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}" 
@@ -64,6 +63,6 @@
         </div>
     {% endif %}
 </div>
-</section>
+</nav>
 </main>
 {% endblock %}
