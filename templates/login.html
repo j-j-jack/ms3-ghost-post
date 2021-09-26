@@ -42,10 +42,10 @@
         <section>
         <h2>Login</h2>
         <form method="POST" action="{{ url_for('login') }}">
-            <label for="username">Username: </label><br>
-            <input id="username" name="username" type="text" required><br><br>
-            <label for="password">Password: </label><br>
-            <input id="password" name="password" type="password" required><br><br>
+            <label for="ll-username">Username: </label><br>
+            <input id="ll-username" name="username" type="text" required><br><br>
+            <label for="ll-password">Password: </label><br>
+            <input id="ll-password" name="password" type="password" required><br><br>
             <button type="submit">Login</button><br><br>
        </form>
        </section>
@@ -56,15 +56,15 @@
         <section>
         <h2>Register</h2>
         <form method="POST" action="{{ url_for('register') }}">
-            <label for="username">Username: </label><br>
-            <input id="username" name="username" type="text" required><br><br>
-            <label for="email">Email: </label><br>
-            <input id="email" name="email" type="email" required><br><br>
-            <label for="password1">Password: </label><br>
-            <input id="password1" name="password1" type="password" minlength="5"
+            <label for="lr-username">Username: </label><br>
+            <input id="lr-username" name="username" type="text" required><br><br>
+            <label for="lr-email">Email: </label><br>
+            <input id="lr-email" name="email" type="email" required><br><br>
+            <label for="lr-password1">Password: </label><br>
+            <input id="lr-password1" name="password1" type="password" minlength="5"
                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required><br><br>
-            <label for="password2">Confirm Password: </label><br>
-            <input id="password2" name="password2" type="password" minlength="5"
+            <label for="lr-password2">Confirm Password: </label><br>
+            <input id="lr-password2" name="password2" type="password" minlength="5"
                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required><br><br>
             <button id="register-button" type="submit">Register</button><br><br>
        </form>
@@ -86,30 +86,30 @@
         </div>
         </section>
         <section>
-    <div class="login-box-small">
+    <div class="login-box-small"> <!--sl stands for small login-->
         <form method="POST" action="{{ url_for('login') }}">
-            <label for="username">Username: </label><br>
-            <input id="username" name="username" type="text" required><br><br>
-            <label for="password">Password: </label><br>
-            <input id="password" name="password" type="password" required><br><br>
-            <button type="submit">Submit</button><br><br>
+            <label for="sl-username">Username: </label><br>
+            <input id="sl-username" name="username" type="text" required><br><br>
+            <label for="sl-password">Password: </label><br>
+            <input id="sl-password" name="password" type="password" required><br><br>
+            <button type="submit">Login</button><br><br>
        </form>
     </div>
     </section>
     <section>
     <div class="register-box-small">
         <form method="POST" action="{{ url_for('register') }}">
-            <label for="username">Username: </label><br>
-            <input id="username" name="username" type="text" required><br><br>
-            <label for="email">Email: </label><br>
-            <input id="email" name="email" type="email" required><br><br>
-            <label for="password1">Password: </label><br>
-            <input id="password1" name="password1" type="password" minlength="5"
+            <label for="sr-username">Username: </label><br>
+            <input id="sr-username" name="username" type="text" required><br><br>
+            <label for="sr-email">Email: </label><br>
+            <input id="sr-email" name="email" type="email" required><br><br>
+            <label for="sr-password1">Password: </label><br>
+            <input id="sr-password1" name="password1" type="password" minlength="5"
                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required><br><br>
-            <label for="password2">Confirm Password: </label><br>
-            <input id="password2" name="password2" type="password" minlength="5"
+            <label for="sr-password2">Confirm Password: </label><br>
+            <input id="sr-password2" name="password2" type="password" minlength="5"
                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required><br><br>
-            <button type="submit">Submit</button><br><br>
+            <button type="submit">Register</button><br><br>
        </form>
     </div>
     </section>
