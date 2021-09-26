@@ -1,3 +1,7 @@
 env.py
 __pycache__
 to-do.txt
+package-lock.json
+.jshintrc
+node_modules
+static/images
