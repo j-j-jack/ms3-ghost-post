@@ -3,7 +3,7 @@
 <title>Finish Profile</title>
 {% endblock %}
 {% block content %}
-</header>
+<header>
 <div class="login-page-logo-and-slogan-container">
     <div class="logo-box">
         <img class="login-page-logo" 
@@ -37,6 +37,7 @@
     <div class="finish-profile-box-a">
         <label for="interest">Main Interest: </label>
         <select name="interest" id="interest" required>
+            <option value="">Choose</option> 
             <option value="Aliens">Aliens</option>
             <option value="Angels">Angels</option>
             <option value="Demons">Demons</option>
@@ -88,6 +89,7 @@
     <div class="finish-profile-box-b">
         <label for="location">Location: </label>
         <select class= "country-selector" name="location" id="location" required>
+            <option value="">Choose</option>
         </select><br><br>
         <label for="about">About you: </label><br>
         <textarea id="about" name="about" rows="10" cols="50" 
