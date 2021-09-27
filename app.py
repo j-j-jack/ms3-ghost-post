@@ -24,14 +24,17 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
+    # session cookies are set to empty as they must be present for certain pages to work
     session["flash"] = ""
     session["search"] = ""
     session["user"] = ""
     if request.method == "POST":
+        # log method is only present in the logout button form
         if request.form.get("log_method") == 'logout':
+            # the session cookies are cleared upon logging out
             session.clear()
             flash("You have successfully logged out", "logout")
+            # the login function is accessed again but with default get method
             return redirect(url_for("login"))
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -57,6 +60,7 @@ def login():
             return redirect(url_for("login"))
     else:
         session["flash"] = ""
+    # if a logout message exists it is flashed
     flash(session["flash"])
     return render_template("login.html")
 
@@ -97,91 +101,20 @@ def register():
         flash("Registration Successful!")
     return redirect(url_for("finish_profile"))
 
-
-@app.route("/followers", defaults={"username": 1, "page": 1})
-@app.route("/followers/<username>/<page>")
-def followers(username, page):
-    logged_in = logged_in_test()
-    if logged_in == False:
-        return render_template("not-logged-in.html")
-    page = int(page)
-    if username == 1:
-        username = session['user']
-    else:
-        username = username
-
-    followers = mongo.db.users.find_one(
-        {"username": username})["followers"]
-    page_count = len(followers)
-    page_count = math.ceil(page_count/40)
-
-    if page <= 3:
-        first_number = 1
-        if page_count > 5:
-            last_number = 5
-        else:
-            last_number = page_count
-    else:
-        if page_count <= 5:
-            first_number = 1
-            last_number = page_count
-        elif page+2 > page_count:
-            first_number = page_count-4
-            last_number = page_count
-        else:
-            first_number = page-2
-            last_number = page+2
-
-    return render_template('followers.html', username=username, followers=followers,
-                           page=page, page_count=page_count, first_number=first_number,
-                           last_number=last_number)
-
-
-@app.route("/following", defaults={"username": 1, "page": 1})
-@app.route("/following<username>/<page>")
-def following(username, page):
-    logged_in = logged_in_test()
-    if logged_in == False:
-        return render_template("not-logged-in.html")
-    page = int(page)
-    if username == 1:
-        username = session['user']
-    else:
-        username = username
-
-    following = mongo.db.users.find_one(
-        {"username": username})["following"]
-    page_count = len(following)
-    page_count = math.ceil(page_count/40)
-
-    if page <= 3:
-        first_number = 1
-        if page_count > 5:
-            last_number = 5
-        else:
-            last_number = page_count
-    else:
-        if page_count <= 5:
-            first_number = 1
-            last_number = page_count
-        elif page+2 > page_count:
-            first_number = page_count-4
-            last_number = page_count
-        else:
-            first_number = page-2
-            last_number = page+2
-
-    return render_template('following.html', username=username, following=following,
-                           page=page, page_count=page_count, first_number=first_number,
-                           last_number=last_number)
+# The user is prevented from accessing the rest of the site until their profile is finished
+#
 
 
 @ app.route("/finish_profile", methods=["GET", "POST"])
 def finish_profile():
+    # the following 3 lines of code test if the user is logged in
+    # if they are not they are simply directed to the not-logged-in page
+    # this prevents users accessing the pages on the site without logging in
+    # this code is used in all the functions that render the site's pages
     logged_in = logged_in_test()
     if logged_in == False:
         return render_template("not-logged-in.html")
-    # grab the session user's username from db
+    # grab the session user's details from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     email = mongo.db.users.find_one(
@@ -214,20 +147,114 @@ def finish_profile():
             "followers": followers
         }
         mongo.db.users.update(
+            # adding the rest of the details to the users profile in the db
             {"_id": ObjectId(user_id)}, additional_profile_info)
-       # code for updating/creating a single field in an already existing entry
-       # mongo.db.users.update(
-       #     {"_id": ObjectId(user_id)}, {"$set": {"newfield": "abc"}})
-       # mongo.db.users.update(
-       #     {"_id": ObjectId(user_id)}, {"$set": {"newfield": 42}})
         return redirect(url_for("feed"))
 
     return render_template("finish-profile.html", username=username)
 
 
+@app.route("/followers", defaults={"username": 1, "page": 1})
+@app.route("/followers/<username>/<page>")
+def followers(username, page):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
+
+    page = int(page)
+    # if the username is set to the default the session cookie for the user is used
+    # this means that /followers accesses the user's own followers by default
+    if username == 1:
+        username = session['user']
+    else:
+        # if a username is specified in the url, then this profile will be accessed
+        username = username
+    # grabbing the user's followers from the db. it is stored as an array of names
+    followers = mongo.db.users.find_one(
+        {"username": username})["followers"]
+    # this is accessed in the html to display 40 followers per page
+    page_count = len(followers)
+    page_count = math.ceil(page_count/40)
+
+    # the following section of code is the logic to determine:
+    # 1. the first page number in the navigation
+    # 2. the last number in the navigation
+    # if the current page number is less than 3 the first page number is always 1
+    if page <= 3:
+        first_number = 1
+        # the max last page number in the navigation is 5
+        if page_count > 5:
+            last_number = 5
+        else:
+            # if there are <= than 5 pages then the last page number is equal to the page count
+            last_number = page_count
+    else:
+        # when the current page is above 3
+        if page_count <= 5:
+            first_number = 1
+            last_number = page_count
+        # if the user is near the end of the number of pages
+        # the following statement prevents more than the number of pages that exist
+        # from being displayed
+        elif page+2 > page_count:
+            first_number = page_count-4
+            last_number = page_count
+        else:
+            first_number = page-2
+            last_number = page+2
+
+    return render_template('followers.html', username=username, followers=followers,
+                           page=page, page_count=page_count, first_number=first_number,
+                           last_number=last_number)
+
+
+# the functionality of /following is almost the same as /followers except that
+# the users following entry in the database is accessed
+@app.route("/following", defaults={"username": 1, "page": 1})
+@app.route("/following<username>/<page>")
+def following(username, page):
+    logged_in = logged_in_test()
+    if logged_in == False:
+        return render_template("not-logged-in.html")
+    page = int(page)
+    if username == 1:
+        username = session['user']
+    else:
+        username = username
+    # accessing the following entry and not followers
+    following = mongo.db.users.find_one(
+        {"username": username})["following"]
+    page_count = len(following)
+    page_count = math.ceil(page_count/40)
+
+    if page <= 3:
+        first_number = 1
+        if page_count > 5:
+            last_number = 5
+        else:
+            last_number = page_count
+    else:
+        if page_count <= 5:
+            first_number = 1
+            last_number = page_count
+        elif page+2 > page_count:
+            first_number = page_count-4
+            last_number = page_count
+        else:
+            first_number = page-2
+            last_number = page+2
+
+    return render_template('following.html', username=username, following=following,
+                           page=page, page_count=page_count, first_number=first_number,
+                           last_number=last_number)
+
+
 @ app.route("/feed", defaults={"page": 1, "unfiltered": 0})
 @ app.route("/feed/<page>/<unfiltered>")
 def feed(page, unfiltered):
+    # the function takes page and unfiltered as arguments
+    # page determines which page the user is accessing
+    # unfiltered is used to monitor whether the user is using the filter
     logged_in = logged_in_test()
     if logged_in == False:
         return render_template("not-logged-in.html")
@@ -245,8 +272,13 @@ def feed(page, unfiltered):
         session["vampires"] = 'Vampires'
         session["other"] = "Other"
         session["sort_method"] = 3
+        # sort method 3 returns the newest results
         sort_method = 3
     elif unfiltered == 1:
+        # unfiltered 1 is when the user presses go from the filter initially
+        # if unfiltered is 1 then the entries are taken from the filter form
+        # they are put into session cookies so that when the user changes the page
+        # the correct filters are applied
         all = request.args.get('all')
         aliens = request.args.get('aliens')
         angels = request.args.get('angels')
@@ -268,6 +300,8 @@ def feed(page, unfiltered):
         session["sort_method"] = int(request.args.get('sort_method'))
         sort_method = int(request.args.get('sort_method'))
     elif unfiltered == 2:
+        # unfiltered is 2 when the user has a filter already set
+        # but uses the number navigation system at the bottom of the page
         all = session["all"]
         aliens = session['aliens']
         angels = session['angels']
@@ -279,18 +313,25 @@ def feed(page, unfiltered):
         other = session['other']
         sort_method = session['sort_method']
 
+    # grab the stories from the database and put them in a list
     stories = list(mongo.db.stories.find())
     if sort_method == 3:
+        # the list me reversed to return the newest entries
         stories.reverse()
+        # these are used to correctly set the sort by dropdown
         oldest_selected = ""
         newest_selected = "selected"
         most_favorites_selected = ""
     elif sort_method == 1:
+        # the following code sorts the list by number of favorites
+        # from most to least
         stories = sorted(stories, key=lambda i: i['favs'], reverse=True)
         oldest_selected = ""
         newest_selected = ""
         most_favorites_selected = "selected"
     else:
+        # by default the list is ordered from oldest to newest
+        # so no operation is applied
         oldest_selected = "selected"
         newest_selected = ""
         most_favorites_selected = ""
@@ -305,6 +346,10 @@ def feed(page, unfiltered):
         vampires = "Vampires"
         witches_wizards = "Witches/Wizards"
         other = "Other"
+
+    # The category variables to the names of the categories
+    # if the variables are not set to match the names then any story with that category will
+    # not be added to the filtered stories array
 
     for story in stories:
         if story["category"] == aliens:
@@ -324,6 +369,8 @@ def feed(page, unfiltered):
         elif story["category"] == other:
             filtered_stories.append(story)
 
+    # the following lines of code are used to set the checkboxes in the filtered
+    # to either checked or unchecked depending on the users previous entry
     if all == 'all':
         all_checked = "checked"
     else:
@@ -374,8 +421,11 @@ def feed(page, unfiltered):
     for entry in stories:
         story_count += 1
         # number of total pages in feed
+        # five stories max per page
     page_count = math.ceil(story_count/5)
-    # first_number = page + nav_direction
+
+    # this is used to determine the first and last number that is displayed
+    # in the number navigation system and is explained in /followers
     if page <= 3:
         first_number = 1
         if page_count > 5:
@@ -393,6 +443,7 @@ def feed(page, unfiltered):
             first_number = page-2
             last_number = page+2
 
+    # flash any messages that are stored
     flash(session["flash"])
     session["flash"] = ""
 
@@ -409,6 +460,10 @@ def feed(page, unfiltered):
         most_favorites_selected=most_favorites_selected)
 
 
+# /user_stories works almost exactly the same as /feed
+# the difference being that each story's author in the list of stories on the database
+# is compared to the stories_by variable
+# any story that is not by the author contained in this variable is omitted
 @app.route("/user_stories", defaults={"page": 1, "unfiltered": 0})
 @ app.route("/user_stories/<page>/<unfiltered>/<stories_by>")
 def user_stories(page, unfiltered, stories_by):
@@ -467,6 +522,7 @@ def user_stories(page, unfiltered, stories_by):
     all_stories = list(mongo.db.stories.find())
     stories = []
     for story in all_stories:
+        # only adding the stories by the username in the url
         if story["story_by"] == username:
             stories.append(story)
 
@@ -563,9 +619,8 @@ def user_stories(page, unfiltered, stories_by):
     story_count = 0
     for entry in stories:
         story_count += 1
-        # number of total pages in feed
     page_count = math.ceil(story_count/5)
-    # first_number = page + nav_direction
+
     if page <= 3:
         first_number = 1
         if page_count > 5:
@@ -596,6 +651,9 @@ def user_stories(page, unfiltered, stories_by):
         most_favorites_selected=most_favorites_selected, stories_by=stories_by)
 
 
+# /user_stories works almost exactly the same as /feed
+# the difference being that each story is added individually from the particular user's
+# list of favorites in the users section of the databas
 @app.route("/favorites", defaults={"page": 1, "unfiltered": 0})
 @ app.route("/favorites/<page>/<unfiltered>/<favorites_of>")
 def favorites(page, unfiltered, favorites_of):
@@ -657,8 +715,12 @@ def favorites(page, unfiltered, favorites_of):
     stories = []
 
     for favorite in user_favorites:
-        stories.append(mongo.db.stories.find_one(
-            {"_id": ObjectId(favorite)}))
+        # check if the users favorite story id hasn't been deleted
+        story_still_exists = mongo.db.users.find_one(
+            {"_id": ObjectId(favorite)})
+        # if the story still exists add it to the list of stories
+        if story_still_exists:
+            stories.append(story_still_exists)
 
     if sort_method == 3:
         stories.reverse()
@@ -753,9 +815,7 @@ def favorites(page, unfiltered, favorites_of):
     story_count = 0
     for entry in stories:
         story_count += 1
-        # number of total pages in feed
     page_count = math.ceil(story_count/5)
-    # first_number = page + nav_direction
     if page <= 3:
         first_number = 1
         if page_count > 5:
@@ -786,6 +846,10 @@ def favorites(page, unfiltered, favorites_of):
         most_favorites_selected=most_favorites_selected, favorites_of=favorites_of)
 
 
+# the search operates almost exactly the same as the feed, user stories and user favorites
+# it uses the search index that was set on the mongodb database to filter the stories
+# it also uses a search session cookie to maintain the user's search query
+# when the user changes pages using the number navigation at the bottom of the page
 @app.route("/search", defaults={"page": 1, "unfiltered": 0}, methods=["GET", "POST"])
 @ app.route("/search/<page>/<unfiltered>")
 def search(page, unfiltered):
@@ -794,6 +858,7 @@ def search(page, unfiltered):
         return render_template("not-logged-in.html")
     if request.method == "POST":
         query = request.form.get("search")
+        # setting the session cookie to the value the user input
         session["search"] = query
     else:
         query = session["search"]
@@ -846,6 +911,9 @@ def search(page, unfiltered):
         other = session['other']
         sort_method = session['sort_method']
 
+    # stories in this case is set using the index that was set in mongo db
+    # the index is set to  the content, location, category and title and story_by fields
+    # of the stories on the database
     stories = list(mongo.db.stories.find({"$text": {"$search": query}}))
     if sort_method == 3:
         stories.reverse()
@@ -940,9 +1008,7 @@ def search(page, unfiltered):
     story_count = 0
     for entry in stories:
         story_count += 1
-        # number of total pages in feed
     page_count = math.ceil(story_count/5)
-    # first_number = page + nav_direction
     if page <= 3:
         first_number = 1
         if page_count > 5:
@@ -974,6 +1040,7 @@ def search(page, unfiltered):
         most_favorites_selected=most_favorites_selected, query=query)
 
 
+# the following function is used to add a new story to the database
 @ app.route("/add_story", methods=["GET", "POST"])
 def add_story():
     logged_in = logged_in_test()
@@ -982,9 +1049,11 @@ def add_story():
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     if request.method == "POST":
+        # python date class used to set the date when the story was posted
         today = date.today()
         now = today.strftime("%B %d, %Y")
         content = request.form.get("content")
+        # the preview is set using the first 50 characters of the content and adding ...
         preview = content[0:50] + "..."
         story = {
             "title": request.form.get("title"),
@@ -996,12 +1065,14 @@ def add_story():
             "preview": preview,
             "date_added": now
         }
+        # insert a new story on the database
         mongo.db.stories.insert_one(story)
         session["flash"] = "Story added!"
         return redirect(url_for("feed"))
     return render_template("add-story.html")
 
 
+# the following function is used to render the edit profile page
 @ app.route("/profile", defaults={"username": "site_user"})
 @ app.route("/profile/<username>")
 def profile(username):
@@ -1009,6 +1080,11 @@ def profile(username):
     if logged_in == False:
         return render_template("not-logged-in.html")
     username = username
+    # own profile is used to determine whether edit button is displayed on the profile
+    # in contrast to the edit story function there is no risk of hacking here
+    # this is because the edit story function only ever uses the user session cookie
+    # this means that the url never changes and the user can only ever access the
+    # edit profile page for their own profile
     own_profile = 'no'
     if username == "site_user":
         username = session['user']
@@ -1018,6 +1094,9 @@ def profile(username):
     following = mongo.db.users.find_one(
         {"username": session["user"]})["following"]
     follows = 'no'
+    # the users following is grabbed from the db
+    # this is then used to determine whether the user is presented with the follow
+    # or the unfollow button when visiting another's profile
     if username in following:
         follows = 'yes'
     else:
@@ -1047,13 +1126,30 @@ def follow_user(username):
     if logged_in == False:
         return render_template("not-logged-in.html")
     username = username
+    # when the user clicks the follow button the users name is appended to their
+    # following field on the database
     following = mongo.db.users.find_one(
         {"username": session["user"]})["following"]
+    # the users followers must also be updated to include the name of the
+    # user which clicked follow on their profile
+    followers = mongo.db.users.find_one(
+        {"username": username})["followers"]
+
     following.append(username)
+    followers.append(session["user"])
+    # the list is then sorted to maintain alphabetical order
+    # this is because there is currently no search feature when viewing the lists
+    # of followers or following
     following.sort()
+    followers.sort()
     session["flash"] = "You are now following " + username
+    # update the database with the newly added username
     mongo.db.users.update(
         {"username": session["user"]}, {"$set": {"following": following}})
+    # update the user that was followed followers field to include the session user
+    mongo.db.users.update(
+        {"username": username}, {"$set": {"followers": followers}})
+    # the user is redirected to the followed user's profile
     return redirect(url_for("profile", username=username))
 
 
@@ -1065,14 +1161,23 @@ def unfollow_user(username):
     username = username
     following = mongo.db.users.find_one(
         {"username": session["user"]})["following"]
+    followers = mongo.db.users.find_one(
+        {"username": username})["followers"]
+    # in this case the username is removed from the list
     following.remove(username)
+    # similarly the session user is removed from the unfollowed user's list of followers
+    followers.remove(session["user"])
     following.sort()
+    followers.sort()
     session["flash"] = "You are no longer following " + username
     mongo.db.users.update(
         {"username": session["user"]}, {"$set": {"following": following}})
+    mongo.db.users.update(
+        {"username": username}, {"$set": {"followers": followers}})
     return redirect(url_for("profile", username=username))
 
 
+# edit_story renders the edit story html page
 @ app.route("/edit_story/<story>", methods=["GET", "POST"])
 def edit_story(story):
     logged_in = logged_in_test()
@@ -1086,6 +1191,8 @@ def edit_story(story):
         session["flash"] = "Oops, you don't have permission for that!"
         return redirect(url_for("feed"))
     if request.method == "POST":
+        # if the user hits the submit button the form data is used to edit the
+        # story details in the database
         new_content = request.form.get("content")
         preview = new_content[0:50] + "..."
         mongo.db.stories.update(
@@ -1100,6 +1207,9 @@ def edit_story(story):
             {"_id": ObjectId(story)}, {"$set": {"preview": preview}})
         session["flash"] = "Story edited!"
         return redirect(url_for("feed"))
+
+    # these variables grab the current story details from the database
+    # they are then passed through to jinja to prefill the edit form
     title = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["title"]
     category = mongo.db.stories.find_one(
@@ -1118,56 +1228,69 @@ def delete_story(story):
     logged_in = logged_in_test()
     if logged_in == False:
         return render_template("not-logged-in.html")
-    mongo.db.stories.remove(
-        {"_id": ObjectId(story)})
-    session["flash"] = "Story deleted"
-    return redirect(url_for("feed"))
+    story_by = mongo.db.stories.find_one(
+        {"_id": ObjectId(story)})["story_by"]
+    # prevent the user from deleting a story that they don't own
+    if story_by != session["user"]:
+        session["flash"] = "Oops, you don't have permission for that!"
+        return redirect(url_for("feed"))
+    else:
+        # if the user follows through with deleting it is removed from the database
+        mongo.db.stories.remove(
+            {"_id": ObjectId(story)})
+        session["flash"] = "Story deleted"
+        return redirect(url_for("feed"))
 
 
-def remove_follower(user_to_remove):
-    site_user = session["user"]
-    site_user_following = mongo.db.users.find_one(
-        {"username": site_user})["following"]
-    site_user_following.remove(user_to_remove)
-    mongo.db.users.update(
-        {"username": site_user}, {"$set": {"following": site_user_following}})
-
-
+# /view_story takes the story id and renders the story on the story.html page
 @ app.route("/view_story/<story>", methods=["GET", "POST"])
 def view_story(story):
     logged_in = logged_in_test()
     if logged_in == False:
         return render_template("not-logged-in.html")
+    # This line is used to check if the story is in the user's favorites or not
     favorite_stories = mongo.db.users.find_one(
         {"username": session["user"]})["favorite_stories"]
+    # This line is used to monitor how many users have favorited the story
     favorites_count = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["favs"]
+
+    # The post method in this function is only used to add or remove a particular
+    # story from users favorites
     if request.method == "POST":
         story_to_add_or_remove = story
-
+    # if the story is in favorites already then a post from the webpage signifies
+    # the deletion of the story from the user's favorites
         if story in favorite_stories:
             favorite_stories.remove(story_to_add_or_remove)
             mongo.db.users.update(
                 {"username": session["user"]}, {"$set": {"favorite_stories": favorite_stories}})
+            # the favorites count for the story in the story's section of the database must
+            # also be updated to reflect the lost of a favorite. ie. -1
             favorites_count = favorites_count-1
             mongo.db.stories.update(
                 {"_id": ObjectId(story)}, {"$set": {"favs": favorites_count}})
             flash("Story removed from favorites")
         else:
+            # otherwise the story is added to the user's favorites
             favorite_stories.append(story_to_add_or_remove)
             mongo.db.users.update(
                 {"username": session["user"]}, {"$set": {"favorite_stories": favorite_stories}})
+            # and the story's favorite count is incremented by 1
             favorites_count = favorites_count+1
             mongo.db.stories.update(
                 {"_id": ObjectId(story)}, {"$set": {"favs": favorites_count}})
             flash("Story added to favorites")
 
+    # this variable is used on screen to tell the user whether or not
+    # the story is in their favorites
     favorited = ""
     if story in favorite_stories:
         favorited = "In Favorites"
     else:
         favorited = "Not in Favorites"
 
+    # the following variables hold the story details to be displayed
     title = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["title"]
     category = mongo.db.stories.find_one(
@@ -1181,6 +1304,8 @@ def view_story(story):
     story_by = mongo.db.stories.find_one(
         {"_id": ObjectId(story)})["story_by"]
 
+    # owns_story is used to hide or display the edit/delete buttons for the user
+    # if they don't own the story they are not presented with the options
     if story_by == session['user']:
         owns_story = 'yes'
     else:
@@ -1193,6 +1318,8 @@ def view_story(story):
                            user_favorites=user_favorites, favorited=favorited)
 
 
+# /edit_profile is used to render the edit profile page for the session user
+# it is accessed from the edit button on their profile page
 @ app.route("/edit_profile", methods=["GET", "POST"])
 def edit_profile():
     logged_in = logged_in_test()
@@ -1200,6 +1327,8 @@ def edit_profile():
         return render_template("not-logged-in.html")
     # it is impossible to edit someone else's profile by url.
     # the edit profile link can only bring a user to edit their own profile
+    # the following variables are used to prepopulate the field in the edit profile form
+    # with the data contained on the users section of the db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     email = mongo.db.users.find_one(
@@ -1212,9 +1341,19 @@ def edit_profile():
         {"username": session["user"]})["interest"]
     profile_picture = mongo.db.users.find_one(
         {"username": session["user"]})["profile_picture"]
+    # the following code is used to pull the number out of the profile picture string
+    # it is then used to select which picture is preselected in the carousel of pictures
     profile_picture = profile_picture[::-1]
+    if profile_picture[5] == "1":
+        add_ten = True
+    else:
+        add_ten = False
     profile_picture = profile_picture[4]
+    if add_ten == True:
+        profile_picture = "1" + profile_picture
 
+    # if the method is post then the new data from the form is gathered and used
+    # to update the user's details on the database
     if request.method == "POST":
         mongo.db.users.update(
             {"username": username}, {"$set": {"email": request.form.get("email")}})
@@ -1232,9 +1371,10 @@ def edit_profile():
                            interest=interest, profile_picture=profile_picture)
 
 
+# error handler for 404
 @app.errorhandler(404)
 def page_not_found(e):
-
+    # if the user is logged in and the page isn't found
     if session["user"] != "":
         return render_template('404.html'), 404
     else:
@@ -1243,8 +1383,10 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def page_not_found(e):
-    # note that we set the 404 status explicitly
-    return render_template('404.html'), 500
+    if session["user"] != "":
+        return render_template('500.html'), 500
+    else:
+        return render_template('not-logged-in.html'), 500
 
 
 def profile_picture_finder(username):
@@ -1268,4 +1410,4 @@ def context_processor():
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
