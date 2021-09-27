@@ -1,4 +1,7 @@
+/* This script is used to set which of the register or login box is displayed on the screen
+when the user clicks the relevant div on the screen. It is only relevant on smaller screens */
 window.addEventListener("DOMContentLoaded", (event) => {
+  /* if the user clicks the login-title-box div the login form is displayed */
   document
     .getElementsByClassName("login-title-box")[0]
     .addEventListener("click", function () {
@@ -12,7 +15,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       registerTitleBox.style.borderBottom = "2px outset black";
       this.style.borderBottom = "none";
     });
-
+  /* if the user clicks the register-title-box div the register form is displayed */
   document
     .getElementsByClassName("register-title-box")[0]
     .addEventListener("click", function () {

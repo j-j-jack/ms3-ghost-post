@@ -1,7 +1,10 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-  let checkBoxes = document.getElementsByClassName("checkboxes");
   let checkBoxFilter = document.getElementsByClassName("checkbox-filter")[0];
   allCheckbox = document.getElementById("allCheckbox");
+  /* The following if/else statement either enables or disables the user from using the checkboxes
+  if the all checkbox is checked the user cannot click on the other checkboxes. A dark filter is 
+  placed over the checkboxes and the cursor is changed to not-allowed to communicate this to the 
+  user */
   if (allCheckBox.checked == false) {
     checkBoxFilter.style.background = "rgba(183, 216, 209, 0)";
     checkBoxFilter.style.width = "0%";
@@ -27,21 +30,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 
+  /* jquery toggle function is used to toggle the filter open and closed on smaller screens */
   $("#filter-opener").click(function () {
     $("#filter-div").toggle("medium");
   });
-  const fitlerMediaQuery = window.matchMedia("(min-width: 992px)");
-  // https://css-tricks.com/working-with-javascript-media-queries/
-
-  function filterOpen(e) {
-    // Check if the media query is true
-    if (e.matches) {
-      let filterDiv = document.getElementById("filter-div");
-      if (filterDiv.style.display == "none") {
-        filterDiv.style.display = "block";
-      }
-    }
-  }
-  // Register event listener
-  fitlerMediaQuery.addEventListener("change", filterOpen);
 });

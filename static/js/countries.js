@@ -1,4 +1,6 @@
-let countries = [
+/* ~This script contains a variable which is used to populate dropdowns on various pages 
+the site */
+const countries = [
   { name: "Afghanistan", code: "AF" },
   { name: "Albania", code: "AL" },
   { name: "Algeria", code: "DZ" },

@@ -1,3 +1,6 @@
+/* This script is used on the finish profile page. It functions the same as the edit profile script
+without the prepopulating funtionality. The edit-profile-script.js file contains further explanation
+about how the script works */
 let profilePictures = [
   "/static/images/profile-1.jpg",
   "/static/images/profile-2.jpg",

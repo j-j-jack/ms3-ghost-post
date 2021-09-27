@@ -1,3 +1,5 @@
+/* This array is used as the src of the profile picture options when the user clicks
+the left and right arrows */
 let profilePictures = [
   "/static/images/profile-1.jpg",
   "/static/images/profile-2.jpg",
@@ -13,6 +15,8 @@ let profilePictures = [
   "/static/images/profile-12.jpg",
 ];
 
+/* The following array is a list of alt attributes which are changed as the user cycles 
+through the profile picture options */
 let altTags = [
   "a spooky ghost-like figure standing in a dimly lit area",
   "a fairy woman standing in the forest wrapped in leaves",
@@ -33,11 +37,16 @@ let altTags = [
 ];
 
 window.addEventListener("DOMContentLoaded", () => {
+  /* This variable passed to the html page from the app and contained in a hidden div
+  it is used to preselect their current avatar in the carousel */
   let avatarNumber = parseInt(
     document.getElementsByClassName("avatar-receiver-div")[0].innerHTML
   );
+  /* 1-12 = 0-11 index in array */
   avatarNumber = avatarNumber - 1;
   let currentPictureSelected = avatarNumber;
+  /* Again the currently selected country is passed from the app to the html and contained
+  in a hidden div */
   let userCountry = document.getElementsByClassName("country-receiver-div")[0]
     .innerHTML;
 
