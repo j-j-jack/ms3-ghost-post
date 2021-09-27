@@ -1,6 +1,8 @@
+<!-- This is the base template for all of the site except the login and finish profile page
+This template contains the navbars for small and large screens, the logo and the flash message
+display -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,14 +17,21 @@
         <div class="page-content">
             <header>
                 <div class="navbar-and-logo-container">
+                    <!-- The small navbar display is set to none and changed via media queries
+                    depending on the screen size. It is toggled up and down using a comination
+                    of the burger icon and the x icon in the menu -->
                     <div id="navbar-container-small">
                         <nav>
                             <div id="x-icon-box">
                                 <h3 class="small-nav-heading">Ghost Post</h3>
+                                <!-- used to close the menu once it is opened -->
                                 <img id="x-icon" src="{{ url_for('static', filename='images/x-icon.svg') }}"
                                     alt="clickable x-icon which closes menu">
                             </div>
                             <div class="add-story-box-small">
+                                <!-- the navlink anchor tags are set to be the full size of the div
+                                this means clicking anywhere on the div takes the user to the correct
+                                page -->
                                 <a class='nav-link-small' href="{{ url_for('add_story') }}">Add Story</a>
                             </div>
                             <div class="feed-box-small">
@@ -32,6 +41,9 @@
                                 <a class="nav-link-small" href="{{ url_for('profile') }}">Profile</a>
                             </div>
                             <div class="logout-box-small">
+                                <!-- The logout link is actally a form with a hidden button
+                                when the box is clicked the navbar.js clicks the hidden button to 
+                                submit the form-->
                                 <form method="POST" action="{{ url_for('login') }}">
                                     <h4>Logout</h4>
                                     <button style="display:none" id=logout-button-small></button>
@@ -53,6 +65,7 @@
                         </nav>
                     </div>
                     <div class="dropdown-box">
+                        <!-- The burger icon toggles the menu up and down from the navbar.js script -->
                         <img id="burger-icon" src="{{ url_for('static', filename='images/burger.svg') }}"
                             alt="clickable dropdown icon">
                     </div>
@@ -63,6 +76,8 @@
                     </div>
 
                     <div class="navbar-box">
+                    <!-- he larger navbar script operates the same as the smaller navbar. It is a
+                    flexbox so responds to the changing screen size -->
                         <nav>
                             <br>
                             <div class="navbar-container">
@@ -101,7 +116,8 @@
                 {% block heading %}
                 {% endblock %}
                 <section>
-                    <!-- flash messages -->
+                    <!-- This section displays any flash messages received from the various
+                    python functions -->
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
                     <div class="flash-message-container">
@@ -112,6 +128,9 @@
                         {% endfor %}
                     </div>
                     {% else %}
+                    <!-- If there is no message received there is simply an empty container. This
+                    is to prevent errors in the flash.js script as it searches the document for
+                    this container regardless -->
                     <h4 class="flash-message"></h4>
                     {% endif %}
                     {% endwith %}

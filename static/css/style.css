@@ -784,6 +784,9 @@ figcaption{
 /* media queries -------------------------------------------------------------------- */
 @media screen and (max-width: 991px){
 
+    .filter-div{
+        display: none;
+    }
     .next-text{
         display: none;
     }

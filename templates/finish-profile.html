@@ -1,3 +1,5 @@
+<!-- this page is presented to the user upon logging in if they haven't finished their profile.
+The user can't access the rest of the site if they haven't done so-->
 {% extends "base.html" %}
 {% block title %}
 <title>Finish Profile</title>
@@ -37,6 +39,7 @@
 
 
                 <div class="finish-profile-box-a">
+                    <!-- he user must specify their interest -->
                     <label for="interest">Main Interest: </label>
                     <select name="interest" id="interest" required>
                         <option value="">Choose</option>
@@ -48,6 +51,8 @@
                         <option value="Vampires">Vampires</option>
                         <option value="Witches/Wizards">Witches/Wizards</option>
                     </select><br><br>
+                    <!-- The radio buttons change as the user cycles through the profile picture
+                    options. This is done in the finish-profile-script.js file -->
                     <div class="profile-picture-radio-buttons">
                         <input type="radio" id="profile-radio-1" name="profile-picture"
                             value="static/images/profile-1.jpg" checked required>
@@ -90,6 +95,8 @@
                 <div class="finish-profile-box-b">
                     <label for="location">Location: </label>
                     <select class="country-selector" name="location" id="location" required>
+                    <!-- The location dropdown is populated using the countries.js script in 
+                    conjuntion with the finish-profile.js script -->
                         <option value="">Choose</option>
                     </select><br><br>
                     <label for="about">About you: </label><br>

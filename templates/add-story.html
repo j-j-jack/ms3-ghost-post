@@ -1,3 +1,4 @@
+<!-- This page allows the user to post a story to the site -->
 {% extends "base-2.html" %}
 {% block title %}
 <title>Add Story</title>
@@ -6,8 +7,10 @@
 <main>
     <div class="story-form">
         <form method="POST" action="{{ url_for('add_story') }}">
+            <!-- Set the title of the story -->
             <label for="title">Title: </label>
             <input type=text id="title" name="title"><br><br>
+            <!-- Set the story category -->
             <label for="Category">Category: </label>
             <select name="category" id="Category" required>
                 <option value="">Choose</option>
@@ -20,11 +23,13 @@
                 <option value="Witches/Wizards">Witches/Wizards</option>
                 <option value="Other">Other</option>
             </select><br><br>
+            <!-- Set the story location. The location is populated using the dictionary in 
+            the countries.js script. This is done in the add-story-script.js -->
             <label for="location">Location: </label>
-
             <select class="country-selector" name="location" id="location" required>
                 <option value="">Choose</option>
             </select><br><br>
+            <!-- Set the content of the story in the textarea -->
             <label for="content">Content: </label><br>
             <textarea id="content" name="content" rows="30" cols="100"
                 placeholder="Write your story here (max 20000 char)" maxlength="20000" style="resize: none;"

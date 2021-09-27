@@ -1,3 +1,6 @@
+<!-- This page is used to compile a graphical representation of the information the details the 
+user has provided about themselves as well as links to a list of their favorites, stories, followers
+and following -->
 {% extends "base-2.html" %}
 {% block title %}
 <title>Profile</title>
@@ -5,6 +8,8 @@
 {% block heading %}
 <h3 class="page-heading"> Profile for {{ username }}</h3>
 {% if own_profile == 'yes' %}
+<!-- The own_profile variable is used to determine whether or not the edit/delete 
+    buttons are displayed -->
 <div class="edit-profile-from-profile-page">
     <button onclick="location.href=`{{ url_for('edit_profile') }}`">
         Edit Profile
@@ -12,6 +17,9 @@
 </div>
 {% else %}
 {% if follows == 'no' %}
+<!-- The follows variable is used to determine the content of the follow-user-button and display
+to the user whether or not they are following a particular user. Again the own_profile variable 
+is used to dictate whether this information is displayed -->
 <div class="follow-user-button">
     Not Following: <button onclick="location.href=`{{ url_for('follow_user', username=username) }}`">
         Follow
@@ -29,6 +37,7 @@
 {% block content %}
 <main>
     <div class="profile-container">
+        <!-- The profile is created using flexbox. The icons are layed out using CSS grids  -->
         <div class="profile-div-a">
             <section>
                 <div class="profile-username-div">

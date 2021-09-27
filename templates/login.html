@@ -36,7 +36,7 @@
 <main>
 
     <div class="login-form-container">
-
+    <!-- The register and login boxes are sized using flex on large screens -->
         <div class="login-box">
             <section>
                 <h2>Login</h2>
@@ -59,6 +59,7 @@
                     <input id="lr-username" name="username" type="text" required><br><br>
                     <label for="lr-email">Email: </label><br>
                     <input id="lr-email" name="email" type="email" required><br><br>
+                    <!-- password1 and 2 must match or the user is displayed a flash message -->
                     <label for="lr-password1">Password: </label><br>
                     <input id="lr-password1" name="password1" type="password" minlength="5" maxlength="15"
                         pattern="^[a-zA-Z0-9]{5,15}$" required><br><br>
@@ -74,7 +75,8 @@
 
     <section>
         <div class="login-form-container-small">
-
+        <!-- The login and register boxes on the small screen are not both displaye together
+        the user must click on either title box to select one or the other -->
             <div class="login-titles-container">
                 <div class="login-title-box">
                     <h4>Login</h4>
@@ -85,7 +87,6 @@
             </div>
 
             <div class="login-box-small">
-                <!--sl stands for small login-->
                 <form method="POST" action="{{ url_for('login') }}">
                     <label for="sl-username">Username: </label><br>
                     <input id="sl-username" name="username" type="text" required><br><br>

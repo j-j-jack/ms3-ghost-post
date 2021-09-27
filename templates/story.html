@@ -1,3 +1,5 @@
+<!-- The story page displays the full content of a particular story. It is accessed from the 
+view story button located on various pages-->
 {% extends "base-2.html" %}
 {% block title %}
 <title>{{ title }}</title>
@@ -9,11 +11,13 @@
 {% block content %}
 <main>
     <nav>
+        <!-- If the user owns the story the edit/delete buttons are displayed -->
         {% if owns_story == 'yes' %}
         <div class="story-edit-delete">
             <button class="edit-story-button" onclick="location.href=`{{ url_for('edit_story', story=id) }}`">
                 Edit
             </button>
+            <!-- This button works the same as that on the feed page and is explained further there -->
             <button class="delete-story-button" onclick="let toBeDeleted = this.nextElementSibling.innerHTML;
                                deleteStory(toBeDeleted)">
                 Delete
@@ -38,6 +42,9 @@
                 </div><br>
                 <form method="POST" action="{{ url_for('view_story', story=id) }}">
                     {% if favorited == "In Favorites" %}
+                    <!-- This piece of code shows the user whether or not they have favorited
+                    the story. If the story is in their favorites they can remove it. Otherwise
+                    they can add it to their favorites. -->
                     {{ favorited }} <button type="submit">Remove from Favorites</button>
                     {% else %}
                     {{ favorited }} <button type="submit">Favorite Story</button>

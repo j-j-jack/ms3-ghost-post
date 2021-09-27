@@ -1,3 +1,6 @@
+<!-- This page displays the stories from the stories section of the db. The user can filter
+the stories by category and sort them from newest to oldest and vice versa as well as by 
+the number of favorites the story has-->
 {% extends "base-2.html" %}
 {% block title %}
 <title>Feed</title>
@@ -9,17 +12,23 @@
 {% block content %}
 <main>
     <div class="delete-receiver-div">{{ delete }}</div>
+    <!-- the filter button toggles the filter on and off on smaller screens-->
     <p class="filter-button-div">
         <button id='filter-opener'>Filters</button>
     </p>
     <div class="feed-and-filter-container">
         <div id="filter-div" class="filter-div">
             <aside>
+                <!-- The filter form sets the page to 1 and unfiltered to 1
+                unfiltered 1 signifies to the app that the go button has been pressed on the filter
+                and the user's choices are put into session cookies -->
                 <form action="{{ url_for('feed', page=1, unfiltered=1) }}">
                     <input type="checkbox" id="allCheckBox" name="all" value="all" {{ all_checked }}>
                     <label for="allCheckBox"> All</label><br>
                     <div class="checkbox-container">
                         <div class="checkbox-filter"></div>
+                        <!-- The checked variables dictate whether the boxes are checked or not 
+                        depending on the user's previous choices -->
                         <input class="checkboxes" type="checkbox" id="aliens" name="aliens" value="Aliens"
                             {{ aliens_checked }}>
                         <label for="aliens"> Aliens</label><br>
@@ -49,6 +58,8 @@
                     <br>
                     <label for="sort_method">Sort by: </label>
                     <select name="sort_method" id="sort_method">
+                        <!-- The selected variables are passed from the app and dictate which option
+                        is selected depending on the user's previous choices -->
                         <option value="3" {{ newest_selected }}>Newest(default)</option>
                         <option value="2" {{ oldest_selected }}>Oldest</option>
                         <option value="1" {{ most_favorites_selected }}>Favorites</option>
@@ -58,11 +69,14 @@
             </aside>
         </div>
         <div class="feed-div">
+            <!-- 5 stories are displayed per page -->
             {% for i in range((page*5)-5, page*5) %}
             {% if stories[i] %}
             <section>
                 <div class="story-preview-box">
                     <h4 class="feed-story-title">{{ stories[i].title }}</h4>
+                    <!-- if the user owns the displayed story the edit and delete buttons will be
+                    displayed -->
                     {% if username == stories[i].story_by %}
                     <div class='feed-edit-delete'>
                         <button class="edit-story-button"
@@ -73,6 +87,9 @@
                                deleteStory(toBeDeleted)">
                             Delete
                         </button>
+                        <!-- The div below holds the story id so it can be accessed by the onclick above
+                        it is then processed by the delete story function which is located in the delete
+                        story script -->
                         <div style="display: none">{{ url_for('delete_story', story=stories[i]._id) }}</div>
 
                     </div>
@@ -83,7 +100,10 @@
                     Preview: {{ stories[i].preview }}<br><br>
                     <div class="feed-div-inner-container">
                         <div class="profile-picture-box">
-
+                        <!-- as the stories entries in the database don't contain information about
+                        the profile picture of the user that posted it. For this reason the story_by
+                        variable is used to access the users section of the db using the global 
+                        profile_picture_finder function-->
                             <figure class=feed-profile-picture-figure
                                 onclick="location.href=`{{ url_for('profile', username=stories[i].story_by) }}`">
                                 <div class="feed-profile-picture-outer">
@@ -118,6 +138,8 @@
             {% endfor %}
         </div>
     </div>
+
+    <!-- The piece of code is used to tell the app whether or not the user has applied a filter or not-->
     {% if unfiltered == 0 %}
     {% set unfiltered = 0 %}
     {% else %}
@@ -125,6 +147,8 @@
     {% endif %}
     <nav>
         <div class="number-navigation">
+            <!-- The navigation is a flexbox and contains a max of 5 pages -->
+            <!-- If the user isn't on the first page the Prev button is displayed  -->
             {% if page_count > 1 and page > 1 %}
             <div class="prev" onclick="location.href=`{{ url_for('feed', page=page-1, unfiltered=unfiltered) }}`">
                 <img class="number-nav-arrow" src="{{ url_for('static', filename='images/left-arrow.svg') }}"
@@ -135,6 +159,8 @@
             {% for i in range(first_number, last_number+1) %}
 
             {% if i == page %}
+            <!-- The current page is highlighted if i = page. The style of the number is changed
+            to show the user what page they are on -->
             <div class="number-block-selected"
                 onclick="location.href=`{{ url_for('feed', page=i, unfiltered=unfiltered) }}`">
                 <b>{{ i }}</b>
@@ -147,6 +173,7 @@
             {% endif %}
             {% endfor %}
             {% if page_count > 1 and page < page_count %}
+            <!-- If the user isn't on the last page the Next button is displayed  -->
             <div class="next" onclick="location.href=`{{ url_for('feed', page=page+1, unfiltered=unfiltered) }}`">
                 <span class="next-text">Next</span>
                 <img class="number-nav-arrow" src="{{ url_for('static', filename='images/right-arrow.svg') }}"

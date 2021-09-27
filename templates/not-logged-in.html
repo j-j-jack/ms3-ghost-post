@@ -1,3 +1,4 @@
+<!-- this page is used when the user tries to access pages in the site without being logged in-->
 {% extends "base-2.html" %}
 {% block title %}
 <title>Feed</title>
@@ -10,6 +11,7 @@
 <main>
     <div class="error-message">
         <br><br>
+        <!-- The user is directed back to the login page -->
         <a class='error-link' href={{ url_for('login') }}>Click here to navigate to the login page</a>
     </div>
 </main>

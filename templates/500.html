@@ -1,3 +1,5 @@
+<!-- This page simply returns an error message when there is a 500 error
+It then allows the user to navigate back to their feed -->
 {% extends "base-2.html" %}
 {% block title %}
 <title>Feed</title>
@@ -10,8 +12,7 @@
 <main>
     <div class="error-message">
         <br><br>
-        <a class='error-link' href={{ url_for('feed') }}>
-            <<< Click here to go navigate back to your feed</a>
+        <a class='error-link' href={{ url_for('feed') }}>Click here to go navigate back to your feed</a>
     </div>
 </main>
 {% endblock %}

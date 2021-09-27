@@ -1,3 +1,5 @@
+
+<!-- This page shows the user's followers and is accessed from the user's profile page -->
 {% extends "base-2.html" %}
 {% block title %}
 <title>Followers</title>
@@ -9,12 +11,16 @@
 <main>
     <div class="followers-container-outer">
         <div class="follow-container">
+            <!--  max 40 followers are displayed on each page. css grids are used to create
+            the layout for the page-->
             {% for i in range((page-1) * 40, ((page-1)*40) +40) %}
             {% if followers[i] %}
             <div class="follow-box-">
                 <div class="follow-picture-box">
                     <figure class="follow-figure"
                         onclick="location.href=`{{ url_for('profile', username=followers[i]) }}`">
+                        <!-- The profile_picture_finder function is used again to display the 
+                        users profile picture -->
                         <img class='follow-picture' src={{ profile_picture_finder(followers[i]) }}
                             alt="profile picture for {{followers[i]}}">
                     </figure>
@@ -22,12 +28,6 @@
                 <span class='follow-name' onclick="location.href=`{{ url_for('profile', username=followers[i]) }}`">
                     {{ followers[i] }}
                 </span><br><br>
-                <!-- <form method="POST" action="{{ url_for('followers', username=username, page=page) }}">
-        <button type="submit">
-            <input type=text id="user_to_remove" name="user_to_remove" value = {{ followers[i] }}>
-            remove
-        </button>
-        </form> -->
             </div>
             {% endif %}
             {% endfor %}
@@ -35,6 +35,7 @@
     </div>
 
     <nav>
+        <!-- This navigation works in the same way as the feed page and is explained there -->
         <div class="number-navigation">
             {% if page_count > 1 and page > 1 %}
             <div class="prev" onclick="location.href=`{{ url_for('followers', username=username, page=page-1) }}`">

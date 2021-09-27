@@ -1374,27 +1374,34 @@ def edit_profile():
 # error handler for 404
 @app.errorhandler(404)
 def page_not_found(e):
-    # if the user is logged in and the page isn't found
+    # if the user is logged in and the page isn't found return the 404 page
     if session["user"] != "":
         return render_template('404.html'), 404
     else:
+        # return the not logged in page
         return render_template('not-logged-in.html'), 404
 
 
 @app.errorhandler(500)
 def page_not_found(e):
     if session["user"] != "":
+        # if the user is logged in and a 500 error occurs return the 500 page
         return render_template('500.html'), 500
     else:
+        # return the not logged in page
         return render_template('not-logged-in.html'), 500
 
 
+# this function is used on the feed page, search page, favorites page and user stories page
+# these pages need many small profile pictures to be pulled and displayed from the db
+# the function takes the story_by variable as a username to find the picture address
 def profile_picture_finder(username):
     picture = mongo.db.users.find_one(
         {"username": username})["profile_picture"]
     return picture
 
 
+# simple function used to test whether the user is logged into the site or not
 def logged_in_test():
     if session["user"] == "":
         return False
@@ -1402,6 +1409,8 @@ def logged_in_test():
         return True
 
 
+# the context_processor is used so that the profile_picture_finder function is accessible
+# by jinja on the relative pages
 @ app.context_processor
 def context_processor():
     return dict(profile_picture_finder=profile_picture_finder)
