@@ -50,6 +50,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let userCountry = document.getElementsByClassName("country-receiver-div")[0]
     .innerHTML;
 
+  /* Populating the location dropdown using the countries variable in the  */
   for (let country in countries) {
     if (userCountry == countries[country].name) {
       document.getElementsByClassName(
@@ -62,6 +63,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /* currentPictureSelected is used to hide the left and right arrows if the user reaches either end
+  of the options. It is also used to set the src and alt attributes on the page */
   if (currentPictureSelected > 0) {
     document.getElementsByClassName("picture-left-arrow")[0].style.visibility =
       "visible";
@@ -94,6 +97,8 @@ window.addEventListener("DOMContentLoaded", () => {
     profilePictures[currentPictureSelected];
   document.getElementsByClassName("selected-picture")[0].alt =
     altTags[currentPictureSelected];
+  /* The hidden radio buttons must also be changed so that when the form is posted the app can
+  read the user's profile picture choice */
   let radioButton = "profile-radio-" + (currentPictureSelected + 1);
   document.getElementById(radioButton).checked = true;
 

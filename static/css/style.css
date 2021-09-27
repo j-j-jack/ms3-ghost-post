@@ -1,64 +1,76 @@
+/* The fonts needed for the project */
 @import url('https://fonts.googleapis.com/css2?family=Modern+Antiqua&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+
+/* root variables for the site's colors */
 :root {
-    --logo-blue: rgb(52,83,129);
+    --logo-blue: rgb(52, 83, 129);
     --hover-blue: rgb(88, 138, 214);
     --background-color: rgb(209, 209, 209);
-    --logo-writing: rgb(181,235,0);
-    --ghost-face: rgb(129,193,187);
-    --ghost-eyes: rgb(182,102,37);
+    --logo-writing: rgb(181, 235, 0);
+    --ghost-face: rgb(129, 193, 187);
+    --ghost-eyes: rgb(182, 102, 37);
     --light-text: whitesmoke;
 }
-body{
-background-color: var(--background-color);
-padding: 0;
-margin: 0;
-font-family: 'Modern Antiqua', "Open Sans";
+
+/* General ----------------------------------------------------- */
+body {
+    background-color: var(--background-color);
+    padding: 0;
+    margin: 0;
+    font-family: 'Modern Antiqua', "Open Sans";
 }
 
-textarea{
+textarea {
     max-width: 90%;
 }
-.image-border{
+
+.image-border {
     border: 2px outset whitesmoke;
 }
-button{
+
+button {
     font-family: 'Modern Antiqua', "Open Sans";
     font-size: 110%;
     font-weight: bold;
 }
-button:hover{
+
+button:hover {
     background: var(--ghost-face);
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
 }
 
-input[type=text]{
+
+input[type=text] {
+    /* the type is specified here as checkboxes for example are not to be styled */
     font-family: 'Modern Antiqua', "Open Sans";
     width: 10em;
     border: 1px outset black;
 }
 
-input[type=password]{
+input[type=password] {
     font-family: 'Modern Antiqua', "Open Sans";
     width: 10em;
     border: 1px outset black;
 }
 
-input[type=email]{
+input[type=email] {
     font-family: 'Modern Antiqua', "Open Sans";
     width: 10em;
     border: 1px outset black;
 }
-select{
+
+select {
     font-family: 'Modern Antiqua', "Open Sans";
     font-size: 110%;
     font-weight: bold;
     width: 12em;
 }
-.page-heading{
+
+.page-heading {
     font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
     text-align: center;
     font-weight: bold;
@@ -67,8 +79,9 @@ select{
     margin: .2em;
     text-decoration: underline;
 }
+
 /* flash messages -------------------------------------------------------------------- */
-.flash-message-container{
+.flash-message-container {
     min-height: 1.5em;
     text-align: center;
 }
@@ -76,41 +89,47 @@ select{
 
 /* number navigation -------------------------------------------------------------------- */
 
-.number-block{
+.number-block {
     background: var(--logo-blue);
     color: black;
 }
 
 
-.number-block-selected{
+.number-block-selected {
     background: var(--ghost-face);
     color: var(--ghost-eyes);
     text-decoration: underline;
 }
 
-.prev{
+.prev {
     background: dimgrey;
     color: white;
 }
-.next{
+
+.next {
     background: dimgrey;
     color: white;
 }
+
 /* navbar -------------------------------------------------------------------- */
-.site-logo:hover{
-        cursor: pointer;
-    }
-#navbar-container-small{
+.site-logo:hover {
+    cursor: pointer;
+}
+
+#navbar-container-small {
     display: none;
     position: absolute;
 }
-.navbar-and-logo-container{
+
+.navbar-and-logo-container {
     display: flex;
 }
-.dropdown-box{
+
+.dropdown-box {
     display: none;
 }
-.nav-link-small{
+
+.nav-link-small {
     padding-left: 8%;
     display: block;
     height: 2em;
@@ -121,7 +140,7 @@ select{
     color: var(--logo-writing);
 }
 
-.nav-link{
+.nav-link {
     text-align: center;
     display: block;
     height: 2em;
@@ -131,15 +150,18 @@ select{
     font-weight: bold;
     color: var(--logo-writing);
 }
-.navbar-logo-box{
+
+.navbar-logo-box {
     flex: 1;
 }
-.navbar-box{
+
+.navbar-box {
     flex: 3;
     text-align: center;
     position: relative;
 }
-.navbar-container{
+
+.navbar-container {
     display: flex;
     margin-top: auto;
     width: 92%;
@@ -151,119 +173,136 @@ select{
     transform: translate(-50%, -50%);
 }
 
-.navbar-container > div {
+.navbar-container>div {
     background: var(--logo-blue);
     border: 2px outset black;
     color: var(--logo-writing);
     font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
 }
 
-.add-story-box{
+.add-story-box {
     flex: 1;
     cursor: pointer;
 }
 
-.add-story-box:hover{
-    background: var(--ghost-face);
-    border: 2px solid black;
-}
-.profile-box{
-    flex: 1;
-    cursor: pointer;
-}
-.profile-box:hover{
-    background: var(--ghost-face);
-    border: 2px solid black;
-}
-.feed-box{
-    flex: 1;
-    cursor: pointer;
-}
-
-.feed-box:hover{
+.add-story-box:hover {
     background: var(--ghost-face);
     border: 2px solid black;
 }
 
-.logout-box{
+.profile-box {
+    flex: 1;
+    cursor: pointer;
+}
+
+.profile-box:hover {
+    background: var(--ghost-face);
+    border: 2px solid black;
+}
+
+.feed-box {
+    flex: 1;
+    cursor: pointer;
+}
+
+.feed-box:hover {
+    background: var(--ghost-face);
+    border: 2px solid black;
+}
+
+.logout-box {
     height: 2em;
     padding-top: 1em;
     flex: 1;
     cursor: pointer;
     font-weight: bold;
 }
-.logout-box:hover{
+
+.logout-box:hover {
     background: var(--ghost-face);
     border: 2px solid black;
 }
-.search-box{
+
+.search-box {
     flex: 2;
     padding-top: 1em;
     padding-bottom: 0;
 }
-.view-story-box > button:hover {
+
+.view-story-box>button:hover {
     cursor: pointer;
 }
 
-.navbar-container-small > div {
+.navbar-container-small>div {
     background: var(--logo-blue);
     border: 2px outset black;
     color: var(--logo-writing);
     font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
 }
 
-.add-story-box-small{
+.add-story-box-small {
     border-top: 2px outset black;
     border-bottom: 1px outset black;
     cursor: pointer;
     color: var(--logo-writing);
 }
-.add-story-box-small:hover{
+
+.add-story-box-small:hover {
     background: var(--ghost-face);
 }
-.feed-box-small{
+
+.feed-box-small {
     flex: 1;
     border-bottom: 1px outset black;
     border-top: 1px outset black;
     cursor: pointer;
     color: var(--logo-writing);
 }
-.feed-box-small:hover{
+
+.feed-box-small:hover {
     background: var(--ghost-face);
 }
-.profile-box-small{
+
+.profile-box-small {
     border-bottom: 1px outset black;
     border-top: 1px outset black;
     cursor: pointer;
     color: var(--logo-writing);
 }
-.profile-box-small:hover{
+
+.profile-box-small:hover {
     background: var(--ghost-face);
 }
-.logout-box-small{
+
+.logout-box-small {
     border-top: 1px outset black;
     border-bottom: 2px outset black;
     cursor: pointer;
     padding-left: 8%;
     color: var(--logo-writing);
 }
-.logout-box-small:hover{
+
+.logout-box-small:hover {
     background: var(--ghost-face);
 }
-.search-box-small{
+
+.search-box-small {
     text-align: left;
     margin-top: 1.5em;
     margin-left: 1.5em;
 }
-.search-submission{
+
+.search-submission {
     display: none;
 }
-.search-icon-div{
+
+.search-icon-div {
     display: inline-block;
     position: relative;
     width: 2em;
 }
-.search-icon{
+
+.search-icon {
     cursor: pointer;
     height: 2em;
     vertical-align: sub;
@@ -273,11 +312,11 @@ select{
     transform: translate(-50%, -65%);
 }
 
-.logout-button{
+.logout-button {
     cursor: pointer;
     width: 100%;
     height: 120%;
-    background:rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0);
     border: none;
     text-align: center;
     font-family: 'Modern Antiqua', "Open Sans";
@@ -287,11 +326,12 @@ select{
     font-size: 100%;
     font-weight: bold;
 }
-.logout-button-small{
+
+.logout-button-small {
     cursor: pointer;
     width: 100%;
     height: 120%;
-    background:rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0);
     border: none;
     text-align: left;
     font-size: 100%;
@@ -299,53 +339,60 @@ select{
     padding: 0;
     margin: 0;
 }
+
 /* feed page -------------------------------------------------------------------- */
-.number-navigation{
+.number-navigation {
     display: flex;
     margin-left: 27%;
     margin-right: 27%;
     margin-bottom: 2.5em;
 }
 
-.feed-story-title{
+.feed-story-title {
     text-align: center;
     font-weight: bold;
-    color:var(--ghost-eyes);
+    color: var(--ghost-eyes);
     text-decoration: underline;
     font-size: 150%;
 }
-.number-navigation > div {
+
+.number-navigation>div {
     flex: 1;
     border: 1px solid black;
     text-align: center;
 }
-.number-navigation>div:hover{
+
+.number-navigation>div:hover {
     background: var(--ghost-face);
 }
-.number-nav-arrow{
+
+.number-nav-arrow {
     height: 80%;
 }
 
-.feed-and-filter-container{
+.feed-and-filter-container {
     display: flex;
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 2.5em;
 }
-.feed-div{
+
+.feed-div {
     background: rgba(0, 0, 0, 0);
     flex: 3;
     padding-right: .5em;
     padding-left: .5em;
 }
-.feed-edit-delete{
+
+.feed-edit-delete {
     text-align: right;
     margin-right: 2.5em;
     position: absolute;
     left: 0.2em;
     top: 0.2em;
 }
-.filter-div{
+
+.filter-div {
     background: var(--logo-blue);
     color: var(--background-color);
     flex: 1;
@@ -356,13 +403,15 @@ select{
     margin-top: 1em;
     border: 2px outset whitesmoke;
 }
-.filter-button-div{
+
+.filter-button-div {
     text-align: left;
     margin-left: 10%;
     margin-bottom: 0;
     margin-top: 1%;
 }
-.story-preview-box{
+
+.story-preview-box {
     margin-top: 1em;
     background: var(--logo-blue);
     color: var(--light-text);
@@ -372,64 +421,76 @@ select{
     position: relative;
 }
 
-.profile-picture-box{
+.profile-picture-box {
     overflow: hidden;
 }
 
-.feed-profile-picture-figure{
+.feed-profile-picture-figure {
     cursor: pointer;
     margin: 0;
 }
-figure{
+
+figure {
     margin: 0;
     padding-top: .5em;
-    
+
 }
-figcaption{
+
+figcaption {
     text-align: center;
 }
-.feed-profile-picture-outer{
+
+.feed-profile-picture-outer {
     text-align: center;
     justify-content: center;
     position: relative
 }
-.feed-profile-picture{
+
+.feed-profile-picture {
     height: 5em;
-    
+
 }
-.feed-profile-picture:hover{
+
+.feed-profile-picture:hover {
     filter: brightness(110%);
 }
-.feed-favorite-picture{
+
+.feed-favorite-picture {
     width: 5rem;
     height: 5rem;
     vertical-align: text-bottom;
 }
-.feed-div-inner-container{
+
+.feed-div-inner-container {
     display: flex;
 }
 
-.feed-div-inner-container > div{
+.feed-div-inner-container>div {
     margin-bottom: .5em;
     flex: 1;
     text-align: center;
 }
-.fav-picture-box{
+
+.fav-picture-box {
     padding-bottom: 0;
 }
-.view-story-box{
+
+.view-story-box {
     position: relative;
 }
-.view-story-button{
+
+.view-story-button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.checkbox-container{
+
+.checkbox-container {
     position: relative
 }
-.checkbox-filter{
+
+.checkbox-filter {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -438,20 +499,21 @@ figcaption{
 }
 
 
-.feed-title{
+.feed-title {
     text-align: left;
 }
+
 /*---------------------------------------------------------------*/
-.page-container{
+.page-container {
     position: relative;
     min-height: 100vh;
 }
 
-.page-content{
+.page-content {
     padding-bottom: 2.5em;
 }
 
-.footer{
+.footer {
     background-color: var(--logo-blue);
     position: absolute;
     height: 2.5em;
@@ -460,32 +522,32 @@ figcaption{
     padding-top: .5em;
     bottom: 0;
     text-align: center;
-    color:var(--logo-writing);
+    color: var(--logo-writing);
 }
 
 /* login page -------------------------------------------------------------------- */
-.login-page-logo-and-slogan-container{
+.login-page-logo-and-slogan-container {
     display: flex;
 }
 
-.logo-box{
+.logo-box {
     flex: 1;
     padding-left: 10%;
 }
 
-.slogan-box{
+.slogan-box {
     flex: 1;
     color: var(--logo-blue);
     text-align: center;
     padding: 8% 5% 0 5%;
 }
 
-.login-page-logo{
+.login-page-logo {
     width: 80%;
 }
 
 
-.login-form-container{
+.login-form-container {
     display: flex;
     text-align: center;
     padding-bottom: 5%;
@@ -493,7 +555,7 @@ figcaption{
     margin-left: 5%;
 }
 
-.login-box{
+.login-box {
     flex: 1;
     background: var(--ghost-eyes);
     border-radius: 2%;
@@ -501,26 +563,27 @@ figcaption{
     margin-right: 1%;
 }
 
-#register-button:hover{
+#register-button:hover {
     background: var(--ghost-eyes);
 }
-.register-box{
+
+.register-box {
     flex: 1;
     background: var(--ghost-face);
     text-align: center;
     border-radius: 2%;
     border: 2px outset black;
     margin-left: 1%;
-} 
+}
 
-.login-form-container-small{
+.login-form-container-small {
     display: none;
     background: var(--ghost-face);
     margin-left: 2.5em;
     margin-right: 2.5em;
 }
 
-.register-box-small{
+.register-box-small {
     display: none;
     background: var(--ghost-face);
     margin-bottom: 2.5em;
@@ -530,7 +593,7 @@ figcaption{
     border-radius: 0 0 1% 1%;
 }
 
-.login-box-small{
+.login-box-small {
     background: var(--ghost-eyes);
     margin-bottom: 9.5em;
     border-right: 2px outset black;
@@ -539,139 +602,162 @@ figcaption{
     border-radius: 0 0 1% 1%;
 }
 
-.login-titles-container{
+.login-titles-container {
     display: flex;
 }
-.login-title-box{
+
+.login-title-box {
     flex: 1;
-    background:var(--ghost-eyes);
+    background: var(--ghost-eyes);
     border-right: 1px outset black;
     border-left: 2px outset black;
     border-top: 2px outset black;
     border-radius: 2% 2% 0 0;
 }
-.register-title-box{
+
+.register-title-box {
     flex: 1;
-    background: var(--ghost-face); 
+    background: var(--ghost-face);
     border-right: 2px outset black;
     border-left: 1px outset black;
     border-top: 2px outset black;
     border-bottom: 2px outset black;
     border-radius: 2% 2% 0 0;
 }
-.small-screen-login-flash{
+
+.small-screen-login-flash {
     display: none;
     text-align: center;
 }
 
 /* profile page */
-.follow-user-button{
+.follow-user-button {
     text-align: center;
 }
+
 /* finish profile page -------------------------------------------------------------------- */
-.finish-profile-container{
+.finish-profile-container {
     display: flex;
     margin-bottom: 2.5em;
     text-align: center;
 }
-.finish-profile-box-a{
+
+.finish-profile-box-a {
     flex: 1;
 }
-.finish-profile-box-b{
+
+.finish-profile-box-b {
     flex: 1;
 }
-.finish-profile-title{
+
+.finish-profile-title {
     text-align: center;
 }
 
-.selected-picture{
+.selected-picture {
     height: 10em;
 }
 
-.profile-picture-radio-buttons{
+.profile-picture-radio-buttons {
     display: none;
 }
-.profile-pic-selector{
+
+.profile-pic-selector {
     height: 20vh;
 }
 
-.profile-pic-selector > div > span {
+.profile-pic-selector>div>span {
     padding-bottom: 50%;
 }
 
-.picture-left-arrow:hover{
+.picture-left-arrow:hover {
     cursor: pointer
 }
 
-.profile-icons-figure{
+.profile-icons-figure {
     cursor: pointer;
-    filter: saturate(150%);
 }
-.profile-icon{
+
+.profile-icon {
     height: 12em;
 }
-.profile-icon:hover{
+
+.profile-icon:hover {
     cursor: pointer;
     filter: brightness(120%);
 }
 
-.profile-profile-picture{
+.profile-profile-picture {
     width: 50%;
 }
-.picture-right-arrow:hover{
+
+.picture-right-arrow:hover {
     cursor: pointer
 }
-.finish-profile-submission{
+
+.finish-profile-submission {
     text-align: center;
 }
 
 
 /* finish profile page -------------------------------------------------------------------- */
-.story-form{
+.story-form {
     text-align: center;
 }
+
 /* finish profile page -------------------------------------------------------------------- */
-.profile-container{
+.profile-container {
     display: flex;
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 2.5em;
 }
-.profile-div-a{
+
+.profile-div-a {
     flex: 2;
 }
-.profile-div-b{
+
+.profile-div-b {
     flex: 3;
 }
-.profile-username-div{
+
+.profile-username-div {
     text-align: center;
 }
-.profile-picture-div{
+
+.profile-picture-div {
     text-align: center;
 }
-.profile-location-div{
+
+.profile-location-div {
     text-align: center;
 }
-.profile-interest-div{
+
+.profile-interest-div {
     text-align: center;
 }
-.profile-about-box{
+
+.profile-about-box {
     text-align: center;
 }
 
 .profile-icons-grid-inner {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    /* the value is changed to auto auto on smaller screens */
 }
-.profile-icon{
+
+.profile-icon {
     width: 100%;
 }
+
 /* Edit Profile Page---------------------------------------------------------------*/
-.edit-profile-from-profile-page{
+.edit-profile-from-profile-page {
     text-align: center;
     margin-right: 10%;
 }
-.edit-profile-title{
+
+.edit-profile-title {
     text-align: center;
 }
 
@@ -680,19 +766,24 @@ figcaption{
 .edit-story-button {
     cursor: pointer;
 }
-.edit-story-title{
+
+.edit-story-title {
     text-align: center;
 }
+
 /* follower Page---------------------------------------------------------------*/
-.follow-container{
+.follow-container {
     display: grid;
     grid-template-columns: auto auto;
+    /* the grid is changed to just auto on mobile screens */
     margin-left: 10%;
 }
-.follow-title{
+
+.follow-title {
     text-align: center;
 }
-.follow-picture-box{
+
+.follow-picture-box {
     display: inline-block;
     width: 10%;
     border: 2px outset whitesmoke;
@@ -700,58 +791,69 @@ figcaption{
     margin-right: 10%;
     cursor: pointer;
 }
-.follow-figure{
+
+.follow-figure {
     margin: 0;
     text-align: center;
 }
-.follow-picture{
+
+.follow-picture {
     width: 5em;
 }
-.follow-name{
+
+.follow-name {
     cursor: pointer;
 }
+
 /* View Story Page---------------------------------------------------------------*/
-.view-story-favs{
+.view-story-favs {
     text-align: center;
 }
-.story-area-indicator{
+
+.story-area-indicator {
     text-align: center;
     text-decoration: underline;
 }
-.story-edit-delete{
+
+.story-edit-delete {
     text-align: center;
 }
-.view-story-container{
-        display: flex;
-        text-align: center;
-        margin-left: 5%;
-        margin-right:5%;
-        margin-bottom: 1.5em;
-    }
 
-    .story-details-box{
-        flex: 1;
-        padding-left: 2.5em;
-        padding-right: 2.5em;
-    }
-    .content-box{
-        flex: 3;
-    }
-    .story-profile-picture{
-        height: 8em;
-    }
+.view-story-container {
+    display: flex;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 1.5em;
+}
+
+.story-details-box {
+    flex: 1;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+}
+
+.content-box {
+    flex: 3;
+}
+
+.story-profile-picture {
+    height: 8em;
+}
 
 
 /* follower Page---------------------------------------------------------------*/
-.follow-container{
+.follow-container {
     display: grid;
     grid-template-columns: auto auto;
     margin-left: 10%;
 }
-.follow-title{
+
+.follow-title {
     text-align: center;
 }
-.follow-picture-box{
+
+.follow-picture-box {
     display: inline-block;
     width: 10%;
     border: 2px outset whitesmoke;
@@ -759,62 +861,78 @@ figcaption{
     margin-right: 10%;
     cursor: pointer;
 }
-.follow-figure{
+
+.follow-figure {
     margin: 0;
     text-align: center;
 }
-.follow-picture{
+
+.follow-picture {
     width: 90%;
 }
-.follow-picture:hover{
+
+.follow-picture:hover {
     filter: brightness(110%);
 }
-.follow-name{
+
+.follow-name {
     cursor: pointer;
 }
+
 /* error pages---------------------------------------------------------------*/
-.error-link{
+.error-link {
     text-align: center;
     cursor: pointer;
     text-decoration: underline;
 }
-.error-message{
+
+.error-message {
     text-align: center;
 }
-/* media queries -------------------------------------------------------------------- */
-@media screen and (max-width: 991px){
 
-    .filter-div{
+/* media queries -------------------------------------------------------------------- */
+/* Tablet break point. Anything below this value is styled */
+@media screen and (max-width: 991px) {
+
+    .filter-div {
         display: none;
     }
-    .next-text{
+
+    .next-text {
         display: none;
     }
-    .prev-text{
+
+    .prev-text {
         display: none;
     }
-    .navbar-box{
+
+    .navbar-box {
         display: none;
     }
-    .dropdown-box{
+
+    .dropdown-box {
         display: block;
         flex: 1;
         padding-left: 5%;
     }
-    .navbar-logo-box{
+
+    .navbar-logo-box {
         flex: 3;
     }
-    #burger-icon{
+
+    #burger-icon {
         height: 60%;
         vertical-align: sub;
         margin-top: 20%;
         cursor: pointer;
     }
-    #x-icon-box{
+
+    #x-icon-box {
         text-align: right;
         position: relative;
     }
-    #x-icon{
+
+    #x-icon {
         position: absolute;
         top: -.45em;
         right: .2em;
@@ -824,12 +942,13 @@ figcaption{
         cursor: pointer;
     }
 
-    .small-nav-heading{
+    .small-nav-heading {
         color: var(--logo-writing);
         text-align: center;
         font-family: 'Lacquer', 'Modern Antiqua', 'Open Sans';
     }
-    #navbar-container-small{
+
+    #navbar-container-small {
         border: 2px outset black;
         display: none;
         min-width: 320px;
@@ -838,55 +957,68 @@ figcaption{
         background: var(--logo-blue);
         z-index: 100;
     }
-    .login-form-container{
+
+    .login-form-container {
         display: none;
     }
-    .login-page-logo-and-slogan-container{
+
+    .login-page-logo-and-slogan-container {
         flex-direction: column;
     }
-    .slogan-box{
+
+    .slogan-box {
         padding-top: 0;
     }
-    .login-form-container-small{
+
+    .login-form-container-small {
         display: block;
         text-align: center;
     }
-    .small-screen-login-flash{
+
+    .small-screen-login-flash {
         display: block;
     }
-    
-    .finish-profile-container{
+
+    .finish-profile-container {
         flex-direction: column;
     }
-    .feed-and-filter-container{
+
+    .feed-and-filter-container {
         display: block;
     }
+
     .profile-container {
         flex-direction: column;
     }
-    .view-story-container{
+
+    .view-story-container {
         flex-direction: column;
     }
-    .feed-div{
+
+    .feed-div {
         padding: 0;
     }
 }
 
-@media screen and (min-width: 992px){
-    #filter-opener{
+/* tablet breakpoint but opposite. Anything above this is style. */
+@media screen and (min-width: 992px) {
+    #filter-opener {
         display: none;
         pointer-events: none;
     }
 }
 
-@media screen and (max-width: 768px){
-    .profile-icons-grid-inner{
+/* Mobile breakpoint. Anything below this is styled */
+@media screen and (max-width: 768px) {
+    .profile-icons-grid-inner {
         grid-template-columns: auto auto;
     }
-    .profile-icon{
+
+    .profile-icon {
         height: 7em;
     }
-    .follow-container{
+
+    .follow-container {
         grid-template-columns: auto;
     }
 }
