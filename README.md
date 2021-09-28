@@ -593,9 +593,131 @@ Analysis: The user's expectation has been met
 
 [screenshot 3 of user story](resources/user-story-testing-images/user-story-12-c.PNG)
 
+## **Bugs and Issues**
+
+### **Known Issues**
+
+* There was a warning present in the code validation relating to the flash message container being empty. However, it was necessary to leave this heading in place on all pages as the flash script relies on it being present. Leaving the container in was necessary to avoid console errors.
+
+* The developer is also aware of a possible issue that may occur with loading times once many stories are added to the site. As it stands the site loads all the stories when the feed is opened. This is not ideal as once there are many stories the loading time may be significantly increased. In the next build the developer will solve this by using a pymongo function to count the number of entries in the database and only loading the entries 5 at a time using a for loop.
+
+[back to contents](#table-of-contents)
+
+### **Bugs Encountered and Fixes**
+
+#### **Bug 1**
+
+Bug: There was an issue with the small screen nav not fully disappearing when the user resized the screen to the larger screen size.
+
+Fix: The developer could not pinpoint the exact source of this bug but was able to solve the bug using a media query in javascript rather than in css. 
+
+[Screenshot of bug](resources/bugs/bug-1.PNG)
+
+#### **Bug 2**
+
+Bug: There was an issue with the profile images not correctly loading on the feed page. The console read failed to load resource.
+
+Fix: The developer compared the images that were working with those that were not and discovered that there was a '/' missing at the start of the image address. This was coming from the finish profile part of the app. When the user selected their avatar the address was put into the server. The developer changed the code to include the '/' and this solved the issue.
+
+[Screenshot of bug](resources/bugs/bug-2.PNG)
+
+#### **Bug 3**
+Bug: There was an issue with using the flex wrap property for the login page flexbox so that 
+Fix: The developer is aware that there are certain procedures that can be followed to post forms without the page refreshing such as using the ajax api. However, in the end due to the time constraints of the project the developer felt it was necessary to leave this feature out completely and only include the follow button on user profile pages where refreshing the page interfered less with the flow of the site.
+
+[Screenshot of bug](resources/bugs/bug-3.PNG)
 
 
+## **Future Features**
 
+### **Location Filter Option**
+In a future build the developer intends to add the option to filter the stories in the feed by location rather than to have the user search specifically for the location using the search bar.
+
+### **Messaging Features**
+
+It will be imperative in a future build to allow users to message each other. This is extremely important as a social media site relies on users being able to communicate with each other.
+
+### **Groups**
+
+The user intends to allow users to create groups for those with particular paranormal interests. 
+
+### **Automatically Taylored Feeds**
+
+The developer wishes to add this feature in a future build. This feature would allow users to have the filter options applied to their feed automatically through settings on their profile rather than using the filter every time.
+
+[back to contents](#table-of-contents)
+
+## **Deployment**
+
+### **Heroku Deployment**
+The project was deployed to GitHub Pages using the following steps...
+
+1. Create a heroku account on heroku.com
+2. Create a new app on Heroku with a unique name.
+3. Select the European server if you are located closer to Europe or the United States server if you are closer to the United States.
+4. In your IDE console type pip3 freeze -- local > requirements.txt. This creates a text file that heroku needs which includes the requirements needed for the project such as flask and pymongo.
+5. Create a Procfile in your IDE By typing python app.py > Procfile in your console.
+6. In Heroku you need to set up your config vars. These are located in the env.py file. They are as follows IP, PORT, SECRET_KEY, MONGO_URI and MONGO_DBNAME.
+7. In Heroku navigate to settings and click reveal config vars. Copy the config vars outlined above to Heroku and save them.
+8. In the deploy link in Heroku navigate to automatic deployment. Click on deploy from github. Use the text box provided to input your url from github and click to enable automatic deployment.
+9. Commit your changes and push them to Github
+10. The project will now be automatically deployed to Heroku. 
+11. In Heroku click on open app. 
+12. The URL for the website will be in the address bar.
+
+
+[back to contents](#table-of-contents)
+
+### **Forking the GitHub Repository**
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
+
+1. Log in to GitHub and locate the GitHub Repository
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+You should now have a copy of the original repository in your GitHub account.
+
+[back to contents](#table-of-contents)
+
+## **Making a Local Clone**
+1. Log in to GitHub and locate the GitHub Repository
+Under the repository name, click "Clone or download".
+2. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+3. Open Git Bash
+4. Change the current working directory to the location where you want the cloned directory to be made.
+Type git clone, and then paste the URL you copied in Step 3.
+$ git clone https://github.com/j-j-jack/ms3-ghost-post
+Press Enter. Your local clone will be created.
+
+$ git clone https://github.com/j-j-jack/ms3-ghost-post
+> Cloning into `ghost-post-clone`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+
+[back to contents](#table-of-contents)
+
+## **References**
+
+**Images**
+
+* Photo by Mads Schmidt Rasmussen on Unsplash
+* Photo by Alice Alinari on Unsplash
+* Photo by David Balev on Unsplash
+* Photo by Marek Studzinski on Unsplash
+* Photo by Alessio Zaccaria on Unsplash
+* Photo by laura adai on Unsplash
+* Photo by Miguel Gonzalez on Unsplash
+* Photo by Jaroslav Devia on Unsplash
+* Photo by Mahdi Bafande on Unsplash
+* Photo by benjamin lehman on Unsplash
+* Photo by Kevin Escate on Unsplash
+* Photo by Camila Quintero Franco on Unsplash
+
+**Site icons**
+* The icons for the site are from [Iconify.design](https://iconify.design/)
+
+**List of Countries**
+The list of countries used in the location dropdowns was sourced from [dzone.com](https://dzone.com/articles/list-of-all-countries-in-json)
 
 
 
