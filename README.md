@@ -213,7 +213,6 @@ User stories were created to aid in the designing of the site and in testing lat
 * As a person suffering from amnesia I want to be able to edit a previous post to include newly remember details. 
 * As a regular site user I want to be able to favorite any new stories that I read and enjoy.
 * As somebody who has recently discovered their encounter was just a practical joke I want to be able to remove the encounter.
-* As a new user I want to register for the site. 
 * As a long time user of the site I want to be able to view the oldest posts on the site.
 
 [back to contents](#table-of-contents)
@@ -417,6 +416,185 @@ Result: The button navigates the user back to the login page and the flash messa
 Expected: The search bar should be present in the navbars for the small and larger screen sizes. The user should be able to type their query in the text box and submit the search by either clicking the search icon or by pressing enter. The stories which contain the words in the search bar should be returned on a page that has the same functionality as the feed page. If the search returns no results the user should be informed that the search returned no results with a flash message.
 
 Result: The search bar is present in the correct locations on the site. If the search does not return any results, the user is informed of this with a flash message. When the search returns results, it returns results with the words from the search bar. The results are displayed on a page with the same functionality as the feed page with both the feed filter and number navigation present.
+
+### **User Story Testing**
+
+#### **User Story 1**
+
+Expectation: As a new user of the site I want to be able to register and create a profile.
+
+Test result: On opening the login page to the site the user is presented with both the login and register forms. As the user does not currently have an account it is obvious to them that they need to fill in the register form. The user fills in the form. However the first username that they choose ('Funky') has already been taken. They are informed of this through a flash message. The user then chooses the name 'Groovy'. The user is able to create an account. They are then directed to the finish profile page. The user fills out the form on the page. It is obvious what to place inside the fields due to the input titles. The user presses the submit button. They are then directed to the feed page where they are greeted with a personalised message including their username. They are also presented with a flash message stating that their registration was successful. It is obvious to the user that they have been successful in creating a new profile.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-1-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-1-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-1-c.PNG)
+
+#### **User Story 2**
+
+Expectation: As a ghosthunter I want to be able to filter the feed to only include stories about ghosts.
+
+Test result: The user accesses the feed page through the navbar feed link. The user sees the filter on the left side of the page. The user deselects the all checkbox. The dark filter disappears from in front of the other checkboxes. The user deselects all the checkboxes except for ghosts the user clicks the go button on the filter. The feed is refreshed and only includes stories about ghosts.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-2-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-2-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-2-c.PNG)
+
+#### **User Story 3**
+
+Expectation: As somebody from Albania I want to be able to search for instance of paranormal activity in that country.
+
+Test result: From the feed page the user questions whether they can use the filter to filter by country. They quickly realise that this is not possible. They then use the search bar in the nav to search for 'Albania'. The user clicks the search icon. The user is then presented with a search results page which only includes posts that are located in Albania.
+
+Analysis: The user's expectation has been met. However it might be a good idea to include a country filter in the feed filter in a future release.
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-3-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-3-b.PNG)
+
+#### **User Story 4**
+
+Expectation: As a security conscious individual I want to ensure that I have logged out of the site after pressing the logout button.
+
+Test result: The user uses the site navigation to logout by pressing the logout button. The user is then navigated to the login page. A flash message appears and informs them that they are logged out. However the user wants to make sure they are logged out and types '/feed' in the as a url. The user is presented with a page telling them that they are no longer logged in to the site.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-4-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-4-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-4-c.PNG)
+
+#### **User Story 5**
+
+Expectation: As a witness of an angel I want to be able to write an account of this story on the site.
+
+Test result: The user navigates to the add story page using the navbar link. The user is presented with a form that allows them to fill in the details of their encounter. The user fills in all fields in the form and clicks the submit button. The user is redirected back to the feed page where they a flash message appears telling them that they have added their story successfully and they see their story at the top of the feed.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-5-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-5-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-5-c.PNG)
+
+#### **User Story 6**
+
+Expectation: As a magazine editor I want to be able to read the most popular stories on the site with the possiblity of adding one of them to my magazine.
+
+Test result: From the feed page the user sees the filter at the left hand side of the screen. The user uses the drop down sort method to sort the stories by number of favorites. The user's feed is then filtered with the stories with the most number of favorites at the top. The user clicks the 'view story' button to read the stories at the top of the feed.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-6-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-6-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-6-c.PNG)
+
+#### **User Story 7**
+
+Expectation: As a site user who has recently moved country I want to be able to edit my site profile to reflect this.
+
+Test result: The site user navigates to their profile page using the link in the navbar. The user is presented with an 'edit profile' button under the main heading on their profile page. The user clicks this button. They are taken to the edit profile page. The user uses the location dropdown to change their country to Greece. The user clicks the submit button. They are redirected back to their profile page and see that their location has been updated.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-7-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-7-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-7-c.PNG)
+
+[screenshot 4 of user story](resources/user-story-testing-images/user-story-7-d.PNG)
+
+#### **User Story 8**
+
+Expectation: As a sociable individual I want to be able to follow other individuals on the site.
+
+Test result: The site user sees another user's avatar in a story preview box on the feed. The user hovers over the avatar. The avatar highlights and the cursor changes to a pointer. The user is aware that they can click on the avatar. The user does so and is taken to that users profile page. On the profile page the user sees a message that they are not following the other user along with a button that gives them the option to follow that user. The user clicks the button. The page refreshes. The user is presented with a flash message with tells them they are following the other user. The message beside the follow button now says to the user that they are following the other user and the button has changed to say 'unfollow'
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-8-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-8-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-8-c.PNG)
+
+#### **User Story 9**
+
+Expectation: As a person suffering from amnesia I want to be able to edit a previous post to include newly remember details.
+
+Test result: The user navigates to their profile page and clicks the icon for their own stories. The user is taken to a page which dispalys all the stories that they have written. They user clicks the edit story button for the story that they want to change. The user is brought to the edit story page. The user adds an extra detail in the content section of the form an clicks submit. The user is redirected to their feed and a flash message appears indicating to them that they have successfully edited their previous post.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-9-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-9-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-9-c.PNG)
+
+[screenshot 4 of user story](resources/user-story-testing-images/user-story-9-c.PNG)
+
+#### **User Story 10**
+
+Expectation: As a regular site user I want to be able to favorite any new stories that I read and enjoy.
+
+Test result: The user navigates to the feed using the dropdown menu on their mobile. The user reads the top post. However it doesn't seem interesting to them. The user reads the second post. They click the view story button to read the story further. The user reads the story in full on the view story page and enjoys the story. The user sees the button with the option to favorite the story. The user clicks the button. The page refreshes. The user is displayed a flash message letting them know that the story has been added to favorites. The user can also see that the story's favorite count has increased by 1.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-10-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-10-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-10-c.PNG)
+
+[screenshot 4 of user story](resources/user-story-testing-images/user-story-10-d.PNG)
+
+#### **User Story 11**
+
+Expectation: As somebody who has recently discovered their encounter was just a practical joke I want to be able to remove the encounter.
+
+Test result: The user locates their story from the user stories page which they access from their profile page. The user clicks the delete button on the story that they want to delete. The user sees an alert which asks them if they are sure that they want to delete the story. The user confirms that they want to delete the story. The user is redirected back to their main feed page. A flash message is displayed to them telling them that they have successfully deleted their story.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-11-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-11-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-11-c.PNG)
+
+[screenshot 4 of user story](resources/user-story-testing-images/user-story-11-d.PNG)
+
+#### **User Story 12**
+
+Expectation: As a long time user of the site I want to be able to view the oldest posts on the site.
+
+Test result: The user clicks the filter dropdown on the mobile version of the site. The filter appears on the feed page. The user uses the sort method dropdown to select the oldest stories. The user clicks go on the filter. The page refreshes and now has the oldest stories appearing first.
+
+Analysis: The user's expectation has been met
+
+[screenshot 1 of user story](resources/user-story-testing-images/user-story-12-a.PNG)
+
+[screenshot 2 of user story](resources/user-story-testing-images/user-story-12-b.PNG)
+
+[screenshot 3 of user story](resources/user-story-testing-images/user-story-12-c.PNG)
+
+
+
 
 
 
