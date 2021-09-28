@@ -20,6 +20,21 @@ This is the documentation for the Ghost Post social media website project. Ghost
         * [Business Objectives](#business-objectives)
         * [User Needs](#user-needs)
         * [Opportunities Table](#opportunities-table)
+    * [Scope Plane](#scope-plane)
+        * [Site Features](#site-features)
+        * [User Stories](#user-stories)
+    * [Structure Plane](#structure-plane)
+        * [Interaction Design](#interaction-design)
+        * [Information Architecture](#information-architecture)
+    * [Skeleton Plane](#skeleton-plane)
+        * [Project Wireframes](#project-wireframes)
+    * [Surface Plane](#surface-plane)
+        * [Colour](#colour)
+        * [Layout](#layout)
+        * [Fonts](#fonts)
+        * [Images](#images)
+        * [Order and Sequence](#order-and-sequence)
+        * [Identity](#identity)
 ## Technologies used
 
 ### **Code**
@@ -295,3 +310,114 @@ The most important elements on the site are the most easily recognized. An examp
 The surface plane decisions in this site combine to create a clean modern look which incorporates elements of the paranormal seen through the fonts and colours for example. This combination is intended to portray the brand as being openminded to both the world as is known as well as unknown. <br><br>
 
 ---
+
+## **Testing**
+
+### **Code Validation**
+
+* The HTML in this project was validated using the W3C code validation service. [W3C Markup Validation Service](https://validator.w3.org/) 
+
+* The CSS in this project was validated using the W3C CSS Code Validation Service [W3C CSS Markup Validation Service](http://jigsaw.w3.org/css-validator/validator) 
+
+* The Javascript in this Project was validated using the JSHint.com validator [JSHint Javscript Validator](https://jshint.com/)
+
+* The python code in this project is styled consistently and conforms to the PEP8 style guide
+
+[back to contents](#table-of-contents)
+
+### **Feature Testing**
+
+**Login and Register Forms**
+
+Expected: The register form should record the user's desired user name and email. If the user name is already taken a flash message should appear stating this to the user. The user should also not be able to log in unless the passwords in both fields match. If the passwords do not match a message should appear stating this to the user. Once the user has filled the form out with a unique username and matching password they should be taken to the finish profile page. The users name, email and password should appear on the database. There should also be a finished profile variable in the users data set to false. If the user enters and incorrect name or password while using the login form a flash message should appear stating this to the user. If the user has completed their profile they should be taken to the main feed. Otherwise, they should be taken to the finish profile page.
+
+Result: The feature functions as expected. The flash messages appear as they are supposed to. Once the user completes the register form the details they enter appear correctly in the database. Both forms function as intended and bring the user to the relevant page depending on whether they have completed their profile or not.
+
+**Profile Creation Page/ Finish Profile Page**
+
+Expected: The user should be presented with a form which requires them to enter their main interest relating to the paranormal, their locaton and a textarea where they can give some information about themselves. They must also choose an avatar from a carousel of images that is presented to them. When the user has filled out the form fully and submitted it they should be taken to the feed page. The data they have provided should be updated on their profile on the database. The 'finished profile' variable should be set to True now as they have completed their profile.
+
+Result: The page functions as designed. The user must fill out all the fields in the form before the submit button works. They are then navigated to the feed page. The data is updated on their profile on the database. The 'finished profile' is set to True on inspection.
+
+**Main Feed Page**
+
+Expected: The user should be greeted with a welcome message which includes their name. There should be stories preview boxes on the feed which include the story title, location, category and preview of the content of the story. There should also be the avatar and name of the user below this information with the number of favorites the story has and a button which gives the user the option to view the story in full. The avatar should be clickable and should take the user to the story author's profile. The view story button should take the user to a page where the full content of the story is visible. At the bottom of the feed there should be a number navigation system. It should provide feedback to the user informing them what page they are on. The user should be able to click the numbers to navigate to another of the pages.
+
+Result: The user is greeted with the message as designed. The story preview boxes contain the correct information. The user can click the avatar to visit the author's profile. The view story button takes the user to a full version of the story. The number of favorites that the story has are also visible. The number navigation system at the bottom of the page takes the user to the correct page when a number/Next/Prev is clicked. The current page is highlighted through a change in color and underlining of the page number.
+
+**Feed Filter**
+
+Expected: The user should be able to filter the stories in the feed by using the category checkboxes. If the user clicks the 'all' checkbox the other checkboxes should be impossible to click. There should be a dropdown from which the user can sort the feed by oldest, newest and most favorites. Pressing the go button should filter the feed based on the user's choices. If the user has used the filter and uses the number navigation at the bottom of the page, their filter choices should remain intact. 
+
+Result: Using the checkboxes makes it possible to include or exclude any of the categories that they wish to. The dropdown menu makes it possible to sort the feed in the manner described above. Upon clicking the 'all' checkbox the other checkboxes are placed under a dark filter. The cursor also changes to 'not-allowed'. Using the navigation at the bottom of the screen has no affect on the users filter choices and they are presented with the desired page with the filter choices still applied.
+
+**User Profile Pages**
+
+Expected: The user profile pages should present the details that the user gave in the register form and the finish profile page apart from the email they provided and their password. The users avatar should also be visible. There should be icons present on the screen which navigate the user to the favorites, stories, followers and following of the user whose profile they are viewing. There should be also a button present which allows the site user to follow the profile owner or to unfollow them if they are already following them. Using these buttons should refresh the page and a flash message should provide the site user with confirmation of the action they have taken.
+
+Result: The information on the page includes the users name, main interest, location and about information. The user's avatar is also visible. All the icon links on the page work correctly and navigate the site user to the correct pages. The follow/unfollow buttons work correctly and flash messages appear reflecting the action that the user has taken.
+
+**User Story Pages**
+
+Expected: These pages should be contain the same layout as the feed page with both the story preview boxes and feed filter present. The page is accessed from the icon on a particular user's profile page. The stories on the page should belong solely to that user. The filter and navigation should function the same as on the feed page.
+
+Result. The page is layed out exactly the same as the feed page with all features present. The page is accessed only from the icon on a users profile. The author of the stories on the page is correct. The filter and navigation function correctly.
+
+**Add Story Page**
+
+Expected: This page should be accessible through the link in the navbar. Either on small or large screens. The page should contain a form which allows the user to post a story. The details of the story should be the name, location and content. When the user posts the story it should appear as the newest story on the feed page. The story should be added on the database with the date of posting and the details that the user has provided.
+
+Result: The page is accessed from the links in the navbars. The page contains a form with the correct fields. The user must complete all fields before it is possible to submit the story. Upon submission the story appears as the first entry on the main feed and the story is added to the database with the date and details.
+
+**Edit Profile Page**
+
+Expected: This page should be accessible from the user's own profile page. An edit button should appear on the profile page which takes them to this page when clicked. The edit profile page should give the user to update their email, interest, avatar, location and about information. Upon submitting the form the details should be updated on the database.
+
+Result: The edit profile button takes the user to this page from their profile page. The form gives the user to update the correct details. Upon submitting the form the user's details are updated on the database.
+
+**Edit story page**
+
+Expected: This page should be accessible from the edit buttons on any story they have written either on story preview boxes or the view story page. The form on the edit story page should give the user the opportunity to update the content, location, category and name of the story that they have written. Upon submitting the form the details should update on the database.
+
+Result: The page is accessible from the edit story buttons. The form contains the correct fields. The user must fill out all fields in the form form submission to work. The story details update on the database when the user submits the form. 
+
+**Edit/Delete buttons**
+
+Expected: These buttons should appear only on story preview boxes of stories that have been written by the site user or the view story pages of these stories. The edit story buttons should take the user to the edit story page. Upon clicking the delete story button the user should be prompted with a javascript alert whether or not they want to proceed with the deletion of the particular story. If the user chooses to proceed the user should be navigated back to the main feed and they should be flashed a confirmation message that the story has been deleted. The story should be completely removed from the database.
+
+Result: The buttons are only present on stories that the user has themselves written. The edit story button takes the user to the edit story page. The delete story button raises an alert which requests confirmation. The user may choose to cancel or proceed at this point. If the user chooses to proceed, they are taken back to the feed page and the correct flash message appears. The story is removed from record on the database.
+
+**Edit profile button**
+
+Expected: This button should only appear on the user's own profile page. It should navigate the user to the edit profile page.
+
+Result: The button is only present on the user's own profile and does not appear on other user's profiles. The button redirects the user to the correct location
+
+**Main navigation**
+
+Expected: This navigation should contain links to the feed, profile and add story pages. It should also contain a logout button and a search bar. The logout and search bar have been documented as separate features beneath this one. If the user is currently viewing one of the pages which are linked in the navbar there should be a line under the correct link. 
+
+Result: The navigation contains the correct items and the links direct the user to the correct locations. As the user navigates to the pages linked in the navbar, the links are underlined to reflect the current page as intended.
+
+**Navigation for smaller screens**
+
+Expected: The navigation for the smaller screen should function exactly the same as the large screen navigation. However the navigation on the smaller screens should be hidden initially and accessible as a dropdown from a dropdown icon. The menu should also be closeable using an x icon located at the top of the dropdown.
+
+Result: The navbar functions in the same manner as that of the navigation on larger screens. Both the dropdown icon and x icon function correctly in opening and closing the dropdown navigation.
+
+**Logout button**
+
+Expected: Upon clicking the button the user should be navigated back to the login page. The user should be presented with a flash message with confirmation that they have logged out. If the user tries to access a page from the site via url they should be presented with a page that informs them that they are not logged in. 
+
+Result: The button navigates the user back to the login page and the flash message appears confirming that they have logged out. If the user attempts to navigate to another page on the site via url the correct 'not logged in' page appears.
+
+
+**Search bar and search results page**
+
+Expected: The search bar should be present in the navbars for the small and larger screen sizes. The user should be able to type their query in the text box and submit the search by either clicking the search icon or by pressing enter. The stories which contain the words in the search bar should be returned on a page that has the same functionality as the feed page. If the search returns no results the user should be informed that the search returned no results with a flash message.
+
+Result: The search bar is present in the correct locations on the site. If the search does not return any results, the user is informed of this with a flash message. When the search returns results, it returns results with the words from the search bar. The results are displayed on a page with the same functionality as the feed page with both the feed filter and number navigation present.
+
+
+
+
