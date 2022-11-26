@@ -4,6 +4,8 @@
 [View the live project here](https://ghost-post.herokuapp.com/) <br>
 This is the documentation for the Ghost Post social media website project. Ghost Post is a social Media website where users can post stories about their paranormal encounters. Users may also interact with the site in various ways such as following  other users, display information about themselves on their profile page and favorite stories they particularly like. The primary goals of the website are to create a forum for those interested in paranormal activity, to generate a large amount of site users in order to have advertising opportunities and possibly to gather the best stories from the site and put them into a book.
 
+**DISCLAIMER** The developer of this project may or may not believe in paranormal phenomena.
+
 ## **Table of Contents**
 *  **[Technologies Used](#technologies-used)**
     * [Code](#code)

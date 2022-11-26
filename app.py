@@ -7,7 +7,7 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 import math
-import random
+
 if os.path.exists("env.py"):
     import env
 
@@ -24,6 +24,10 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    try:
+        print(mongo.db)
+    except:
+        print("Sorry")
     # session cookies are set to empty as they must be present for certain pages to work
     session["flash"] = ""
     session["search"] = ""
